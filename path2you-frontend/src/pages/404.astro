@@ -1,29 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Path2You</title>
-</head>
-<body>
-    <div class="grid h-screen bg-[#151515]  px-4 place-content-center">
-        <div class="text-center opacity-80">
-          <h1 class="font-black text-gray-200 text-9xl mb-4">404</h1>
-  
-          <p class="text-3xl font-bold tracking-tight text-gray-100 sm:text-4xl">
-            Oops!
-          </p>
-  
-          <p class="mt-4 mb-9 text-lg text-gray-200">
-            No pudimos encontrar lo que buscas.
-          </p>
-          <a
-            href="/"
-            class="uppercase tracking-wide font-bold hover:scale-105 text-white bg-transparent border px-8 py-3 sm:text-base leading-[36px] transition-all duration-200 rounded-[50px] border-white text-center shadow-lg hover:bg-white hover:text-black hover:border-white"
-          >
-          Volver al Inicio
-          </a>
-        </div>
-      </div>  
-</body>
-</html>
+---
+import NotFoundLayout from "../layouts/NotFoundLayout.astro";
+
+Astro.response.status = 404;
+---
+
+<NotFoundLayout/>
