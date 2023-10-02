@@ -1,35 +1,34 @@
-import { useState } from "react";
-import { logIn } from "../core/service";
-import { storeUser } from "../core/helpers";
 import { ToastContainer, toast } from "react-toastify";
+import { register } from "../core/service";
 import "react-toastify/dist/ReactToastify.css";
 
-const initialUser = { identifier: "", password: "" };
 
-const LoginForm = () => {
-  const [user, setUser] = useState(initialUser);
+// FALTA: 
+// 1. Validar username y email que no se repitan
+// 2. Que no se permitan espacios en blanco en el username
+// 3. Que el username no tenga caracteres especiales
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+const RegisterForm = () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const data = Object.fromEntries(
-      new FormData(event.currentTarget).entries()
+      new FormData(e.currentTarget).entries()
     ) as any;
-
     try {
-      if (!data.identifier || !data.password) {
+      if (!data.name || !data.username || !data.email || !data.password) {
         throw new Error("Por favor, ingresa todos los datos.");
       }
 
-      const res = await logIn(data.identifier, data.password);
+      const res = await register({
+        name: data.name,
+        username: data.username,
+        email: data.email,
+        password: data.password,
+      });
 
-      if (res.jwt) {
-        toast.success("Inicio de Sesion Exitoso");
-        storeUser(res);
-        setUser(initialUser);
-        location.replace("/");
-      } else if (res.status === 400) {
-        toast.warning("Credenciales incorrectas");
+      if (!res.status) {
+        toast.success("Registro Exitoso");
+        location.replace("/login");
       } else {
         toast.error(res);
       }
@@ -39,32 +38,50 @@ const LoginForm = () => {
   };
 
   return (
-    <section className="login w-full h-full bg-white text-white rounded-lg flex flex-col justify-center items-center">
-      <div className="login__presentation w-fit flex flex-col gap-2 mx-auto text-center">
+    <section className="register  w-full h-full bg-white text-white rounded-lg flex flex-col justify-center items-center">
+      <div className="register__presentation w-fit flex flex-col gap-2 mx-auto text-center">
         <img
           src="/icono.png"
           alt="Logo Path2You"
           className="login__logo max-w-[5rem] mx-auto overflow-hidden"
         />
         <h1 className="login__title text-customPrimary text-3xl font-bold">
-          ¡Bienvenido de vuelta!
+          Creemos tu cuenta.
         </h1>
         <p className="login__text text-customText text-lg font-medium">
-          Por favor, ingresa tus datos.
+          Comencemos nuestra aventura.
         </p>
       </div>
       <form
         onSubmit={handleSubmit}
         method="post"
-        autoComplete="on"
-        className="form h-fit mt-16"
+        autoComplete="off"
+        className="form h-fit max-w-sm mt-16"
       >
+        <input
+          type="text"
+          placeholder="Nombre y Apellido"
+          aria-label="Nombre y Apellido"
+          name="name"
+          id="name"
+          className="form__input"
+          required
+        />
+        <input
+          type="text"
+          placeholder="Nombre de usuario"
+          aria-label="Nombre de Usuario"
+          name="username"
+          id="username"
+          className="form__input"
+          required
+        />
         <input
           type="email"
           placeholder="Correo electrónico"
           aria-label="Correo electrónico"
-          name="identifier"
-          id="identifier"
+          name="email"
+          id="email"
           className="form__input"
           required
         />
@@ -79,16 +96,16 @@ const LoginForm = () => {
         />
         <div className="form__submit text-center mt-10">
           <button className="form__button button-primary mb-4">
-            Iniciar Sesión
+            Registrarse
           </button>
           <p className="form__register-redirect text-customText font-medium">
-            ¿No tienes una cuenta?
+            Ya tienes una cuenta?
             <a
               className="ml-2 underline hover:opacity-80 transition-all duration-300"
-              href="/register"
-              aria-label="Registrarse"
+              href="/login"
+              aria-label="Iniciar Sesión"
             >
-              Regístrate
+              Inicia Sesión
             </a>
           </p>
         </div>
@@ -109,4 +126,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
