@@ -1,25 +1,34 @@
 ---
-
-export interface Props{
-    title: string;
-    description?: string;
+export interface Props {
+  title: string;
+  description?: string;
 }
 
-const defaultDescription = "Una aplicación web E-learning adaptable para personas con problemas de visión.";
+const defaultDescription =
+  "Una aplicación web E-learning adaptable para personas con problemas de visión.";
 
 const { title, description = defaultDescription } = Astro.props as Props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content={description}>
-    <meta name="generator" content={Astro.generator}>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-</head>
-<body>
-    <slot/>
-</body>
+  </head>
+  <script>
+    import { userData } from "../core/helpers";
+
+    const { jwt } = userData();
+
+    if (!jwt) {
+      location.replace("/login");
+    }
+  </script>
+  <body>
+    <slot />
+  </body>
 </html>

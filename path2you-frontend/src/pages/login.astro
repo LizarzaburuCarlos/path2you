@@ -1,0 +1,19 @@
+---
+import EmptyLayout from "../layouts/EmptyLayout.astro";
+import LoginForm from "../components/LoginForm";
+
+const title = "Path2You LogIn";
+---
+
+<EmptyLayout title={title}>
+  <div class="login-page w-full h-screen bg-customPrimary">
+    <div class="login-page__container h-full 2xl:w-[1280px]  mx-auto grid grid-cols-2">
+        <div class="login-page__presentation flex justify-center items-center">
+            <img class="" src="" alt="Imagen">
+        </div>
+        <div class="login-page__form p-4">
+            <LoginForm client:load />
+        </div>
+    </div>
+  </div>
+</EmptyLayout>

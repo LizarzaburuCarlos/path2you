@@ -4,5 +4,16 @@ module.exports = {
 	theme: {
 		extend: {},
 	},
+	theme: {
+		extend: {
+			colors: {
+				customPrimary: '#440099',
+				customSecondary: '#9678D3',
+				customTertiary: '#C5C6C7',
+				customQuaternary: '#66FCF1',
+				customText:'#4E4E4E',
+			},
+		},
+	},
 	plugins: [],
 }
