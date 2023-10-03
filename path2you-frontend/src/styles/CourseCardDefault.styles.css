@@ -1,0 +1,10 @@
+.coursecard{
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+
+    @apply rounded-lg cursor-pointer transition-all duration-300 bg-slate-200;
+}
+
+.coursecard:hover{
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+
+}

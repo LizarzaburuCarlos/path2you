@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CourseList from "../components/courses/CourseList";
+
+const title = "Path 2 You - Cursos";
+
+---
+
+<BaseLayout title={title}>
+    <CourseList client:visible />
+</BaseLayout>

@@ -55,14 +55,19 @@ export const register = async (data: any) => {
 
 export const getCourses = async () => {
   try {
-    const res = await fetch(`${API_URL}/courses`);
+    const res = await fetch(`${API_URL}/courses`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    });
 
     if (!res.ok) {
       throw new Error("Failed to fetch courses");
+    } else {
+        console.log("Cursos obtenidos");
+        const { data } = await res.json();
+        return data;    
     }
 
-    const { data } = await res.json();
-    return data;
   } catch (error) {
     console.error(error);
     throw error;
