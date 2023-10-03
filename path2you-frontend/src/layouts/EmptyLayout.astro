@@ -47,8 +47,9 @@ const { title, description = defaultDescription } = Astro.props as Props;
     import { userData } from "../core/helpers";
 
     const { jwt } = userData();
+    const currentPath = location.pathname;
 
-    if (jwt) {
+    if (jwt && (currentPath === "/login" || currentPath === "/register"))  {
       location.replace("/");
     }
   </script>
