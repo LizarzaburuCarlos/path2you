@@ -3,6 +3,13 @@ import CourseCard from "../CourseCard";
 import { getCourses } from "../../core/service";
 import { toast } from "react-toastify";
 
+
+// FALTA:
+// 1. Agregar un loading
+// 2. Mejorar apariencia de cards
+// 3. Agregar redirect con el slug de los cursos
+// 4. Definir que información se colocará en las cards
+
 const CourseList = () => {
   const [courses, setCourses] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
