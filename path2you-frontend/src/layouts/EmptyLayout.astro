@@ -20,6 +20,10 @@ const { title, description = defaultDescription } = Astro.props as Props;
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
     <title>{title}</title>
     <style>
       /* :root {
@@ -57,4 +61,9 @@ const { title, description = defaultDescription } = Astro.props as Props;
   <body>
     <slot />
   </body>
+  <style is:global>
+    * {
+      font-family: "Outfit", sans-serif;
+    }
+  </style>
 </html>
