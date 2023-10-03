@@ -1,0 +1,28 @@
+
+.sidebar{
+    background: #1B1D21;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+
+    @apply rounded-2xl overflow-hidden;
+}
+
+.sidebar .sidebar__top .sidebar__menu .sidebar__menu-item{
+
+    @apply h-12 w-full rounded-lg flex items-center justify-center transition-all duration-300;
+}
+
+.sidebar .sidebar__top .sidebar__menu .sidebar__menu-item:hover{
+    background-color: #2F3136;
+    opacity: 80%;
+}
+
+.sidebar .sidebar__bottom .sidebar__logoff{
+    background-color: #2F3136;
+
+    @apply h-12 w-full rounded-lg flex items-center justify-center transition-all duration-300;
+}
+
+.sidebar .sidebar__bottom .sidebar__logoff:hover{
+    background-color: #2F3136;
+    opacity: 80%;
+}
