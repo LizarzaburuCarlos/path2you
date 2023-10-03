@@ -39,17 +39,17 @@ const LoginForm = () => {
   };
 
   return (
-    <section className="login w-full h-full bg-white text-white rounded-lg flex flex-col justify-center items-center">
+    <section className="login w-full h-full bg-white text-white rounded-lg flex flex-col justify-center items-center max-lg:px-8">
       <div className="login__presentation w-fit flex flex-col gap-2 mx-auto text-center">
         <img
           src="/icono.png"
           alt="Logo Path2You"
           className="login__logo max-w-[5rem] mx-auto overflow-hidden"
         />
-        <h1 className="login__title text-customPrimary text-3xl font-bold">
+        <h1 className="login__title text-customPrimary text-2xl md:text-3xl font-bold">
           ¡Bienvenido de vuelta!
         </h1>
-        <p className="login__text text-customText text-lg font-medium">
+        <p className="login__text text-customText text-base md:text-lg font-medium">
           Por favor, ingresa tus datos.
         </p>
       </div>
@@ -57,7 +57,7 @@ const LoginForm = () => {
         onSubmit={handleSubmit}
         method="post"
         autoComplete="on"
-        className="form h-fit mt-16"
+        className="form h-fit max-w-sm mt-16"
       >
         <input
           type="email"

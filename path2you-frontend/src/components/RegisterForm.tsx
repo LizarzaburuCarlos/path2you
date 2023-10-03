@@ -38,7 +38,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <section className="register  w-full h-full bg-white text-white rounded-lg flex flex-col justify-center items-center">
+    <section className="register w-full h-full bg-white text-white rounded-lg flex flex-col justify-center items-center">
       <div className="register__presentation w-fit flex flex-col gap-2 mx-auto text-center">
         <img
           src="/icono.png"
