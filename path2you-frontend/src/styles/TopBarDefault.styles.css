@@ -1,0 +1,35 @@
+
+.topbar .topbar__searchbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @apply h-10 rounded-lg px-4 py-2 w-96 bg-gray-200 transition-all duration-300;
+}
+
+.topbar .topbar__searchbar:hover{
+    @apply bg-gray-300;
+}
+
+.topbar .topbar__searchbar:focus-within{
+    @apply bg-gray-300;
+}
+
+.topbar .topbar__searchbar .topbar__search-input{
+    @apply w-full h-full bg-transparent outline-none text-sm;
+}
+
+.topbar .topbar__searchbar .topbar__search-button{
+    @apply ml-4;
+}
+
+.topbar .topbar__side-buttons{
+    @apply flex gap-4 items-center max-md:hidden;
+}
+
+.topbar .topbar__side-buttons .topbar__button{
+    @apply h-full bg-gray-200 rounded-lg py-2 px-4 flex items-center justify-center transition-all duration-300;
+}
+
+.topbar .topbar__side-buttons .topbar__button:hover{
+    @apply bg-gray-300;
+}
