@@ -1,5 +1,6 @@
 ---
-import { userData } from "../core/helpers";
+import "../styles/Empty.styles.css";
+import "../styles/Utils.styles.css";
 
 export interface Props {
   title: string;
@@ -40,8 +41,6 @@ const { title, description = defaultDescription } = Astro.props as Props;
             color: var(--secondary);
         } */
 
-      @import "../styles/Empty.styles.css";
-      @import "../styles/Utils.styles.css";
     </style>
   </head>
   <script>
