@@ -38,17 +38,17 @@ const RegisterForm = () => {
   };
 
   return (
-    <section className="register w-full h-full bg-white text-white rounded-lg flex flex-col justify-center items-center">
+    <section className="register w-full h-full bg-white text-white rounded-lg flex flex-col justify-center items-center max-lg:px-8">
       <div className="register__presentation w-fit flex flex-col gap-2 mx-auto text-center">
         <img
           src="/icono.png"
           alt="Logo Path2You"
           className="login__logo max-w-[5rem] mx-auto overflow-hidden"
         />
-        <h1 className="login__title text-customPrimary text-3xl font-bold">
+        <h1 className="login__title text-customPrimary text-2xl md:text-3xl font-bold">
           Creemos tu cuenta.
         </h1>
-        <p className="login__text text-customText text-lg font-medium">
+        <p className="login__text text-customText text-base md:text-lg font-medium">
           Comencemos nuestra aventura.
         </p>
       </div>
