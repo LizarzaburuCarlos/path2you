@@ -1,4 +1,8 @@
 
+.topbar{
+    @apply sticky top-0 z-10 bg-white;
+}
+
 .topbar .topbar__searchbar{
     display: flex;
     align-items: center;
