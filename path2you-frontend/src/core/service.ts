@@ -1,4 +1,4 @@
-import { API_URL } from "./constants";
+import { API_URL, STRAPI_URL } from "./constants";
 
 export const logIn = async (identifier: string, password: string) => {
   try {
@@ -53,9 +53,16 @@ export const register = async (data: any) => {
   }
 };
 
+export function getPhoto({course}){
+  console.log(course);
+  
+  const { url } = course.photo.data.attributes;
+  return `${STRAPI_URL}${url}`
+}
+
 export const getCourses = async () => {
   try {
-    const res = await fetch(`${API_URL}/courses`, {
+    const res = await fetch(`${API_URL}/courses?populate=photo`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
