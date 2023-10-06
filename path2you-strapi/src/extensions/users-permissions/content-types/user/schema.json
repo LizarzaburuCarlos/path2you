@@ -74,12 +74,6 @@
       "type": "boolean",
       "default": false
     },
-    "reviews": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::review.review",
-      "mappedBy": "users_permissions_user"
-    },
     "name": {
       "type": "string",
       "required": true,

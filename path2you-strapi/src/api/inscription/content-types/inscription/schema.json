@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "inscriptions",
+  "info": {
+    "singularName": "inscription",
+    "pluralName": "inscriptions",
+    "displayName": "Inscription",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "date",
+      "required": false
+    },
+    "course": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::course.course"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

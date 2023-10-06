@@ -46,12 +46,6 @@
       "relation": "oneToMany",
       "target": "api::lecture.lecture",
       "mappedBy": "course"
-    },
-    "reviews": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::review.review",
-      "mappedBy": "course"
     }
   }
 }
