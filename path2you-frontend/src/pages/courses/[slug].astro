@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import fetchApi from '../../lib/strapi';
+import type Course from '../../interfaces/course';
+
+export async function getStaticPaths() {
+  const courses = await fetchApi<Course[]>({
+    endpoint: 'courses?populate=image',
+    wrappedByKey: 'data',
+  });
+  return courses.map((course) => ({
+    params: { slug: course.attributes.slug },
+    props: course,
+  }));
+}
+
+type Props = Course;
+
+const course = Astro.props
+---
+
+<BaseLayout title={`Curso ${course.attributes.title}`}>
+  <section class="course w-full">
+
+  </section>
+    
+</BaseLayout>

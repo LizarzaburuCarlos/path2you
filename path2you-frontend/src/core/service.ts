@@ -54,8 +54,6 @@ export const register = async (data: any) => {
 };
 
 export function getPhoto({course}){
-  console.log(course);
-  
   const { url } = course.photo.data.attributes;
   return `${STRAPI_URL}${url}`
 }
