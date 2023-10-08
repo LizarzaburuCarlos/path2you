@@ -1,12 +1,18 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import fetchApi from '../../lib/strapi';
-import type Course from '../../interfaces/course';
+import LectureList from "../../components/LectureList";
+import fetchApi from "../../lib/strapi";
+import type Course from "../../interfaces/course";
+import { getPhoto } from "../../core/service";
+import { userData } from "../../core/helpers";
+import { useEffect, useState } from "react";
+import { Code } from "astro:components";
+
 
 export async function getStaticPaths() {
   const courses = await fetchApi<Course[]>({
-    endpoint: 'courses?populate=image',
-    wrappedByKey: 'data',
+    endpoint: "courses?populate=photo",
+    wrappedByKey: "data",
   });
   return courses.map((course) => ({
     params: { slug: course.attributes.slug },
@@ -16,12 +22,62 @@ export async function getStaticPaths() {
 
 type Props = Course;
 
-const course = Astro.props
+const course = Astro.props;
+
+//Inscripción
+// const [inscription, setInscription] = useState(false);
+
+// useEffect(() => {
+//   const user = userData();
+// }, []);
+
+// async function handleInscription()  {
+//   try {
+//     console.log(user);
+
+//     const res = await fetchApi({
+//       endpoint: "inscriptions",
+//       method: "POST",
+//       body: {
+//         user: user.id,
+//         course: course.id,
+//         date: new Date(),
+//       },
+//     });
+
+//     console.log("exitoso",res);
+//   } catch (error) {
+//     console.log("error", error);
+//   }
+// }
+
+async function handleInscription() {
+  console.log("hola");
+  
+}
+
 ---
 
 <BaseLayout title={`Curso ${course.attributes.title}`}>
   <section class="course w-full">
-
+    <div class="course__container grid gap-6 grid-cols-2">
+      <div class="course__presentation relative">
+        <h3 class="course__title text-customPrimary font-bold text-3xl lg:text-5xl mb-6">{course.attributes.title}</h3>
+        <p class="course__description mb-20 text-customText font-medium text-lg">{course.attributes.description}</p>
+        <div class="course__inscription w-36 bottom-0 absolute">
+          <button class="button-primary w-full">Inscribirse</button>
+        </div> 
+      </div>
+      <div class="course__image w-full rounded-xl overflow-hidden aspect-[3/2]">
+        {
+          !course.attributes.photo.data ? (
+            <img src="/images/course-placeholder.png" alt={course.attributes.title} />
+          ) : (
+            <img class="w-full h-full object-cover" src={getPhoto({ course: course.attributes })} alt={course.attributes.title} />
+          )
+        }
+      </div>
+    </div>
   </section>
-    
+  <LectureList {...course} client:load/>
 </BaseLayout>

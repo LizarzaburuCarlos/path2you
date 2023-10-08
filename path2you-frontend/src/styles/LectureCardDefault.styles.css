@@ -1,0 +1,5 @@
+.lecturecard{
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+
+    @apply rounded-lg transition-all duration-300 bg-slate-200;
+}

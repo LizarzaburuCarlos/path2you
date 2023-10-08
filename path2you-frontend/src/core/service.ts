@@ -53,10 +53,6 @@ export const register = async (data: any) => {
   }
 };
 
-export function getPhoto({course}){
-  const { url } = course.photo.data.attributes;
-  return `${STRAPI_URL}${url}`
-}
 
 export const getCourses = async () => {
   try {
@@ -78,6 +74,12 @@ export const getCourses = async () => {
     throw error;
   }
 };
+
+export function getPhoto({course}){
+  const { url } = course.photo.data.attributes;
+  return `${STRAPI_URL}${url}`
+}
+
 
 export default {
   logIn,

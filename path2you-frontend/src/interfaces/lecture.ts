@@ -1,11 +1,9 @@
-export default interface Course {
+export default interface Lecture {
     id: number;
     attributes: {
         title: string;
         description: string;
-        slug: string;
-        duration: number;
-        photo: {
+        media: {
             data: {};
         };
         createdAt: string;
