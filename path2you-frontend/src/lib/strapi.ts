@@ -38,7 +38,7 @@ export default async function fetchApi<T>({
   } else {
     console.error('No se encontró una URL válida');
   }
-  
+
   if (query) {
     Object.entries(query).forEach(([key, value]) => {
       url.searchParams.append(key, value);
