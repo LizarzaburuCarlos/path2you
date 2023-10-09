@@ -3,7 +3,11 @@ import type Lecture from "../interfaces/lecture";
 import "../styles/LectureCardDefault.styles.css";
 
 const LectureCard = (lecture: Lecture) => {
-  const mediaData: any = Object.values(lecture.attributes.media.data);
+  let mediaData: any = {};
+
+  if (lecture.attributes.media.data) {
+    mediaData = Object.values(lecture.attributes.media.data);
+  }
 
   const getFileIcon = (fileName: string) => {
     const extension = fileName.split(".").pop()?.toLowerCase();
@@ -53,7 +57,7 @@ const LectureCard = (lecture: Lecture) => {
           </p>
         </div>
         <div className="lecturecard__media mt-4 w-full gap-6 flex justify-between items-center">
-          {mediaData &&
+          {mediaData.length > 0 &&
             mediaData.map((mediaItem) => (
               <button className="h-8 w-8 cursor-pointer bg-slate-100" onClick={() => handleDownload(mediaItem)}>
                 {getFileIcon(mediaItem.attributes.name)}
