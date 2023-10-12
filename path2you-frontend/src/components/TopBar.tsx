@@ -36,7 +36,7 @@ const TopBar = () => {
  
       const usuarioDarkMode = { ...usuario!, darkmode: true, neumorphismmode: false };
 
-      console.log(usuarioDarkMode);
+      // console.log(usuarioDarkMode);
       
       try {
 
@@ -60,7 +60,7 @@ const TopBar = () => {
 
       const usuarioNeumorphism = { ...usuario!, darkmode: false, neumorphismmode: true };
 
-      console.log(usuarioNeumorphism);
+      // console.log(usuarioNeumorphism);
       
       try {
 
@@ -81,14 +81,40 @@ const TopBar = () => {
 
     };
 
+    const handleNormalMode = async () => {
+
+      const usuarioNormalMode = { ...usuario!, darkmode: false, neumorphismmode: false };
+
+      // console.log(usuarioNormalMode);
+      
+      try {
+
+        const res = await editarUsuario(usuarioNormalMode.id, usuarioNormalMode);
+        // console.log(res);
+        
+        if (!res.status) {
+          console.log("Modo Normal Activado");
+          
+        } else {
+          toast.error(res);
+          console.log(res);
+          
+        }
+      } catch (error) {
+        toast.error("Error al activar el Modo Normal");
+      }
+
+    };
+
     return(
         <section className="topbar w-full h-16 mb-12 flex items-center justify-between">
             <form className="topbar__searchbar">
                 <input type="text" placeholder="Buscar" className="topbar__search-input"/>
-                <button type="submit" className="topbar__search-button">L</button>
+                <button type="submit" className="topbar__search-button">S</button>
             </form>
             <div className="topbar__side-buttons">
-                <button onClick={handleDarkMode} className=" topbar__button darkmode">M</button>
+                <button onClick={handleNormalMode} className="topbar__button">L</button>
+                <button onClick={handleDarkMode} className="topbar__button darkmode">M</button>
                 <button onClick={handleNeumorphismMode} className="topbar__button lightmode">N</button>
             </div>
         </section>

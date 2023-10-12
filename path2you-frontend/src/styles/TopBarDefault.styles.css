@@ -1,6 +1,6 @@
 
 .topbar{
-    @apply sticky top-0 z-10 bg-white;
+    @apply sticky top-0 z-10;
 }
 
 .topbar .topbar__searchbar{
@@ -38,12 +38,12 @@
     background-color: aqua
 }
 
-.topbar .topbar__side-buttons .topbar__button .topbar__button.darkmode{
+.topbar .topbar__side-buttons .topbar__button.darkmode{
     @apply bg-red-600
 }
 
 .topbar .topbar__side-buttons .topbar__button.lightmode:hover{
-    @apply bg-gray-300;
+    @apply bg-gray-500;
 }
 
 .topbar .topbar__side-buttons .topbar__button.darkmode:hover{
