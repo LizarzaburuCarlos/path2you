@@ -34,18 +34,18 @@
     @apply h-full rounded-lg py-2 px-4 flex items-center justify-center transition-all duration-300;
 }
 
-.topbar .topbar__side-buttons .topbar__button button.lightmode{
-    background-color: aqua
+.topbar .topbar__side-buttons .topbar__button.light{
+    @apply bg-[#F8F8F8]
 }
 
-.topbar .topbar__side-buttons .topbar__button.darkmode{
+.topbar .topbar__side-buttons .topbar__button.dark{
     @apply bg-red-600
 }
 
-.topbar .topbar__side-buttons .topbar__button.lightmode:hover{
+.topbar .topbar__side-buttons .topbar__button.light:hover{
     @apply bg-gray-500;
 }
 
-.topbar .topbar__side-buttons .topbar__button.darkmode:hover{
+.topbar .topbar__side-buttons .topbar__button.dark:hover{
     @apply bg-red-700;
 }

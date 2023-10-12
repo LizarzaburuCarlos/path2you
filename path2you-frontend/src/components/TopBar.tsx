@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 const TopBar = () => {
 
     const [usuario, setUsuario] = useState<User>();
+    const [style, setStyle] = useState<string>("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -15,22 +16,36 @@ const TopBar = () => {
             // console.log(userDataResponse);
           await fetchUserData(userDataResponse.id);
         };
+        
         fetchData();
+        
       }, []);
 
     async function fetchUserData(user) {
         try {
           const userDataApi = await fetchApi<User>({
             endpoint: "users/" + user,
-          });
-    
+          });    
           setUsuario(userDataApi);
+          fetchStyle(userDataApi);
           // console.log(userDataApi);
-          
+
         } catch (error) {
           console.log("error", error);
         }
     }
+
+    const fetchStyle = async (usuario) => {
+    
+      if (usuario!.darkmode === true) {
+        setStyle("dark");
+      } else if (usuario!.neumorphismmode === true) {
+        setStyle("neumorphism");
+      } else {
+        setStyle("light");
+      }
+
+    };
 
     const handleDarkMode = async () => {
  
@@ -44,6 +59,7 @@ const TopBar = () => {
         console.log(res);
         
         if (!res.status) {
+          setStyle("dark");
           console.log("Dark Mode Activado");
           
         } else {
@@ -68,6 +84,7 @@ const TopBar = () => {
         // console.log(res);
         
         if (!res.status) {
+          setStyle("neumorphism");
           console.log("Neumorfismo Activado");
           
         } else {
@@ -81,19 +98,20 @@ const TopBar = () => {
 
     };
 
-    const handleNormalMode = async () => {
+    const handleLightMode = async () => {
 
-      const usuarioNormalMode = { ...usuario!, darkmode: false, neumorphismmode: false };
+      const usuarioLightMode = { ...usuario!, darkmode: false, neumorphismmode: false };
 
       // console.log(usuarioNormalMode);
       
       try {
 
-        const res = await editarUsuario(usuarioNormalMode.id, usuarioNormalMode);
+        const res = await editarUsuario(usuarioLightMode.id, usuarioLightMode);
         // console.log(res);
         
         if (!res.status) {
-          console.log("Modo Normal Activado");
+          setStyle("light");
+          console.log("Modo Light Activado");
           
         } else {
           toast.error(res);
@@ -101,7 +119,7 @@ const TopBar = () => {
           
         }
       } catch (error) {
-        toast.error("Error al activar el Modo Normal");
+        toast.error("Error al activar el Modo Light");
       }
 
     };
@@ -113,9 +131,9 @@ const TopBar = () => {
                 <button type="submit" className="topbar__search-button">S</button>
             </form>
             <div className="topbar__side-buttons">
-                <button onClick={handleNormalMode} className="topbar__button">L</button>
-                <button onClick={handleDarkMode} className="topbar__button darkmode">M</button>
-                <button onClick={handleNeumorphismMode} className="topbar__button lightmode">N</button>
+                <button onClick={handleLightMode} className={`topbar__button ${style}`}>L</button>
+                <button onClick={handleDarkMode} className={`topbar__button ${style}`}>M</button>
+                <button onClick={handleNeumorphismMode} className={`topbar__button ${style}`}>N</button>
             </div>
         </section>
     )
