@@ -39,13 +39,24 @@
 }
 
 .topbar .topbar__side-buttons .topbar__button.dark{
-    @apply bg-red-600
+    @apply bg-[#48454f] text-[#f3f3f3] ;
+}
+
+.topbar .topbar__side-buttons .topbar__button.neumorphism{
+    background: linear-gradient(135deg, #FFFAFF 0%, #DAD3E5 100%);
+    box-shadow: -5px -5px 11px 0px #FFF, 5px 5px 11px 0px #CEC8D9;
+}
+
+.topbar .topbar__side-buttons .topbar__button.neumorphism:hover{
+    background: #6933AD;
+    box-shadow: -10px -10px 20px 0px #6933AD inset, 10px 10px 20px 0px #501B93 inset;
+    color: #FFF;
 }
 
 .topbar .topbar__side-buttons .topbar__button.light:hover{
-    @apply bg-gray-500;
+    @apply bg-[#6933ad] text-white scale-105;
 }
 
 .topbar .topbar__side-buttons .topbar__button.dark:hover{
-    @apply bg-red-700;
+    @apply bg-[#766F87] scale-105;
 }
