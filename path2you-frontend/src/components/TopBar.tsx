@@ -56,6 +56,31 @@ const TopBar = () => {
       }
     };
 
+    const handleNeumorphismMode = async () => {
+
+      const usuarioNeumorphism = { ...usuario!, darkmode: false, neumorphismmode: true };
+
+      console.log(usuarioNeumorphism);
+      
+      try {
+
+        const res = await editarUsuario(usuarioNeumorphism.id, usuarioNeumorphism);
+        // console.log(res);
+        
+        if (!res.status) {
+          console.log("Neumorfismo Activado");
+          
+        } else {
+          toast.error(res);
+          console.log(res);
+          
+        }
+      } catch (error) {
+        toast.error("Error al activar el Neumorfismo Mode");
+      }
+
+    };
+
     return(
         <section className="topbar w-full h-16 mb-12 flex items-center justify-between">
             <form className="topbar__searchbar">
@@ -64,7 +89,7 @@ const TopBar = () => {
             </form>
             <div className="topbar__side-buttons">
                 <button onClick={handleDarkMode} className=" topbar__button darkmode">M</button>
-                <button className="topbar__button lightmode">N</button>
+                <button onClick={handleNeumorphismMode} className="topbar__button lightmode">N</button>
             </div>
         </section>
     )
