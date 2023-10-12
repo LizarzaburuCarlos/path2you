@@ -4,6 +4,8 @@ export const storeUser = (data) => {
     JSON.stringify({
       id: data.user.id,
       username: data.user.username,
+      darkmode: data.user.darkmode,
+      neumorphism: data.user.neumorphismmode,
       jwt: data.jwt,
     })
   );

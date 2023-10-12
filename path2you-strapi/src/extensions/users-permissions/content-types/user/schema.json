@@ -68,7 +68,7 @@
     "darkmode": {
       "type": "boolean",
       "default": false,
-      "required": true
+      "required": false
     },
     "neumorphismmode": {
       "type": "boolean",

@@ -34,16 +34,16 @@ const { title, description = defaultDescription } = Astro.props as Props;
     const { jwt } = userData();
 
     if (!jwt) {
-      location.replace("/login");
+     location.replace("/login");
     }
   </script>
-  <body>
-    <div class="h-screen 2xl:w-[1280px] mx-auto p-4 flex">
+  <body class="neumorphism">
+    <div class="h-screen  2xl:w-[1280px] mx-auto p-4 flex">
       <div class="sidebar min-w-[5rem] w-32 h-full">
         <SideBar client:load />
       </div>
       <div class="content w-full py-4 px-10 h-full overflow-y-auto">
-        <TopBar />
+        <TopBar client:load />
         <slot />
       </div>
     </div>
@@ -52,5 +52,10 @@ const { title, description = defaultDescription } = Astro.props as Props;
     * {
       font-family: "Outfit", sans-serif;
     }
+    
+    body.neumorphism {
+      background: linear-gradient(0deg, #F2EBFF 0.88%, #F0E8FC 57.21%, #F8F4FF 100%);
+    }
+    
   </style>
 </html>

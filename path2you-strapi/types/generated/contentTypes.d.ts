@@ -362,6 +362,179 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiCourseCourse extends Schema.CollectionType {
+  collectionName: 'courses';
+  info: {
+    singularName: 'course';
+    pluralName: 'courses';
+    displayName: 'Course';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }> &
+      Attribute.DefaultTo<'Curso sin Nombre'>;
+    description: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }> &
+      Attribute.DefaultTo<'Curso sin descripci\u00F3n.'>;
+    slug: Attribute.UID<'api::course.course', 'title'> & Attribute.Required;
+    photo: Attribute.Media;
+    duration: Attribute.Integer;
+    lectures: Attribute.Relation<
+      'api::course.course',
+      'oneToMany',
+      'api::lecture.lecture'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::course.course',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::course.course',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiInscriptionInscription extends Schema.CollectionType {
+  collectionName: 'inscriptions';
+  info: {
+    singularName: 'inscription';
+    pluralName: 'inscriptions';
+    displayName: 'Inscription';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    date: Attribute.Date;
+    course: Attribute.Relation<
+      'api::inscription.inscription',
+      'oneToOne',
+      'api::course.course'
+    >;
+    user: Attribute.Relation<
+      'api::inscription.inscription',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::inscription.inscription',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::inscription.inscription',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLectureLecture extends Schema.CollectionType {
+  collectionName: 'lectures';
+  info: {
+    singularName: 'lecture';
+    pluralName: 'lectures';
+    displayName: 'Lecture';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }> &
+      Attribute.DefaultTo<'Lecci\u00F3n sin Nombre.'>;
+    description: Attribute.Text;
+    course: Attribute.Relation<
+      'api::lecture.lecture',
+      'manyToOne',
+      'api::course.course'
+    >;
+    media: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::lecture.lecture',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::lecture.lecture',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiReviewReview extends Schema.CollectionType {
+  collectionName: 'reviews';
+  info: {
+    singularName: 'review';
+    pluralName: 'reviews';
+    displayName: 'Review';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    date: Attribute.DateTime;
+    score: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 1;
+        max: 5;
+      }>;
+    comment: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -615,9 +788,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    darkmode: Attribute.Boolean &
-      Attribute.Required &
-      Attribute.DefaultTo<false>;
+    darkmode: Attribute.Boolean & Attribute.DefaultTo<false>;
     neumorphismmode: Attribute.Boolean & Attribute.DefaultTo<false>;
     name: Attribute.String &
       Attribute.Required &
@@ -685,179 +856,6 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
-export interface ApiCourseCourse extends Schema.CollectionType {
-  collectionName: 'courses';
-  info: {
-    singularName: 'course';
-    pluralName: 'courses';
-    displayName: 'Course';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }> &
-      Attribute.DefaultTo<'Curso sin Nombre'>;
-    description: Attribute.Text &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }> &
-      Attribute.DefaultTo<'Curso sin descripci\u00F3n.'>;
-    slug: Attribute.UID<'api::course.course', 'title'> & Attribute.Required;
-    photo: Attribute.Media;
-    duration: Attribute.Integer;
-    lectures: Attribute.Relation<
-      'api::course.course',
-      'oneToMany',
-      'api::lecture.lecture'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::course.course',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::course.course',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiInscriptionInscription extends Schema.CollectionType {
-  collectionName: 'inscriptions';
-  info: {
-    singularName: 'inscription';
-    pluralName: 'inscriptions';
-    displayName: 'Inscription';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    date: Attribute.Date;
-    course: Attribute.Relation<
-      'api::inscription.inscription',
-      'oneToOne',
-      'api::course.course'
-    >;
-    user: Attribute.Relation<
-      'api::inscription.inscription',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::inscription.inscription',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::inscription.inscription',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiLectureLecture extends Schema.CollectionType {
-  collectionName: 'lectures';
-  info: {
-    singularName: 'lecture';
-    pluralName: 'lectures';
-    displayName: 'Lecture';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }> &
-      Attribute.DefaultTo<'Lecci\u00F3n sin Nombre.'>;
-    description: Attribute.Text;
-    course: Attribute.Relation<
-      'api::lecture.lecture',
-      'manyToOne',
-      'api::course.course'
-    >;
-    media: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::lecture.lecture',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::lecture.lecture',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiReviewReview extends Schema.CollectionType {
-  collectionName: 'reviews';
-  info: {
-    singularName: 'review';
-    pluralName: 'reviews';
-    displayName: 'Review';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    date: Attribute.DateTime;
-    score: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetMinMax<{
-        min: 1;
-        max: 5;
-      }>;
-    comment: Attribute.Text &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::review.review',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::review.review',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -868,16 +866,16 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::course.course': ApiCourseCourse;
+      'api::inscription.inscription': ApiInscriptionInscription;
+      'api::lecture.lecture': ApiLectureLecture;
+      'api::review.review': ApiReviewReview;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
-      'api::course.course': ApiCourseCourse;
-      'api::inscription.inscription': ApiInscriptionInscription;
-      'api::lecture.lecture': ApiLectureLecture;
-      'api::review.review': ApiReviewReview;
     }
   }
 }

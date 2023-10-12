@@ -3,11 +3,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import News from "../components/home/News";
 import InscribedList from "../components/InscribedList";
 
+
 const title = "Path 2 You - Inicio";
 
 ---
 
 <BaseLayout title={title}>
+    
     <News />
     <InscribedList client:load />
+
 </BaseLayout>
