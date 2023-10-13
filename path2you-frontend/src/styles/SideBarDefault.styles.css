@@ -1,9 +1,23 @@
 
 .sidebar{
+    @apply rounded-2xl overflow-hidden;
+}
+
+.sidebar.light{
     background: #1B1D21;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+}
 
-    @apply rounded-2xl overflow-hidden;
+.sidebar.dark{
+    border: 1px solid #5A4773;
+    background: #665483;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+}
+
+.sidebar.neumorphism{
+    border: 2px solid #501B93;
+    background: linear-gradient(179deg, #6933AD 0%, #501B93 100%);
+    box-shadow: -14px -14px 27px 0px #FFF, 14px 14px 27px 0px #CEC8D9;
 }
 
 .sidebar .sidebar__top .sidebar__menu .sidebar__menu-item{
@@ -11,18 +25,40 @@
     @apply h-12 w-full rounded-lg flex items-center justify-center transition-all duration-300;
 }
 
-.sidebar .sidebar__top .sidebar__menu .sidebar__menu-item:hover{
+.sidebar .sidebar__top .sidebar__menu .sidebar__menu-item.light:hover{
     background-color: #2F3136;
     opacity: 80%;
 }
 
+.sidebar .sidebar__top .sidebar__menu .sidebar__menu-item.dark:hover{
+    background-color: #786396;
+}
+
+.sidebar .sidebar__top .sidebar__menu .sidebar__menu-item.neumorphism:hover{
+    background: #6b31b3;
+    box-shadow: 5px 5px 20px 0px #6933AD, -5px -5px 15px 0px #562792;
+}
+
 .sidebar .sidebar__bottom .sidebar__logoff{
-    background-color: #2F3136;
 
     @apply h-12 w-full rounded-lg flex items-center justify-center transition-all duration-300;
 }
 
-.sidebar .sidebar__bottom .sidebar__logoff:hover{
+.sidebar .sidebar__bottom .sidebar__logoff.light{
     background-color: #2F3136;
-    opacity: 80%;
+}
+
+.sidebar .sidebar__bottom .sidebar__logoff.dark{
+    background-color: #f3f3f3;
+    color: #786396;
+}
+
+.sidebar .sidebar__bottom .sidebar__logoff.neumorphism{
+    background: linear-gradient(119deg, #C5C5C5 0%, #FFF 100%);
+    box-shadow: -5px -5px 11px 0px #6933AD, 5px 5px 11px 0px #562792;
+    color: #562792
+}
+
+.sidebar .sidebar__bottom .sidebar__logoff:hover{
+    opacity: 70%;
 }

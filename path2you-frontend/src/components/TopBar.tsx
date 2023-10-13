@@ -56,7 +56,7 @@ const TopBar = () => {
       try {
 
         const res = await editarUsuario(usuarioDarkMode.id, usuarioDarkMode);
-        console.log(res);
+        // console.log(res);
         
         if (!res.status) {
           setStyle("dark");
