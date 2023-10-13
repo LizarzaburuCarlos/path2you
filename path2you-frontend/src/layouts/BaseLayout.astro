@@ -37,13 +37,13 @@ const { title, description = defaultDescription } = Astro.props as Props;
 
     if (darkmode && neumorphismmode === false) {
       document.body.classList.add("light");
-    } else if (darkmode === true) {
+    } 
+    if (darkmode === true) {
       document.body.classList.add("dark");
-    } else if (neumorphismmode === true) {
+    } 
+    if (neumorphismmode === true) {
       document.body.classList.add("neumorphism");
-    } else {
-      document.body.classList.add("light");
-    }
+    } 
 
     if (!jwt) {
      location.replace("/login");

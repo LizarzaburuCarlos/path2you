@@ -1,5 +1,56 @@
 .lecturecard{
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    @apply rounded-lg transition-all duration-300;
+}
 
-    @apply rounded-lg transition-all duration-300 bg-slate-200;
+.lecturecard.light {
+    background-color: #F8F8F8;
+}
+
+.lecturecard.dark {
+    background-color: #48454f;
+}
+
+.lecturecard.neumorphism {
+    background: #F5F0FE;
+    box-shadow: -10px -10px 15px 0px #FFF, 10px 10px 15px 0px #D0CCD8;
+}
+
+.lecturecard__img.light {
+    background: #6933ad;
+}
+
+.lecturecard__img.dark {
+    background: #564869;
+}
+
+.lecturecard__img.neumorphism {
+    background: linear-gradient(180deg, #6933AD 0%, #562792 100%);
+    box-shadow: -10px -10px 15px 0px #FFF, 10px 10px 15px 0px #D0CCD8;
+}
+
+.lecturecard__content.light, .lecturecard__content.neumorphism {
+    color: black;
+}
+
+.lecturecard__content.dark {
+    color: #FFF;
+}
+
+.lecturecard__media.light button {
+    background: #6933ad;
+    border-radius: 5px;
+    color: #ffffff7f;
+}
+
+.lecturecard__media.dark button {
+    background: #766f87;
+    border-radius: 5px;
+    color: #ffffff7f;
+}
+
+.lecturecard__media.neumorphism button {
+    border-radius: 5px;
+    background: linear-gradient(135deg, #FFFAFF 0%, #DAD3E5 100%);
+    box-shadow: -5px -5px 11px 0px #FFF, 5px 5px 11px 0px #CEC8D9;
+    color: #6933AD;
 }
