@@ -1,0 +1,29 @@
+.course__presentation.light h3 {
+  color: #6933ad;
+}
+
+.course__presentation.light p {
+  color: black;
+}
+
+.course__presentation.dark {
+  color: #FFF;
+}
+
+.course__presentation.neumorphism {
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.30);
+  color: black;
+}
+
+.course__empty.light {
+  color: black; 
+}
+
+.course__empty.dark {
+  color: #FFF;
+}
+
+.course__empty.neumorphism {
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.30);
+  color: black;
+}

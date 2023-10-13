@@ -1,13 +1,26 @@
 .button-primary{
-    background-color: #440099;
     border: none;
     padding: 15px 20px;
     transition: all 0.3s ease-in-out;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
 
-    @apply w-full rounded-lg text-white text-base font-semibold cursor-pointer text-white;
+    @apply w-full rounded-lg text-white text-base font-semibold cursor-pointer ;
 }
 
+.button-primary.light{
+    background-color: #6933ad;
+}
+
+.button-primary.dark{
+    background-color: #766f87;
+}
+
+.button-primary.neumorphism{
+    background: linear-gradient(135deg, #6933AD 0%, #562792 100%);
+    box-shadow: -5px -5px 6px 0px #FFF, 7px 7px 15px 0px #B1AABD;
+}
+
+
 .button-primary:hover{
-    opacity: 80%;
+    transform: scale(1.05);
 }

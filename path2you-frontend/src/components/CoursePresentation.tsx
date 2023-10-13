@@ -4,6 +4,8 @@ import { getPhoto } from "../core/service";
 import { userData } from "../core/helpers";
 import fetchApi from "../lib/strapi";
 import LectureList from "./LectureList";
+import type User from "../interfaces/user";
+import "../styles/CoursePresentation.styles.css";
 
 //FALTA:
 // 1. Un loading para la comprobación de datos, carga de lectures e inscripción
@@ -14,6 +16,7 @@ import LectureList from "./LectureList";
 const CoursePresentation = (course: Course) => {
   const [inscription, setInscription] = useState(false);
   const [user, setUser] = useState({ id: null });
+  const [style, setStyle] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,10 +24,36 @@ const CoursePresentation = (course: Course) => {
       setUser(userDataResponse);
 
       await fetchInscription(userDataResponse);
+      fetchUserData(userDataResponse.id);
     };
 
     fetchData();
   }, []);
+
+  async function fetchUserData(user) {
+    try {
+      const userDataApi = await fetchApi<User>({
+        endpoint: "users/" + user,
+      });    
+      fetchStyle(userDataApi);
+      // console.log(userDataApi);
+
+    } catch (error) {
+      console.log("error", error);
+    }
+}
+
+const fetchStyle = async (usuario) => {
+
+  if (usuario!.darkmode === true) {
+    setStyle("dark");
+  } else if (usuario!.neumorphismmode === true) {
+    setStyle("neumorphism");
+  } else {
+    setStyle("light");
+  }
+
+};
 
   async function fetchInscription(user) {
     try {
@@ -69,11 +98,11 @@ const CoursePresentation = (course: Course) => {
   return (
     <section className="course w-full">
       <div className="course__container grid gap-6 grid-cols-2">
-        <div className="course__presentation relative">
-          <h3 className="course__title text-customPrimary font-bold text-3xl lg:text-5xl mb-6">
+        <div className={`course__presentation ${style} relative`}>
+          <h3 className="course__title font-bold text-3xl lg:text-5xl mb-6">
             {course.attributes.title}
           </h3>
-          <p className="course__description mb-20 text-customText font-medium text-lg">
+          <p className="course__description mb-20 font-medium text-lg">
             {course.attributes.description}
           </p>
           <div className="course__inscription w-36 bottom-0 absolute">
@@ -81,7 +110,7 @@ const CoursePresentation = (course: Course) => {
               <></>
             ) : (
               <button
-                className="button-primary w-full"
+                className={`button-primary ${style} w-full`}
                 onClick={() => handleInscription()}
               >
                 Inscribirse
@@ -107,8 +136,8 @@ const CoursePresentation = (course: Course) => {
       {inscription ? (
         <LectureList {...course} />
       ) : (
-        <div className="course__empty w-full text-center mt-20">
-          <p className="text-lg font-semibold opacity-50 ">
+        <div className={`course__empty w-full ${style} text-center mt-20`}>
+          <p className="text-lg font-semibold opacity-80 ">
             No estás inscrito en este curso. <br />
             ¡Inscríbete!
           </p>
