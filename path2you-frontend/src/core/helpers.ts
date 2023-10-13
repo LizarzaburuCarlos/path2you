@@ -5,7 +5,7 @@ export const storeUser = (data) => {
       id: data.user.id,
       username: data.user.username,
       darkmode: data.user.darkmode,
-      neumorphism: data.user.neumorphismmode,
+      neumorphismmode: data.user.neumorphismmode,
       jwt: data.jwt,
     })
   );

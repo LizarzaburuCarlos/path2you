@@ -41,6 +41,8 @@ const { title, description = defaultDescription } = Astro.props as Props;
       document.body.classList.add("dark");
     } else if (neumorphismmode === true) {
       document.body.classList.add("neumorphism");
+    } else {
+      document.body.classList.add("light");
     }
 
     if (!jwt) {

@@ -1,45 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import CourseCard from "../components/CourseCard";
-import fetchApi from '../lib/strapi';
-import type Course from '../interfaces/course';
+import { CoursesUI } from "../components/CoursesUI";
 
 const title = "Path 2 You - Cursos";
-
-const courses = await fetchApi<Course[]>({
-    endpoint: 'courses?populate=photo',
-    wrappedByKey: 'data',
-  });
-
-console.log(courses);
-
 
 ---
 
 <BaseLayout title={title}>
-    <section class="courselist w-full">
-        <div class="courselist__presentation mb-12">
-          <h1 class="courselist__title text-customPrimary font-bold text-3xl">
-            Cursos
-          </h1>
-          <p class="courselist__text">
-            Descubre todos los cursos que ofrecemos:
-          </p>
-        </div>
-        {courses ? (
-          <div class="courselist__grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {courses.map((course) => {
-                  
-                  return (
-                  <CourseCard {...course.attributes}  />
-                  );
-              })}
-          </div>
-        ) : (
-          <div class="courselist__failed-fetch w-full h-11 flex justify-center items-center">
-              <h3>No se encontraron resultados.</h3>
-          </div>
-        )
-          }
-      </section>
+    <CoursesUI client:load />
 </BaseLayout>
