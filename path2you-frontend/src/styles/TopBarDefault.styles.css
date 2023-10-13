@@ -7,15 +7,67 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    @apply h-10 rounded-lg px-4 py-2 w-96 bg-gray-200 transition-all duration-300;
+    @apply h-10 rounded-lg px-4 py-2 w-96 transition-all duration-300;
 }
 
-.topbar .topbar__searchbar:hover{
-    @apply bg-gray-300;
+.topbar .topbar__searchbar.dark{
+    @apply bg-[#48454F];
 }
 
-.topbar .topbar__searchbar:focus-within{
-    @apply bg-gray-300;
+.topbar .topbar__searchbar.dark:hover{
+    @apply bg-[#766F87];
+}
+
+.topbar .topbar__searchbar.dark:focus-within{
+    @apply bg-[#766F87];
+}
+
+.topbar .topbar__searchbar .topbar__search-button.dark{
+    @apply text-[#f3f3f3];
+}
+
+.topbar .topbar__searchbar.dark .topbar__search-input::placeholder,
+.topbar .topbar__searchbar.dark .topbar__search-input:focus-within::placeholder,
+.topbar .topbar__searchbar.dark .topbar__search-input:focus-within::-webkit-input-placeholder,
+.topbar .topbar__searchbar.dark .topbar__search-input:hover::placeholder,
+.topbar .topbar__searchbar.dark .topbar__search-input:hover::-webkit-input-placeholder{
+    color: #FFFAFF
+}
+
+.topbar .topbar__searchbar.neumorphism{
+    background: linear-gradient(135deg, #FFFAFF 0%, #DAD3E5 100%);
+    box-shadow: -5px -5px 11px 0px #FFF, 5px 5px 11px 0px #CEC8D9;
+}
+
+.topbar .topbar__searchbar.neumorphism:hover{
+    background: #6933AD;
+    box-shadow: -10px -10px 20px 0px #6933AD inset, 10px 10px 20px 0px #501B93 inset;
+    color: #FFF;
+}
+
+.topbar .topbar__searchbar.neumorphism:focus-within{
+    background: #6933AD;
+    box-shadow: -10px -10px 20px 0px #6933AD inset, 10px 10px 20px 0px #501B93 inset;
+    color: #FFF;
+}
+
+.topbar .topbar__searchbar.neumorphism .topbar__search-input:focus-within::placeholder,
+.topbar .topbar__searchbar.neumorphism .topbar__search-input:focus-within::-webkit-input-placeholder,
+.topbar .topbar__searchbar.neumorphism .topbar__search-input:hover::placeholder,
+.topbar .topbar__searchbar.neumorphism .topbar__search-input:hover::-webkit-input-placeholder{
+    color: #FFFAFF
+}
+
+.topbar .topbar__searchbar.light{
+    @apply bg-[#F8F8F8];
+}
+
+.topbar .topbar__searchbar.light:hover{
+    @apply bg-gray-200;
+}
+
+.topbar .topbar__searchbar.light:focus-within{
+    @apply bg-gray-200;
 }
 
 .topbar .topbar__searchbar .topbar__search-input{

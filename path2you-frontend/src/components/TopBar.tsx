@@ -126,9 +126,9 @@ const TopBar = () => {
 
     return(
         <section className="topbar w-full h-16 mb-12 flex items-center justify-between">
-            <form className="topbar__searchbar">
+            <form className={`topbar__searchbar ${style}`}>
                 <input type="text" placeholder="Buscar" className="topbar__search-input"/>
-                <button type="submit" className="topbar__search-button">S</button>
+                <button type="submit" className={`topbar__search-button ${style}`}>S</button>
             </form>
             <div className="topbar__side-buttons">
                 <button onClick={handleLightMode} className={`topbar__button ${style}`}>L</button>
