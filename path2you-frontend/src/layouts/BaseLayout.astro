@@ -32,12 +32,22 @@ const { title, description = defaultDescription } = Astro.props as Props;
     import { userData } from "../core/helpers";
 
     const { jwt } = userData();
+    const { darkmode } = userData();
+    const { neumorphismmode } = userData();
+
+    if (darkmode && neumorphismmode === false) {
+      document.body.classList.add("light");
+    } else if (darkmode === true) {
+      document.body.classList.add("dark");
+    } else if (neumorphismmode === true) {
+      document.body.classList.add("neumorphism");
+    }
 
     if (!jwt) {
      location.replace("/login");
     }
   </script>
-  <body class="neumorphism">
+  <body class="">
     <div class="h-screen  2xl:w-[1280px] mx-auto p-4 flex">
       <div class="sidebar min-w-[5rem] w-32 h-full">
         <SideBar client:load />
@@ -51,6 +61,14 @@ const { title, description = defaultDescription } = Astro.props as Props;
   <style is:global>
     * {
       font-family: "Outfit", sans-serif;
+    }
+
+    body.light {
+      background: #ffffff;
+    }
+
+    body.dark {
+      background: #37343e;
     }
     
     body.neumorphism {
