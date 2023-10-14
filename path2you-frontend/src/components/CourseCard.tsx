@@ -70,7 +70,7 @@ const fetchStyle = async (usuario) => {
         <h3 className="coursecard__title  font-bold text-lg">
           {course.title}
         </h3>
-        <p className="coursecard__text  text-base overflow-hidden">
+        <p className="coursecard__text max-h-[60px]  text-base overflow-hidden">
           {course.description}
         </p>
       </div>
