@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { userData } from "../core/helpers";
+import { storeUser, userData } from "../core/helpers";
 import { editarUsuario, getUsuario } from "../core/service";
 import fetchApi from "../lib/strapi";
 import type User from "../interfaces/user";
@@ -18,6 +18,7 @@ const TopBar = () => {
           const userDataResponse = await userData();
           const usuarioCompleto = await fetchUserData(userDataResponse.id);
           setUsser(usuarioCompleto);
+         
         };
         
         fetchData();
@@ -25,6 +26,7 @@ const TopBar = () => {
 
       useEffect(() => {
         handleFirstActive(usser);
+       
       }, [usser]);
 
     async function fetchUserData(user) {
@@ -32,6 +34,7 @@ const TopBar = () => {
           const userDataApi = await fetchApi<User>({
             endpoint: "users/" + user,
           });
+          
           return userDataApi;              
         } catch (error) {
           console.log("error", error);
@@ -43,9 +46,11 @@ const TopBar = () => {
       // console.log(usuarioUpdated);
       try {
         const res = await editarUsuario(usuarioUpdated.id, usuarioUpdated);
+        storeUser(res);
         console.log(res);
         if (!res.status) {
           setUsser(usuarioUpdated);
+          
         } else {
           toast.error(res);
           console.log(res);
@@ -55,56 +60,32 @@ const TopBar = () => {
       }
     };
 
-  //   const handleIconsBtns = () => {
-
-  //     var sunIcon = document.getElementById("sunIcon")!;
-  //     var moonIcon = document.getElementById("moonIcon")!;
-  //     var eyeIcon = document.getElementById("eyeIcon")!;
-
-  //     if (neumorphism) {
-  //       eyeIcon.classList.remove("fa-regular");
-  //       eyeIcon.classList.add("fa-solid");
-  //       sunIcon.classList.remove("fa-solid");
-  //       sunIcon.classList.add("fa-regular");
-  //       moonIcon.classList.remove("fa-solid");
-  //       moonIcon.classList.add("fa-regular");
-  //     }
-
-  //     if (dark) {
-  //       moonIcon.classList.remove("fa-regular");
-  //       moonIcon?.classList.add("fa-solid");
-  //       sunIcon?.classList.remove("fa-solid");
-  //       sunIcon?.classList.add("fa-regular");
-  //       eyeIcon?.classList.remove("fa-solid");
-  //       eyeIcon?.classList.add("fa-regular");
-  //     }
-  //     if (light) {
-  //       sunIcon?.classList.remove("fa-regular");
-  //       sunIcon?.classList.add("fa-solid");
-  //       moonIcon?.classList.remove("fa-solid");
-  //       moonIcon?.classList.add("fa-regular");
-  //       eyeIcon?.classList.remove("fa-solid");
-  //       eyeIcon?.classList.add("fa-regular");
-  //   }
-  // }
-
   const handleFirstActive = (user)  => {
+    var btnDark = document.getElementById("btnDark")!;
+    var btnLight = document.getElementById("btnLight")!;
+    var btnNeu = document.getElementById("btnNeu")!;
+
     if (user?.darkmode === true) {
       setLight(false);
       setNeumorphism(false);
       setDark(true);
+      btnDark.click();
     } else if (user?.neumorphismmode === true) {
       setLight(false);
       setDark(false);
       setNeumorphism(true);
+      btnNeu.click();
     } else if (user?.darkmode === false && user?.neumorphismmode === false) {
       setDark(false);
       setNeumorphism(false);
       setLight(true);
+      btnLight.click();
     }
   }
 
     const handleNeumorphismMode = () => {
+
+
 
       if (neumorphism === false) {
         setLight(false);
@@ -121,6 +102,8 @@ const TopBar = () => {
     }
 
     const handleDarkMode = () => {
+
+      
 
       if (dark === false) {
         setLight(false);
