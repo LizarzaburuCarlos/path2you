@@ -4,8 +4,7 @@
   "info": {
     "singularName": "course",
     "pluralName": "courses",
-    "displayName": "Course",
-    "description": ""
+    "displayName": "Course"
   },
   "options": {
     "draftAndPublish": true
@@ -14,16 +13,15 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true,
-      "unique": false,
       "minLength": 3,
+      "required": true,
       "default": "Curso sin Nombre"
     },
     "description": {
       "type": "text",
+      "default": "Curso sin Descripción.",
       "required": true,
-      "minLength": 3,
-      "default": "Curso sin descripción."
+      "minLength": 3
     },
     "slug": {
       "type": "uid",
@@ -31,12 +29,11 @@
       "required": true
     },
     "photo": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
       "allowedTypes": [
         "images"
-      ]
+      ],
+      "type": "media",
+      "multiple": false
     },
     "duration": {
       "type": "integer"

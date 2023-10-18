@@ -13,28 +13,30 @@
   "attributes": {
     "title": {
       "type": "string",
-      "default": "Lección sin Nombre.",
+      "default": "Lectura sin Nombre",
       "required": true,
       "minLength": 3
     },
     "description": {
       "type": "text",
-      "required": false
+      "default": "Lectura sin Descripción",
+      "minLength": 3
+    },
+    "media": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     },
     "course": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::course.course",
       "inversedBy": "lectures"
-    },
-    "media": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "type": "media",
-      "multiple": true
     }
   }
 }
