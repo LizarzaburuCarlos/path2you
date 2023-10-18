@@ -73,7 +73,7 @@ const InscribedList = () => {
         className={`inscribedcourse ${style} w-full h-20 py-4 rounded-lg flex items-center gap-6`}
       >
         <div className="inscribedcourse__presentation w-6/12 pl-6 flex items-center gap-6">
-          <div className="img h-12 w-12 rounded-lg "></div>
+          <div className="img h-11 w-11 rounded-lg "></div>
           <h4>{course.title}</h4>
         </div>
         <p className="inscribedcourse__date w-6/12 pr-6">
