@@ -5,7 +5,6 @@ import type User from "../interfaces/user";
 import fetchApi from "../lib/strapi";
 
 // FALTA:
-// 1. Agregar un loading
 // 2. Mejorar apariencia de cards
 // 3. Definir que información se colocará en las cards
 
@@ -16,38 +15,38 @@ const CourseCard = (course: any) => {
   useEffect(() => {
     const fetchData = async () => {
       const userDataResponse = await userData();
-        // console.log(userDataResponse);
+      // console.log(userDataResponse);
       await fetchUserData(userDataResponse.id);
     };
-    
+
     fetchData();
-    
+
   }, []);
 
-async function fetchUserData(user) {
+  async function fetchUserData(user) {
     try {
       const userDataApi = await fetchApi<User>({
         endpoint: "users/" + user,
-      });    
+      });
       fetchStyle(userDataApi);
       // console.log(userDataApi);
 
     } catch (error) {
       console.log("error", error);
     }
-}
-
-const fetchStyle = async (usuario) => {
-
-  if (usuario!.darkmode === true) {
-    setStyle("dark");
-  } else if (usuario!.neumorphismmode === true) {
-    setStyle("neumorphism");
-  } else {
-    setStyle("light");
   }
 
-};
+  const fetchStyle = async (usuario) => {
+
+    if (usuario!.darkmode === true) {
+      setStyle("dark");
+    } else if (usuario!.neumorphismmode === true) {
+      setStyle("neumorphism");
+    } else {
+      setStyle("light");
+    }
+    
+  };
 
   return (
     <a
@@ -67,9 +66,7 @@ const fetchStyle = async (usuario) => {
         )}
       </div>
       <div className="coursecard__content w-full h-full flex flex-col justify-center items-start">
-        <h3 className="coursecard__title  font-bold text-lg">
-          {course.title}
-        </h3>
+        <h3 className="coursecard__title  font-bold text-lg">{course.title}</h3>
         <p className="coursecard__text max-h-[60px]  text-base overflow-hidden">
           {course.description}
         </p>

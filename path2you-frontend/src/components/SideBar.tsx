@@ -65,7 +65,7 @@ const SideBar = () => {
         <ul className="sidebar__menu flex flex-col gap-6 mt-20 items-center text-white">
           <li className={`sidebar__menu-item ${style}`}>
             <a href="/" className="sidebar__menu-link">
-            <i class="fa-solid fa-house text-white text-2xl"></i>
+            <i className="fa-solid fa-house text-white text-2xl"></i>
             </a>
           </li>
           <li className={`sidebar__menu-item ${style}`}>
