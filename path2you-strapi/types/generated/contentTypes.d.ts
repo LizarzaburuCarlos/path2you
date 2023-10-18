@@ -689,7 +689,6 @@ export interface ApiCourseCourse extends Schema.CollectionType {
     singularName: 'course';
     pluralName: 'courses';
     displayName: 'Course';
-    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -706,7 +705,7 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         minLength: 3;
       }> &
-      Attribute.DefaultTo<'Curso sin descripci\u00F3n.'>;
+      Attribute.DefaultTo<'Curso sin Descripci\u00F3n.'>;
     slug: Attribute.UID<'api::course.course', 'title'> & Attribute.Required;
     photo: Attribute.Media;
     duration: Attribute.Integer;
@@ -739,13 +738,12 @@ export interface ApiInscriptionInscription extends Schema.CollectionType {
     singularName: 'inscription';
     pluralName: 'inscriptions';
     displayName: 'Inscription';
-    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    date: Attribute.Date;
+    date: Attribute.DateTime;
     course: Attribute.Relation<
       'api::inscription.inscription',
       'oneToOne',
@@ -790,14 +788,18 @@ export interface ApiLectureLecture extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         minLength: 3;
       }> &
-      Attribute.DefaultTo<'Lecci\u00F3n sin Nombre.'>;
-    description: Attribute.Text;
+      Attribute.DefaultTo<'Lectura sin Nombre'>;
+    description: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }> &
+      Attribute.DefaultTo<'Lectura sin Descripci\u00F3n'>;
+    media: Attribute.Media;
     course: Attribute.Relation<
       'api::lecture.lecture',
       'manyToOne',
       'api::course.course'
     >;
-    media: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -827,17 +829,24 @@ export interface ApiReviewReview extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
+    user: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
     date: Attribute.DateTime;
     score: Attribute.Integer &
       Attribute.Required &
       Attribute.SetMinMax<{
-        min: 1;
-        max: 5;
-      }>;
+        min: 0;
+        max: 10;
+      }> &
+      Attribute.DefaultTo<10>;
     comment: Attribute.Text &
       Attribute.SetMinMaxLength<{
         minLength: 3;
-      }>;
+      }> &
+      Attribute.DefaultTo<'Rese\u00F1a sin Comentario'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

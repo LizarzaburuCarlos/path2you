@@ -11,18 +11,26 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
     "date": {
       "type": "datetime"
     },
     "score": {
       "type": "integer",
-      "min": 1,
-      "max": 5,
-      "required": true
+      "min": 0,
+      "max": 10,
+      "required": true,
+      "default": 10
     },
     "comment": {
       "type": "text",
-      "minLength": 3
+      "default": "Reseña sin Comentario",
+      "minLength": 3,
+      "required": false
     }
   }
 }

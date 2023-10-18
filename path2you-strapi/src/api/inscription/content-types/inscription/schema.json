@@ -4,8 +4,7 @@
   "info": {
     "singularName": "inscription",
     "pluralName": "inscriptions",
-    "displayName": "Inscription",
-    "description": ""
+    "displayName": "Inscription"
   },
   "options": {
     "draftAndPublish": true
@@ -13,8 +12,7 @@
   "pluginOptions": {},
   "attributes": {
     "date": {
-      "type": "date",
-      "required": false
+      "type": "datetime"
     },
     "course": {
       "type": "relation",
