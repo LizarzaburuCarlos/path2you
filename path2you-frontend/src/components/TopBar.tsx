@@ -8,9 +8,9 @@ import { toast } from "react-toastify";
 const TopBar = () => {
 
     const [usser, setUsser] = useState<User>();
-    const [light, setLight] = useState<string>("");
-    const [dark, setDark] = useState<string>("");
-    const [neumorphism, setNeumorphism] = useState<string>("");
+    const [light, setLight] = useState<boolean>();
+    const [dark, setDark] = useState<boolean>();
+    const [neumorphism, setNeumorphism] = useState<boolean>();
 
     useEffect(() => {
       
@@ -55,73 +55,63 @@ const TopBar = () => {
       }
     };
 
-    const handleIconsBtns = () => {
-      var btnNeu = document.getElementById("btnNeu");
-      var btnDark = document.getElementById("btnDark");
-      var btnLight = document.getElementById("btnLight");
+  //   const handleIconsBtns = () => {
 
-      var sunIcon = document.getElementById("sunIcon");
-      var moonIcon = document.getElementById("moonIcon");
-      var eyeIcon = document.getElementById("eyeIcon");
+  //     var sunIcon = document.getElementById("sunIcon")!;
+  //     var moonIcon = document.getElementById("moonIcon")!;
+  //     var eyeIcon = document.getElementById("eyeIcon")!;
 
-      if (btnNeu?.classList.contains("active")) {
-        eyeIcon?.classList.remove("fa-regular");
-        eyeIcon?.classList.add("fa-solid");
-        sunIcon?.classList.remove("fa-solid");
-        sunIcon?.classList.add("fa-regular");
-        moonIcon?.classList.remove("fa-solid");
-        moonIcon?.classList.add("fa-regular");
-      }
+  //     if (neumorphism) {
+  //       eyeIcon.classList.remove("fa-regular");
+  //       eyeIcon.classList.add("fa-solid");
+  //       sunIcon.classList.remove("fa-solid");
+  //       sunIcon.classList.add("fa-regular");
+  //       moonIcon.classList.remove("fa-solid");
+  //       moonIcon.classList.add("fa-regular");
+  //     }
 
-      if (btnDark?.classList.contains("active")) {
-        moonIcon?.classList.remove("fa-regular");
-        moonIcon?.classList.add("fa-solid");
-        sunIcon?.classList.remove("fa-solid");
-        sunIcon?.classList.add("fa-regular");
-        eyeIcon?.classList.remove("fa-solid");
-        eyeIcon?.classList.add("fa-regular");
-      }
-      if (btnLight?.classList.contains("active")) {
-        sunIcon?.classList.remove("fa-regular");
-        sunIcon?.classList.add("fa-solid");
-        moonIcon?.classList.remove("fa-solid");
-        moonIcon?.classList.add("fa-regular");
-        eyeIcon?.classList.remove("fa-solid");
-        eyeIcon?.classList.add("fa-regular");
-    }
-  }
+  //     if (dark) {
+  //       moonIcon.classList.remove("fa-regular");
+  //       moonIcon?.classList.add("fa-solid");
+  //       sunIcon?.classList.remove("fa-solid");
+  //       sunIcon?.classList.add("fa-regular");
+  //       eyeIcon?.classList.remove("fa-solid");
+  //       eyeIcon?.classList.add("fa-regular");
+  //     }
+  //     if (light) {
+  //       sunIcon?.classList.remove("fa-regular");
+  //       sunIcon?.classList.add("fa-solid");
+  //       moonIcon?.classList.remove("fa-solid");
+  //       moonIcon?.classList.add("fa-regular");
+  //       eyeIcon?.classList.remove("fa-solid");
+  //       eyeIcon?.classList.add("fa-regular");
+  //   }
+  // }
 
   const handleFirstActive = (user)  => {
     if (user?.darkmode === true) {
-      setLight("");
-      setNeumorphism("");
-      setDark("active");
-      handleIconsBtns();
+      setLight(false);
+      setNeumorphism(false);
+      setDark(true);
     } else if (user?.neumorphismmode === true) {
-      setLight("");
-      setDark("");
-      setNeumorphism("active");
-      handleIconsBtns();
+      setLight(false);
+      setDark(false);
+      setNeumorphism(true);
     } else if (user?.darkmode === false && user?.neumorphismmode === false) {
-      setDark("");
-      setNeumorphism("");
-      setLight("active");
-      handleIconsBtns();
+      setDark(false);
+      setNeumorphism(false);
+      setLight(true);
     }
   }
 
     const handleNeumorphismMode = () => {
 
-      var btnNeu = document.getElementById("btnNeu");
-      var btnDark = document.getElementById("btnDark");
-      var btnLight = document.getElementById("btnLight");
-
-      btnLight?.classList.remove("active");
-      btnDark?.classList.remove("active");
-      btnNeu?.classList.add("active");
-
-      handleIconsBtns();
-      editStyleUsuario(false, true);
+      if (neumorphism === false) {
+        setLight(false);
+        setDark(false);
+        setNeumorphism(true);
+        editStyleUsuario(false, true);
+      }
 
       document.body.classList.remove("dark");
       document.body.classList.remove("light");
@@ -131,39 +121,35 @@ const TopBar = () => {
     }
 
     const handleDarkMode = () => {
-      var btnNeu = document.getElementById("btnNeu");
-      var btnDark = document.getElementById("btnDark");
-      var btnLight = document.getElementById("btnLight");
 
-      btnLight?.classList.remove("active");
-      btnNeu?.classList.remove("active");
-      btnDark?.classList.add("active");
-
-      handleIconsBtns();
-      editStyleUsuario(true, false);
+      if (dark === false) {
+        setLight(false);
+        setNeumorphism(false);
+        setDark(true);
+        editStyleUsuario(true, false);
+      }
 
       document.body.classList.remove("neumorphism");
       document.body.classList.remove("light");
       document.body.classList.add("dark");
+      
       console.log("Dark Mode Activado");
     };
 
     const handleLightMode = () => {
 
-      var btnNeu = document.getElementById("btnNeu");
-      var btnDark = document.getElementById("btnDark");
-      var btnLight = document.getElementById("btnLight");
+      if (light === false) {
+        setDark(false);
+        setNeumorphism(false);
+        setLight(true);
+        editStyleUsuario(false, false);
+      }
       
-      btnDark?.classList.remove("active");
-      btnNeu?.classList.remove("active");
-      btnLight?.classList.add("active");
-      
-      handleIconsBtns();
-      editStyleUsuario(false, false);
 
       document.body.classList.remove("dark");
       document.body.classList.remove("neumorphism");
       document.body.classList.add("light");
+
       console.log("Modo Light Activado");
     };
 
@@ -174,14 +160,14 @@ const TopBar = () => {
                 <button type="submit" className={`topbar__search-button `}>S</button>
             </form>
             <div className="topbar__side-buttons">
-                <button id="btnLight" onClick={handleLightMode} className={`topbar__button ${light}`}>
-                <i id="sunIcon" className="fa-regular fa-sun"></i>
+                <button id="btnLight" onClick={handleLightMode} className={`topbar__button ${light ? "active": ""}`}>
+                <i id="sunIcon" className={`${light ? "fa-solid": "fa-regular"}  fa-sun`}></i>
                 </button>
-                <button id="btnDark" onClick={handleDarkMode} className={`topbar__button ${dark} `}>
-                <i id="moonIcon" className="fa-regular fa-moon"></i>
+                <button id="btnDark" onClick={handleDarkMode} className={`topbar__button ${dark  ? "active": ""} `}>
+                <i id="moonIcon" className={`${dark ? "fa-solid": "fa-regular"}  fa-moon`}></i>
                 </button>
-                <button id="btnNeu" onClick={handleNeumorphismMode} className={`topbar__button ${neumorphism} `}>
-                <i id="eyeIcon" className="fa-regular fa-eye"></i>
+                <button id="btnNeu" onClick={handleNeumorphismMode} className={`topbar__button ${neumorphism  ? "active": ""} `}>
+                <i id="eyeIcon" className={`${neumorphism ? "fa-solid": "fa-regular"}  fa-eye`}></i>
                 </button>
             </div>
         </section>
