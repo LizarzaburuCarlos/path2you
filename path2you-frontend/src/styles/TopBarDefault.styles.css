@@ -83,7 +83,7 @@ body.light .topbar .topbar__searchbar:focus-within{
 }
 
 .topbar .topbar__side-buttons .topbar__button{
-    @apply h-full rounded-lg py-2 px-4 flex items-center justify-center transition-all duration-300;
+    @apply h-full rounded-lg flex items-center justify-center transition-all duration-300;
 }
 
 body.light .topbar .topbar__side-buttons .topbar__button{
@@ -111,6 +111,18 @@ body.light .topbar .topbar__side-buttons .topbar__button:hover{
 
 body.dark .topbar .topbar__side-buttons .topbar__button:hover{
     @apply bg-[#766F87] scale-105;
+}
+
+#btnLight {
+    @apply py-[0.9rem] px-4
+}
+
+#btnDark {
+    @apply py-[0.9rem] px-[1.09rem]
+}
+
+#btnNeu {
+    @apply py-[0.9rem] px-[0.9rem]
 }
 
 #btnLight.active {
