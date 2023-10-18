@@ -1,19 +1,23 @@
 import { ToastContainer, toast } from "react-toastify";
 import { register } from "../core/service";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 
-
-// FALTA: 
+// FALTA:
 // 1. Validar username y email que no se repitan
 // 2. Que no se permitan espacios en blanco en el username
 // 3. Que el username no tenga caracteres especiales
 
 const RegisterForm = () => {
+
+  const [loading, setLoading] = useState<boolean>(false);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = Object.fromEntries(
       new FormData(e.currentTarget).entries()
     ) as any;
+    setLoading(true);
     try {
       if (!data.name || !data.username || !data.email || !data.password) {
         throw new Error("Por favor, ingresa todos los datos.");
@@ -35,10 +39,17 @@ const RegisterForm = () => {
     } catch (error:any) {
       toast.error(error.message);
     }
+    setLoading(false);
   };
 
   return (
     <section className="register w-full h-full bg-white text-white rounded-lg flex flex-col justify-center items-center max-lg:px-8">
+      {loading && (
+        <div className="loader">
+          <div className="spinner"></div>
+        </div>
+      )}
+
       <div className="register__presentation w-fit flex flex-col gap-2 mx-auto text-center">
         <img
           src="/icono.png"

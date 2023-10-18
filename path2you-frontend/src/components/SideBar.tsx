@@ -65,33 +65,29 @@ const SideBar = () => {
         <ul className="sidebar__menu flex flex-col gap-6 mt-20 items-center text-white">
           <li className={`sidebar__menu-item ${style}`}>
             <a href="/" className="sidebar__menu-link">
-              <i className="fas fa-home"></i>
-              Inicio
-            </a>
-          </li>
-          <li className={`sidebar__menu-item ${style}`}>
-            <a href="/profile" className="sidebar__menu-link">
-              <i className="fas fa-user"></i>
-              Perfil
+            <i className="fa-solid fa-house text-white text-2xl"></i>
             </a>
           </li>
           <li className={`sidebar__menu-item ${style}`}>
             <a href="/courses" className="sidebar__menu-link">
-              <i className="fas fa-book"></i>
-              Cursos
+              <i className="fas fa-book text-white text-2xl"></i>
+            </a>
+          </li>
+          <li className={`sidebar__menu-item ${style}`}>
+            <a href="/profile" className="sidebar__menu-link">
+              <i className="fas fa-user text-white text-2xl"></i>
             </a>
           </li>
           <li className={`sidebar__menu-item ${style}`}>
             <a href="/settings" className="sidebar__menu-link">
-              <i className="fas fa-cog"></i>
-              Ajustes
+              <i className="fas fa-cog text-white text-2xl"></i>
             </a>
           </li>
         </ul>
       </div>
       <div className="sidebar__bottom text-white w-full">
-        <button onClick={logout} className={`sidebar__logoff ${style}`}>
-          L
+        <button onClick={logout} className={`w-full ${style}`}>
+        <i className="fa fa-right-to-bracket text-2xl mx-auto"></i>
         </button>
       </div>
     </nav>

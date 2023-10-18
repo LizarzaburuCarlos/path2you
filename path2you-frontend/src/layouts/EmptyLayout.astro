@@ -22,9 +22,12 @@ const { title, description = defaultDescription } = Astro.props as Props;
     <meta name="generator" content={Astro.generator} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
     <style>
       /* :root {
@@ -45,7 +48,6 @@ const { title, description = defaultDescription } = Astro.props as Props;
             background-color: var(--primary);
             color: var(--secondary);
         } */
-
     </style>
   </head>
   <script>
@@ -54,11 +56,10 @@ const { title, description = defaultDescription } = Astro.props as Props;
     const { jwt } = userData();
     const currentPath = location.pathname;
 
-    if (jwt && (currentPath === "/login" || currentPath === "/register"))  {
+    if (jwt && (currentPath === "/login" || currentPath === "/register")) {
       location.replace("/");
     }
   </script>
-
   <body>
     <slot />
   </body>

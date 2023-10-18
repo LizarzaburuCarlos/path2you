@@ -8,15 +8,15 @@ import type User from "../interfaces/user";
 import "../styles/CoursePresentation.styles.css";
 
 //FALTA:
-// 1. Un loading para la comprobación de datos, carga de lectures e inscripción
 // 2. Reorganizar el código para que sea más legible
 // 3. Revisar el manejo de errores
-
 
 const CoursePresentation = (course: Course) => {
   const [inscription, setInscription] = useState(false);
   const [user, setUser] = useState({ id: null });
   const [style, setStyle] = useState<string>("");
+
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,6 +25,7 @@ const CoursePresentation = (course: Course) => {
 
       await fetchInscription(userDataResponse);
       fetchUserData(userDataResponse.id);
+      setLoading(false);
     };
 
     fetchData();
@@ -34,30 +35,27 @@ const CoursePresentation = (course: Course) => {
     try {
       const userDataApi = await fetchApi<User>({
         endpoint: "users/" + user,
-      });    
+      });
       fetchStyle(userDataApi);
       // console.log(userDataApi);
-
     } catch (error) {
       console.log("error", error);
     }
-}
-
-const fetchStyle = async (usuario) => {
-
-  if (usuario!.darkmode === true) {
-    setStyle("dark");
-  } else if (usuario!.neumorphismmode === true) {
-    setStyle("neumorphism");
-  } else {
-    setStyle("light");
   }
 
-};
+  const fetchStyle = async (usuario) => {
+    if (usuario!.darkmode === true) {
+      setStyle("dark");
+    } else if (usuario!.neumorphismmode === true) {
+      setStyle("neumorphism");
+    } else {
+      setStyle("light");
+    }
+  };
 
   async function fetchInscription(user) {
     try {
-      const res:any = await fetchApi({
+      const res: any = await fetchApi({
         endpoint: "inscriptions",
         method: "GET",
         query: {
@@ -77,6 +75,7 @@ const fetchStyle = async (usuario) => {
   }
 
   async function handleInscription() {
+    setLoading(true);
     try {
       const res = await fetchApi({
         endpoint: "inscriptions",
@@ -90,13 +89,21 @@ const fetchStyle = async (usuario) => {
         },
       });
       setInscription(true);
+      
     } catch (error) {
       console.log("error", error);
     }
+    setLoading(false);
   }
 
   return (
     <section className="course w-full">
+      {loading && (
+        <div className="loader">
+          <div className="spinner"></div>
+        </div>
+      )}
+
       <div className="course__container grid gap-6 grid-cols-2">
         <div className={`course__presentation ${style} relative`}>
           <h3 className="course__title font-bold text-3xl lg:text-5xl mb-6">
