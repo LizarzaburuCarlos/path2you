@@ -53,7 +53,7 @@ export const register = async (data: any) => {
   }
 };
 
-// editarUsuario
+
 export const editarUsuario = async (id, data) => {
   try {
     const res = await fetch(`${API_URL}/users/${id}`, {

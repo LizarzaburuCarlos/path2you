@@ -1,48 +1,16 @@
 import { useEffect, useState } from "react";
 import type Course from "../interfaces/course";
 import fetchApi from "../lib/strapi";
-import { userData } from "../core/helpers";
 import CourseCard from "./CourseCard";
-import type User from "../interfaces/user";
 import "../styles/CourseCardDefault.styles.css";
 
 export const CoursesUI = () => {
   const [cursos, setCursos] = useState<Course[]>([]);
-  const [style, setStyle] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const userDataResponse = await userData();
-      // console.log(userDataResponse);
-      await fetchUserData(userDataResponse.id);
-    };
-
-    fetchData();
     fetchCourses();
   }, []);
-
-  async function fetchUserData(user) {
-    try {
-      const userDataApi = await fetchApi<User>({
-        endpoint: "users/" + user,
-      });
-      fetchStyle(userDataApi);
-      // console.log(userDataApi);
-    } catch (error) {
-      console.log("error", error);
-    }
-  }
-
-  const fetchStyle = async (usuario) => {
-    if (usuario!.darkmode === true) {
-      setStyle("dark");
-    } else if (usuario!.neumorphismmode === true) {
-      setStyle("neumorphism");
-    } else {
-      setStyle("light");
-    }
-  };
 
   const fetchCourses = async () => {
     const courses = await fetchApi<Course[]>({
@@ -61,7 +29,7 @@ export const CoursesUI = () => {
         </div>
       )}
 
-      <div className={`courselist__presentation ${style} mb-12`}>
+      <div className={`courselist__presentation mb-12`}>
         <h1 className="courselist__title mb-2 font-bold text-3xl">Cursos</h1>
         <p className="courselist__text">
           Descubre todos los cursos que ofrecemos:

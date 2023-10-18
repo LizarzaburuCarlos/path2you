@@ -14,7 +14,6 @@ import "../styles/CoursePresentation.styles.css";
 const CoursePresentation = (course: Course) => {
   const [inscription, setInscription] = useState(false);
   const [user, setUser] = useState({ id: null });
-  const [style, setStyle] = useState<string>("");
 
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -36,22 +35,11 @@ const CoursePresentation = (course: Course) => {
       const userDataApi = await fetchApi<User>({
         endpoint: "users/" + user,
       });
-      fetchStyle(userDataApi);
       // console.log(userDataApi);
     } catch (error) {
       console.log("error", error);
     }
   }
-
-  const fetchStyle = async (usuario) => {
-    if (usuario!.darkmode === true) {
-      setStyle("dark");
-    } else if (usuario!.neumorphismmode === true) {
-      setStyle("neumorphism");
-    } else {
-      setStyle("light");
-    }
-  };
 
   async function fetchInscription(user) {
     try {
@@ -105,7 +93,7 @@ const CoursePresentation = (course: Course) => {
       )}
 
       <div className="course__container grid gap-6 grid-cols-2">
-        <div className={`course__presentation ${style} relative`}>
+        <div className={`course__presentation relative`}>
           <h3 className="course__title font-bold text-3xl lg:text-5xl mb-6">
             {course.attributes.title}
           </h3>
@@ -117,7 +105,7 @@ const CoursePresentation = (course: Course) => {
               <></>
             ) : (
               <button
-                className={`button-primary ${style} w-full`}
+                className={`button-primary w-full`}
                 onClick={() => handleInscription()}
               >
                 Inscribirse
@@ -143,7 +131,7 @@ const CoursePresentation = (course: Course) => {
       {inscription ? (
         <LectureList {...course} />
       ) : (
-        <div className={`course__empty w-full ${style} text-center mt-20`}>
+        <div className={`course__empty w-full text-center mt-20`}>
           <p className="text-lg font-semibold opacity-80 ">
             No estás inscrito en este curso. <br />
             ¡Inscríbete!

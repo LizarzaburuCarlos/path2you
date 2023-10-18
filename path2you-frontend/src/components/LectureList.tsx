@@ -3,8 +3,6 @@ import fetchApi from "../lib/strapi";
 import type Lecture from "../interfaces/lecture";
 import { useEffect, useState } from "react";
 import LectureCard from "./LectureCard";
-import type User from "../interfaces/user";
-import { userData } from "../core/helpers";
 
 const LectureList = (course: Course) => {
   const courseId = course.id.toString();
@@ -26,44 +24,6 @@ const LectureList = (course: Course) => {
   fetchLectures();
 
   }, [courseId]);
-
-  const [style, setStyle] = useState<string>("");
-
-    useEffect(() => {
-        const fetchData = async () => {
-          const userDataResponse = await userData();
-            // console.log(userDataResponse);
-          await fetchUserData(userDataResponse.id);
-        };
-        
-        fetchData();
-        
-      }, []);
-
-  async function fetchUserData(user) {
-    try {
-      const userDataApi = await fetchApi<User>({
-        endpoint: "users/" + user,
-      });    
-      fetchStyle(userDataApi);
-      // console.log(userDataApi);
-
-    } catch (error) {
-      console.log("error", error);
-    }
-}
-
-const fetchStyle = async (usuario) => {
-
-  if (usuario!.darkmode === true) {
-    setStyle("dark");
-  } else if (usuario!.neumorphismmode === true) {
-    setStyle("neumorphism");
-  } else {
-    setStyle("light");
-  }
-
-};
 
   return (
     <section className="lecturelist w-full mt-20">

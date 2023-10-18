@@ -3,7 +3,6 @@ import type Course from "../interfaces/course";
 import { userData } from "../core/helpers";
 import fetchApi from "../lib/strapi";
 import type Inscription from "../interfaces/inscription";
-import type User from "../interfaces/user";
 
 //FALTA:
 // 2. Poner un mensaje de toast ante un error
@@ -11,7 +10,6 @@ import type User from "../interfaces/user";
 const InscribedList = () => {
   const [inscribedCourses, setInscribedCourses] = useState<Inscription[]>([]);
   const [user, setUser] = useState({ id: null });
-  const [style, setStyle] = useState<string>("");
 
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -35,34 +33,12 @@ const InscribedList = () => {
           "filters[user][id][$eq]": user.id,
         },
       });
-      fetchUserData(user.id);
+
       setInscribedCourses(inscribedCoursesData);
     } catch (error) {
       console.log("error", error);
     }
   }
-
-  async function fetchUserData(user) {
-    try {
-      const userDataApi = await fetchApi<User>({
-        endpoint: "users/" + user,
-      });
-      fetchStyle(userDataApi);
-      // console.log(userDataApi);
-    } catch (error) {
-      console.log("error", error);
-    }
-  }
-
-  const fetchStyle = async (usuario) => {
-    if (usuario!.darkmode === true) {
-      setStyle("dark");
-    } else if (usuario!.neumorphismmode === true) {
-      setStyle("neumorphism");
-    } else {
-      setStyle("light");
-    }
-  };
 
   const InscribedCourse = (inscription: Inscription) => {
     const course = inscription.attributes.course.data.attributes;
@@ -70,7 +46,7 @@ const InscribedList = () => {
     return (
       <a
         href={`/courses/${course.slug}`}
-        className={`inscribedcourse ${style} w-full h-20 py-4 rounded-lg flex items-center gap-6`}
+        className={`inscribedcourse w-full h-20 py-4 rounded-lg flex items-center gap-6`}
       >
         <div className="inscribedcourse__presentation w-6/12 pl-6 flex items-center gap-6">
           <div className="img h-11 w-11 rounded-lg "></div>
@@ -95,7 +71,7 @@ const InscribedList = () => {
         {inscribedCourses.length > 0 ? (
           <>
             <div
-              className={`inscribedlist__header ${style} flex items-center gap-6 mb-6`}
+              className={`inscribedlist__header flex items-center gap-6 mb-6`}
             >
               <h3 className="w-6/12 font-semibold ">Cursos del usuario:</h3>
               <h3 className="w-6/12">Fecha de inicio:</h3>

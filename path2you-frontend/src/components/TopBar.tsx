@@ -8,8 +8,6 @@ import { toast } from "react-toastify";
 const TopBar = () => {
 
     const [usuario, setUsuario] = useState<User>();
-    const [active, setActive] = useState<string>("");
-    // const [style, setStyle] = useState<string>("");
 
     useEffect(() => {
       
@@ -23,36 +21,18 @@ const TopBar = () => {
         
       }, []);
 
-      
-
     async function fetchUserData(user) {
         try {
           const userDataApi = await fetchApi<User>({
             endpoint: "users/" + user,
           });    
           setUsuario(userDataApi);
-          // fetchStyle(userDataApi);
           // console.log(userDataApi);
 
         } catch (error) {
           console.log("error", error);
         }
     }
-
-    // const fetchStyle = async (usuario) => {
-    
-    //   if (usuario!.darkmode === true) {
-    //     setStyle("dark");
-        
-    //   } else if (usuario!.neumorphismmode === true) {
-    //     setStyle("neumorphism");
-        
-    //   } else {
-    //     setStyle("light");
-    
-    //   }
-
-    // };
 
     // const handleDarkMode = async () => {
  
@@ -84,14 +64,12 @@ const TopBar = () => {
     const handleIconsBtns = () => {
       var btnNeu = document.getElementById("btnNeu");
       var btnDark = document.getElementById("btnDark");
-      var btnLight = document.getElementById("btnLight");
 
       var sunIcon = document.getElementById("sunIcon");
       var moonIcon = document.getElementById("moonIcon");
       var eyeIcon = document.getElementById("eyeIcon");
 
       if (btnNeu?.classList.contains("active")) {
-       
         sunIcon?.classList.remove("fa-solid");
         sunIcon?.classList.add("fa-regular");
         moonIcon?.classList.remove("fa-solid");
