@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 const TopBar = () => {
 
     const [usuario, setUsuario] = useState<User>();
+    const [active, setActive] = useState<string>("");
     // const [style, setStyle] = useState<string>("");
 
     useEffect(() => {
@@ -80,13 +81,32 @@ const TopBar = () => {
     // };
 
     const handleNeumorphismMode = () => {
+
+      var btnNeu = document.getElementById("btnNeu");
+      var btnDark = document.getElementById("btnDark");
+      var btnLight = document.getElementById("btnLight");
+
+      btnLight?.classList.remove("active");
+      btnDark?.classList.remove("active");
+      btnNeu?.classList.add("active");
+
       document.body.classList.remove("dark");
       document.body.classList.remove("light");
       document.body.classList.add("neumorphism");
+
+      
       console.log("Neumorfismo Activado");
     }
 
     const handleDarkMode = () => {
+      var btnNeu = document.getElementById("btnNeu");
+      var btnDark = document.getElementById("btnDark");
+      var btnLight = document.getElementById("btnLight");
+
+      btnLight?.classList.remove("active");
+      btnNeu?.classList.remove("active");
+      btnDark?.classList.add("active");
+
       document.body.classList.remove("neumorphism");
       document.body.classList.remove("light");
       document.body.classList.add("dark");
@@ -94,6 +114,15 @@ const TopBar = () => {
     };
 
     const handleLightMode = () => {
+
+      var btnNeu = document.getElementById("btnNeu");
+      var btnDark = document.getElementById("btnDark");
+      var btnLight = document.getElementById("btnLight");
+
+      btnDark?.classList.remove("active");
+      btnNeu?.classList.remove("active");
+      btnLight?.classList.add("active");
+
       document.body.classList.remove("dark");
       document.body.classList.remove("neumorphism");
       document.body.classList.add("light");
@@ -165,9 +194,9 @@ const TopBar = () => {
                 <button type="submit" className={`topbar__search-button `}>S</button>
             </form>
             <div className="topbar__side-buttons">
-                <button onClick={handleLightMode} className={`topbar__button `}>L</button>
-                <button onClick={handleDarkMode} className={`topbar__button `}>M</button>
-                <button onClick={handleNeumorphismMode} className={`topbar__button `}>N</button>
+                <button id="btnLight" onClick={handleLightMode} className={`topbar__button active`}>L</button>
+                <button id="btnDark" onClick={handleDarkMode} className={`topbar__button `}>M</button>
+                <button id="btnNeu" onClick={handleNeumorphismMode} className={`topbar__button `}>N</button>
             </div>
         </section>
     )

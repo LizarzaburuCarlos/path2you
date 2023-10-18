@@ -112,3 +112,17 @@ body.light .topbar .topbar__side-buttons .topbar__button:hover{
 body.dark .topbar .topbar__side-buttons .topbar__button:hover{
     @apply bg-[#766F87] scale-105;
 }
+
+#btnLight.active {
+    @apply bg-[#6933ad] text-white
+}
+
+#btnDark.active {
+    @apply bg-[#766F87] text-white
+}
+
+#btnNeu.active {
+    background: linear-gradient(135deg, #6933AD 0%, #562792 100%);
+    box-shadow: -5px -5px 11px 0px #FFF, 5px 5px 11px 0px #CEC8D9;
+    color: white;
+}
