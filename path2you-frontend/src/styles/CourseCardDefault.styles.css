@@ -1,16 +1,16 @@
-.courselist__presentation.light h1 {
+body.light .courselist__presentation h1 {
     color: #6933ad;
 }
 
-.courselist__presentation.light p {
+body.light .courselist__presentation p {
     color: black;
 }
 
-.courselist__presentation.dark {
+body.dark .courselist__presentation {
     color: #FFF;
 }
 
-.courselist__presentation.neumorphism {
+body.neumorphism .courselist__presentation {
     text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.30);
     color: black;
 }
@@ -19,26 +19,26 @@
     @apply rounded-lg cursor-pointer transition-all duration-300;
 }
 
-.coursecard.light {
+body.light .coursecard {
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     background-color: #F8F8F8;
 }
 
-.coursecard.dark {
+body.dark .coursecard {
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
     background-color: #48454f;
 }
 
-.coursecard.neumorphism {
+body.neumorphism .coursecard {
     background: #F5F0FE;
     box-shadow: -10px -10px 15px 0px #FFF, 10px 10px 15px 0px #D0CCD8;
 }
 
-.coursecard.dark .coursecard__content {
+body.dark .coursecard .coursecard__content {
     color: #FFF;
 }
 
-.coursecard.light:hover, .coursecard.dark:hover{
+body.light .coursecard:hover, body.dark .coursecard:hover{
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
 
 }

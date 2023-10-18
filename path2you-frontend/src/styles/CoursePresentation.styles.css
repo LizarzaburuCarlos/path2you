@@ -1,29 +1,29 @@
-.course__presentation.light h3 {
+body.light .course__presentation h3 {
   color: #6933ad;
 }
 
-.course__presentation.light p {
+body.light .course__presentation p {
   color: black;
 }
 
-.course__presentation.dark {
+body.dark .course__presentation {
   color: #FFF;
 }
 
-.course__presentation.neumorphism {
+body.neumorphism .course__presentation {
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.30);
   color: black;
 }
 
-.course__empty.light {
+body.light .course__empty {
   color: black; 
 }
 
-.course__empty.dark {
+body.dark .course__empty {
   color: #FFF;
 }
 
-.course__empty.neumorphism {
+body.neumorphism .course__empty {
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.30);
   color: black;
 }

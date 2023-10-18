@@ -11,19 +11,18 @@
     background-color: #440099;
 }
 
-.button-primary.light{
+body.light .button-primary{
     background-color: #6933ad;
 }
 
-.button-primary.dark{
+body.dark .button-primary{
     background-color: #766f87;
 }
 
-.button-primary.neumorphism{
+body.neumorphism .button-primary{
     background: linear-gradient(135deg, #6933AD 0%, #562792 100%);
     box-shadow: -5px -5px 6px 0px #FFF, 7px 7px 15px 0px #B1AABD;
 }
-
 
 .button-primary:hover{
     transform: scale(1.05);

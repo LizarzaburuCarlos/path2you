@@ -1,50 +1,50 @@
-.img1.light, .img2.light, .img3.light, .img4.light {
+body.light .img1, body.light .img2, body.light .img3, body.light .img4 {
     background: #f8f8f8;
 }
 
-.img1.dark, .img2.dark, .img3.dark, .img4.dark {
+body.dark .img1, body.dark .img2, body.dark .img3, body.dark .img4  {
     background: #766F87;
 }
 
-.img1.neumorphism, .img2.neumorphism, .img3.neumorphism, .img4.neumorphism {
+body.neumorphism .img1, body.neumorphism .img2, body.neumorphism .img3, body.neumorphism .img4 {
     background: linear-gradient(180deg, #6933AD 0%, #562792 100%);
     box-shadow: -10px -10px 15px 0px #FFF, 10px 10px 15px 0px #D0CCD8;
 }
 
-.inscribedcourse.light {
+body.light .inscribedcourse {
     background: #f8f8f8;
 }
 
-.inscribedcourse.dark{
+body.dark .inscribedcourse{
     background: #48454F;
 }
 
-.inscribedcourse.neumorphism{
+body.neumorphism .inscribedcourse{
     background: #F5F0FE;
     box-shadow: -10px -10px 15px 0px #ffffffd2, 10px 10px 15px 0px #D0CCD8;
 }
 
-.inscribedlist__header.dark {
+body.dark .inscribedlist__header {
     color:#f3f3f3;
 }
 
-.inscribedlist__header.neumorphism {
+body.neumorphism .inscribedlist__header {
     text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.30);
 }
 
-.inscribedcourse.light .inscribedcourse__presentation .img {
+body.light .inscribedcourse .inscribedcourse__presentation .img {
     background: #6933ad;
 }
 
-.inscribedcourse.dark .inscribedcourse__presentation .img {
+body.dark .inscribedcourse .inscribedcourse__presentation .img {
     background: #766f87;
 }
 
-.inscribedcourse.dark {
+body.dark .inscribedcourse {
     color: #f3f3f3;
 }
 
-.inscribedcourse.neumorphism .inscribedcourse__presentation .img {
+body.neumorphism .inscribedcourse .inscribedcourse__presentation .img {
     background: linear-gradient(180deg, #6933AD 0%, #562792 100%);
     box-shadow: -10px -10px 15px 0px #FFF, 10px 10px 15px 0px #D0CCD8;
 }

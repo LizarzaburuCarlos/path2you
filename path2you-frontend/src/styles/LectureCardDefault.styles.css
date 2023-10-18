@@ -2,53 +2,53 @@
     @apply rounded-lg transition-all duration-300;
 }
 
-.lecturecard.light {
+body.light .lecturecard {
     background-color: #F8F8F8;
 }
 
-.lecturecard.dark {
+body.dark .lecturecard {
     background-color: #48454f;
 }
 
-.lecturecard.neumorphism {
+body.neumorphism .lecturecard {
     background: #F5F0FE;
     box-shadow: -10px -10px 15px 0px #FFF, 10px 10px 15px 0px #D0CCD8;
 }
 
-.lecturecard__img.light {
+body.light .lecturecard__img {
     background: #6933ad;
 }
 
-.lecturecard__img.dark {
+body.dark .lecturecard__img {
     background: #564869;
 }
 
-.lecturecard__img.neumorphism {
+body.neumorphism .lecturecard__img {
     background: linear-gradient(180deg, #6933AD 0%, #562792 100%);
     box-shadow: -10px -10px 15px 0px #FFF, 10px 10px 15px 0px #D0CCD8;
 }
 
-.lecturecard__content.light, .lecturecard__content.neumorphism {
+body.light .lecturecard__content, body.neumorphism .lecturecard__content {
     color: black;
 }
 
-.lecturecard__content.dark {
+body.dark .lecturecard__content {
     color: #FFF;
 }
 
-.lecturecard__media.light button {
+body.light .lecturecard__media button {
     background: #6933ad;
     border-radius: 5px;
     color: #ffffff7f;
 }
 
-.lecturecard__media.dark button {
+body.dark .lecturecard__media button {
     background: #766f87;
     border-radius: 5px;
     color: #ffffff7f;
 }
 
-.lecturecard__media.neumorphism button {
+body.neumorphism .lecturecard__media button {
     border-radius: 5px;
     background: linear-gradient(135deg, #FFFAFF 0%, #DAD3E5 100%);
     box-shadow: -5px -5px 11px 0px #FFF, 5px 5px 11px 0px #CEC8D9;

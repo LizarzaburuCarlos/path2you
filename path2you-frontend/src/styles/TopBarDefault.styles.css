@@ -10,63 +10,63 @@
     @apply h-10 rounded-lg px-4 py-2 w-96 transition-all duration-300;
 }
 
-.topbar .topbar__searchbar.dark{
+body.dark .topbar .topbar__searchbar{
     @apply bg-[#48454F];
 }
 
-.topbar .topbar__searchbar.dark:hover{
+body.dark .topbar .topbar__searchbar:hover{
     @apply bg-[#766F87];
 }
 
-.topbar .topbar__searchbar.dark:focus-within{
+body.dark .topbar .topbar__searchbar:focus-within{
     @apply bg-[#766F87];
 }
 
-.topbar .topbar__searchbar .topbar__search-button.dark{
+body.dark .topbar .topbar__searchbar .topbar__search-button{
     @apply text-[#f3f3f3];
 }
 
-.topbar .topbar__searchbar.dark .topbar__search-input::placeholder,
-.topbar .topbar__searchbar.dark .topbar__search-input:focus-within::placeholder,
-.topbar .topbar__searchbar.dark .topbar__search-input:focus-within::-webkit-input-placeholder,
-.topbar .topbar__searchbar.dark .topbar__search-input:hover::placeholder,
-.topbar .topbar__searchbar.dark .topbar__search-input:hover::-webkit-input-placeholder{
+body.dark .topbar .topbar__searchbar .topbar__search-input::placeholder,
+body.dark .topbar .topbar__searchbar .topbar__search-input:focus-within::placeholder,
+body.dark .topbar .topbar__searchbar .topbar__search-input:focus-within::-webkit-input-placeholder,
+body.dark .topbar .topbar__searchbar .topbar__search-input:hover::placeholder,
+body.dark .topbar .topbar__searchbar .topbar__search-input:hover::-webkit-input-placeholder{
     color: #FFFAFF
 }
 
-.topbar .topbar__searchbar.neumorphism{
+body.neumorphism .topbar .topbar__searchbar{
     background: linear-gradient(135deg, #FFFAFF 0%, #DAD3E5 100%);
     box-shadow: -5px -5px 11px 0px #FFF, 5px 5px 11px 0px #CEC8D9;
 }
 
-.topbar .topbar__searchbar.neumorphism:hover{
+body.neumorphism .topbar .topbar__searchbar:hover{
     background: #6933AD;
     box-shadow: -10px -10px 20px 0px #6933AD inset, 10px 10px 20px 0px #501B93 inset;
     color: #FFF;
 }
 
-.topbar .topbar__searchbar.neumorphism:focus-within{
+body.neumorphism .topbar .topbar__searchbar:focus-within{
     background: #6933AD;
     box-shadow: -10px -10px 20px 0px #6933AD inset, 10px 10px 20px 0px #501B93 inset;
     color: #FFF;
 }
 
-.topbar .topbar__searchbar.neumorphism .topbar__search-input:focus-within::placeholder,
-.topbar .topbar__searchbar.neumorphism .topbar__search-input:focus-within::-webkit-input-placeholder,
-.topbar .topbar__searchbar.neumorphism .topbar__search-input:hover::placeholder,
-.topbar .topbar__searchbar.neumorphism .topbar__search-input:hover::-webkit-input-placeholder{
+body.neumorphism .topbar .topbar__searchbar .topbar__search-input:focus-within::placeholder,
+body.neumorphism .topbar .topbar__searchbar .topbar__search-input:focus-within::-webkit-input-placeholder,
+body.neumorphism .topbar .topbar__searchbar .topbar__search-input:hover::placeholder,
+body.neumorphism .topbar .topbar__searchbar .topbar__search-input:hover::-webkit-input-placeholder{
     color: #FFFAFF
 }
 
-.topbar .topbar__searchbar.light{
+body.light .topbar .topbar__searchbar{
     @apply bg-[#F8F8F8];
 }
 
-.topbar .topbar__searchbar.light:hover{
+body.light .topbar .topbar__searchbar:hover{
     @apply bg-gray-200;
 }
 
-.topbar .topbar__searchbar.light:focus-within{
+body.light .topbar .topbar__searchbar:focus-within{
     @apply bg-gray-200;
 }
 
@@ -86,29 +86,29 @@
     @apply h-full rounded-lg py-2 px-4 flex items-center justify-center transition-all duration-300;
 }
 
-.topbar .topbar__side-buttons .topbar__button.light{
+body.light .topbar .topbar__side-buttons .topbar__button{
     @apply bg-[#F8F8F8]
 }
 
-.topbar .topbar__side-buttons .topbar__button.dark{
+body.dark .topbar .topbar__side-buttons .topbar__button{
     @apply bg-[#48454f] text-[#f3f3f3] ;
 }
 
-.topbar .topbar__side-buttons .topbar__button.neumorphism{
+body.neumorphism .topbar .topbar__side-buttons .topbar__button{
     background: linear-gradient(135deg, #FFFAFF 0%, #DAD3E5 100%);
     box-shadow: -5px -5px 11px 0px #FFF, 5px 5px 11px 0px #CEC8D9;
 }
 
-.topbar .topbar__side-buttons .topbar__button.neumorphism:hover{
+body.neumorphism .topbar .topbar__side-buttons .topbar__button:hover{
     background: #6933AD;
     box-shadow: -10px -10px 20px 0px #6933AD inset, 10px 10px 20px 0px #501B93 inset;
     color: #FFF;
 }
 
-.topbar .topbar__side-buttons .topbar__button.light:hover{
+body.light .topbar .topbar__side-buttons .topbar__button:hover{
     @apply bg-[#6933ad] text-white scale-105;
 }
 
-.topbar .topbar__side-buttons .topbar__button.dark:hover{
+body.dark .topbar .topbar__side-buttons .topbar__button:hover{
     @apply bg-[#766F87] scale-105;
 }
