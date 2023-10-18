@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 const TopBar = () => {
 
-    const [usuario, setUsuario] = useState<User>();
+    const [usser, setUsser] = useState<User>();
     const [light, setLight] = useState<string>("");
     const [dark, setDark] = useState<string>("");
     const [neumorphism, setNeumorphism] = useState<string>("");
@@ -16,54 +16,44 @@ const TopBar = () => {
       
         const fetchData = async () => {
           const userDataResponse = await userData();
-            // console.log(userDataResponse);
-          await fetchUserData(userDataResponse.id);
-          handleFirstActive(userDataResponse)
+          const usuarioCompleto = await fetchUserData(userDataResponse.id);
+          setUsser(usuarioCompleto);
         };
         
         fetchData();
-        
       }, []);
+
+      useEffect(() => {
+        handleFirstActive(usser);
+      }, [usser]);
 
     async function fetchUserData(user) {
         try {
           const userDataApi = await fetchApi<User>({
             endpoint: "users/" + user,
-          });    
-          setUsuario(userDataApi);
-          // console.log(userDataApi);
-
+          });
+          return userDataApi;              
         } catch (error) {
           console.log("error", error);
         }
     }
 
-    // const handleDarkMode = async () => {
- 
-    //   const usuarioDarkMode = { ...usuario!, darkmode: true, neumorphismmode: false };
-    //   // console.log(usuarioDarkMode);
-      
-    //   try {
-
-    //     const res = await editarUsuario(usuarioDarkMode.id, usuarioDarkMode);
-    //     // console.log(res);
-        
-    //     if (!res.status) {
-    //       setStyle("dark");
-    //       document.body.classList.remove("neumorphism");
-    //       document.body.classList.remove("light");
-    //       document.body.classList.add("dark");
-    //       console.log("Dark Mode Activado");
-          
-    //     } else {
-    //       toast.error(res);
-    //       console.log(res);
-          
-    //     }
-    //   } catch (error) {
-    //     toast.error("Error al activar el Dark Mode");
-    //   }
-    // };
+    const editStyleUsuario = async (dark: boolean, neu: boolean) => {
+      const usuarioUpdated = { ...usser!, darkmode: dark, neumorphismmode: neu };
+      // console.log(usuarioUpdated);
+      try {
+        const res = await editarUsuario(usuarioUpdated.id, usuarioUpdated);
+        console.log(res);
+        if (!res.status) {
+          setUsser(usuarioUpdated);
+        } else {
+          toast.error(res);
+          console.log(res);
+        }
+      } catch (error) {
+        toast.error("Error al actualizar el usuario");
+      }
+    };
 
     const handleIconsBtns = () => {
       var btnNeu = document.getElementById("btnNeu");
@@ -106,17 +96,17 @@ const TopBar = () => {
       setLight("");
       setNeumorphism("");
       setDark("active");
-      handleDarkMode();
+      handleIconsBtns();
     } else if (user?.neumorphismmode === true) {
       setLight("");
       setDark("");
       setNeumorphism("active");
-      handleNeumorphismMode();
+      handleIconsBtns();
     } else if (user?.darkmode === false && user?.neumorphismmode === false) {
       setDark("");
       setNeumorphism("");
       setLight("active");
-      handleLightMode();
+      handleIconsBtns();
     }
   }
 
@@ -131,6 +121,7 @@ const TopBar = () => {
       btnNeu?.classList.add("active");
 
       handleIconsBtns();
+      editStyleUsuario(false, true);
 
       document.body.classList.remove("dark");
       document.body.classList.remove("light");
@@ -149,6 +140,7 @@ const TopBar = () => {
       btnDark?.classList.add("active");
 
       handleIconsBtns();
+      editStyleUsuario(true, false);
 
       document.body.classList.remove("neumorphism");
       document.body.classList.remove("light");
@@ -167,70 +159,13 @@ const TopBar = () => {
       btnLight?.classList.add("active");
       
       handleIconsBtns();
+      editStyleUsuario(false, false);
 
       document.body.classList.remove("dark");
       document.body.classList.remove("neumorphism");
       document.body.classList.add("light");
       console.log("Modo Light Activado");
     };
-
-    // const handleNeumorphismMode = async () => {
-
-    //   const usuarioNeumorphism = { ...usuario!, darkmode: false, neumorphismmode: true };
-    //   // console.log(usuarioNeumorphism);
-      
-    //   try {
-
-    //     const res = await editarUsuario(usuarioNeumorphism.id, usuarioNeumorphism);
-    //     // console.log(res);
-        
-    //     if (!res.status) {
-    //       setStyle("neumorphism");
-    //       document.body.classList.remove("dark");
-    //       document.body.classList.remove("light");
-    //       document.body.classList.add("neumorphism");
-          
-    //       console.log("Neumorfismo Activado");
-          
-    //     } else {
-    //       toast.error(res);
-    //       console.log(res);
-          
-    //     }
-    //   } catch (error) {
-    //     toast.error("Error al activar el Neumorfismo Mode");
-    //   }
-
-    // };
-
-    // const handleLightMode = async () => {
-
-    //   const usuarioLightMode = { ...usuario!, darkmode: false, neumorphismmode: false };
-    //   // console.log(usuarioNormalMode);
-      
-    //   try {
-
-    //     const res = await editarUsuario(usuarioLightMode.id, usuarioLightMode);
-    //     // console.log(res);
-        
-    //     if (!res.status) {
-    //       setStyle("light");
-    //       document.body.classList.remove("dark");
-    //       document.body.classList.remove("neumorphism");
-    //       document.body.classList.add("light");
-          
-    //       console.log("Modo Light Activado");
-          
-    //     } else {
-    //       toast.error(res);
-    //       console.log(res);
-          
-    //     }
-    //   } catch (error) {
-    //     toast.error("Error al activar el Modo Light");
-    //   }
-
-    // };
 
     return(
         <section className="topbar w-full h-16 mb-12 flex items-center justify-between">
