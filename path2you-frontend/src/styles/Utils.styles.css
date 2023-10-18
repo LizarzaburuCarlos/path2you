@@ -7,6 +7,10 @@
     @apply w-full rounded-lg text-white text-base font-semibold cursor-pointer ;
 }
 
+.button-primary.login {
+    background-color: #440099;
+}
+
 .button-primary.light{
     background-color: #6933ad;
 }

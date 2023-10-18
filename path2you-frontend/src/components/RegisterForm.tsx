@@ -32,7 +32,7 @@ const RegisterForm = () => {
       } else {
         toast.error(res);
       }
-    } catch (error) {
+    } catch (error:any) {
       toast.error(error.message);
     }
   };
@@ -95,7 +95,7 @@ const RegisterForm = () => {
           required
         />
         <div className="form__submit text-center mt-10">
-          <button className="form__button button-primary mb-4">
+          <button className="form__button button-primary login mb-4">
             Registrarse
           </button>
           <p className="form__register-redirect text-customText font-medium">
