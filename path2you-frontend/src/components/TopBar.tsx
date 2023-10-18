@@ -125,15 +125,23 @@ const TopBar = () => {
     };
 
     return(
-        <section className="topbar w-full h-16 mb-12 flex items-center justify-between">
+        <section className="topbar w-full h-16 mb-12 flex items-center justify-between bg-white">
             <form className={`topbar__searchbar ${style}`}>
                 <input type="text" placeholder="Buscar" className="topbar__search-input"/>
-                <button type="submit" className={`topbar__search-button ${style}`}>S</button>
+                <button type="submit" className={`topbar__search-button ${style}`}>
+                  <i className="fa-solid fa-magnifying-glass"></i>
+                </button>
             </form>
             <div className="topbar__side-buttons">
-                <button onClick={handleLightMode} className={`topbar__button ${style}`}>L</button>
-                <button onClick={handleDarkMode} className={`topbar__button ${style}`}>M</button>
-                <button onClick={handleNeumorphismMode} className={`topbar__button ${style}`}>N</button>
+                <button onClick={handleLightMode} className={`topbar__button ${style}`}>
+                  <img src="/icons/default-dark.png" alt="Modo Default" className="h-6" />
+                </button>
+                <button onClick={handleDarkMode} className={`topbar__button ${style}`}>
+                  <img src="/icons/3D-dark.png" alt="Modo Neumosfista" className="h-6" />
+                </button>
+                <button onClick={handleNeumorphismMode} className={`topbar__button  ${style}`}>
+                  <img src="/icons/dark-dark.png" alt="Modo Oscuro" className="h-6" />
+                </button>
             </div>
         </section>
     )

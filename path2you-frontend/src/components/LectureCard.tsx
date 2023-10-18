@@ -56,15 +56,15 @@ const fetchStyle = async (usuario) => {
     const extension = fileName.split(".").pop()?.toLowerCase();
     switch (extension) {
       case "pdf":
-        return "P";
+        return <img src="/icons/pdf-light-icon.png" className="h-6 mx-auto" alt="Lectura en PDF" />;
       case "png":
       case "jpg":
       case "jpeg":
       case "gif":
       case "webp":
-        return "I";
+        return <img src="/icons/image-light-icon.png" className="h-6 mx-auto" alt="Lectura en Imagen" />;
       case "mp4":
-        return "V";
+        return <img src="/icons/video-light-icon.png" className="h-6 mx-auto" alt="Lectura en Video" />;
       default:
         return null;
     }
@@ -102,7 +102,7 @@ const fetchStyle = async (usuario) => {
         <div className={`lecturecard__media ${style} mt-4 w-full gap-6 flex justify-start items-center`}>
           {mediaData.length > 0 &&
             mediaData.map((mediaItem) => (
-              <button className="h-8 w-8 cursor-pointer" onClick={() => handleDownload(mediaItem)}>
+              <button className="h-10 w-10 cursor-pointer" onClick={() => handleDownload(mediaItem)}>
                 {getFileIcon(mediaItem.attributes.name)}
               </button>
             ))}
