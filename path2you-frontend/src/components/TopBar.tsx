@@ -8,6 +8,9 @@ import { toast } from "react-toastify";
 const TopBar = () => {
 
     const [usuario, setUsuario] = useState<User>();
+    const [light, setLight] = useState<string>("");
+    const [dark, setDark] = useState<string>("");
+    const [neumorphism, setNeumorphism] = useState<string>("");
 
     useEffect(() => {
       
@@ -15,8 +18,9 @@ const TopBar = () => {
           const userDataResponse = await userData();
             // console.log(userDataResponse);
           await fetchUserData(userDataResponse.id);
+          handleFirstActive(userDataResponse)
         };
-        handleIconsBtns();
+        
         fetchData();
         
       }, []);
@@ -64,33 +68,55 @@ const TopBar = () => {
     const handleIconsBtns = () => {
       var btnNeu = document.getElementById("btnNeu");
       var btnDark = document.getElementById("btnDark");
+      var btnLight = document.getElementById("btnLight");
 
       var sunIcon = document.getElementById("sunIcon");
       var moonIcon = document.getElementById("moonIcon");
       var eyeIcon = document.getElementById("eyeIcon");
 
       if (btnNeu?.classList.contains("active")) {
-        sunIcon?.classList.remove("fa-solid");
-        sunIcon?.classList.add("fa-regular");
-        moonIcon?.classList.remove("fa-solid");
-        moonIcon?.classList.add("fa-regular");
         eyeIcon?.classList.remove("fa-regular");
         eyeIcon?.classList.add("fa-solid");
-      } else if (btnDark?.classList.contains("active")) {
+        sunIcon?.classList.remove("fa-solid");
+        sunIcon?.classList.add("fa-regular");
+        moonIcon?.classList.remove("fa-solid");
+        moonIcon?.classList.add("fa-regular");
+      }
+
+      if (btnDark?.classList.contains("active")) {
+        moonIcon?.classList.remove("fa-regular");
+        moonIcon?.classList.add("fa-solid");
         sunIcon?.classList.remove("fa-solid");
         sunIcon?.classList.add("fa-regular");
         eyeIcon?.classList.remove("fa-solid");
         eyeIcon?.classList.add("fa-regular");
-        moonIcon?.classList.remove("fa-regular");
-        moonIcon?.classList.add("fa-solid");
-
-    } else {
+      }
+      if (btnLight?.classList.contains("active")) {
+        sunIcon?.classList.remove("fa-regular");
+        sunIcon?.classList.add("fa-solid");
         moonIcon?.classList.remove("fa-solid");
         moonIcon?.classList.add("fa-regular");
         eyeIcon?.classList.remove("fa-solid");
         eyeIcon?.classList.add("fa-regular");
-        sunIcon?.classList.remove("fa-regular");
-        sunIcon?.classList.add("fa-solid");
+    }
+  }
+
+  const handleFirstActive = (user)  => {
+    if (user?.darkmode === true) {
+      setLight("");
+      setNeumorphism("");
+      setDark("active");
+      handleDarkMode();
+    } else if (user?.neumorphismmode === true) {
+      setLight("");
+      setDark("");
+      setNeumorphism("active");
+      handleNeumorphismMode();
+    } else if (user?.darkmode === false && user?.neumorphismmode === false) {
+      setDark("");
+      setNeumorphism("");
+      setLight("active");
+      handleLightMode();
     }
   }
 
@@ -110,7 +136,6 @@ const TopBar = () => {
       document.body.classList.remove("light");
       document.body.classList.add("neumorphism");
 
-      
       console.log("Neumorfismo Activado");
     }
 
@@ -214,13 +239,13 @@ const TopBar = () => {
                 <button type="submit" className={`topbar__search-button `}>S</button>
             </form>
             <div className="topbar__side-buttons">
-                <button id="btnLight" onClick={handleLightMode} className={`topbar__button active`}>
+                <button id="btnLight" onClick={handleLightMode} className={`topbar__button ${light}`}>
                 <i id="sunIcon" className="fa-regular fa-sun"></i>
                 </button>
-                <button id="btnDark" onClick={handleDarkMode} className={`topbar__button `}>
+                <button id="btnDark" onClick={handleDarkMode} className={`topbar__button ${dark} `}>
                 <i id="moonIcon" className="fa-regular fa-moon"></i>
                 </button>
-                <button id="btnNeu" onClick={handleNeumorphismMode} className={`topbar__button `}>
+                <button id="btnNeu" onClick={handleNeumorphismMode} className={`topbar__button ${neumorphism} `}>
                 <i id="eyeIcon" className="fa-regular fa-eye"></i>
                 </button>
             </div>
