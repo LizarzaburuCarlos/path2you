@@ -1,7 +1,8 @@
 
 //FALTA:
 // 1. Agregar funcionalidad a cada sección del menú
-// 2. Agregar background al menú según la sección en la que se encuentre el usuario
+
+import { useEffect } from "react";
 
 const SideBar = () => {
   
@@ -9,23 +10,44 @@ const SideBar = () => {
     localStorage.setItem("user", "");
     location.replace("/");
     
-    
   };
+
+  useEffect(() => {
+    const currentUrl = window.location.pathname;
+    const menuItems = document.querySelectorAll('.sidebar__menu-item');
+    const cursosItem = document.getElementById('cursos')!;
+
+    menuItems.forEach(item => {
+      const link = item.querySelector('.sidebar__menu-link');
+
+      if (link) {
+        const linkUrl = link.getAttribute('href');
+
+        if (linkUrl === currentUrl) {    
+          item.classList.add('active');
+          }
+        }
+
+        if ((currentUrl.includes("/courses"))) {
+          cursosItem.classList.add('active');
+        }
+      });
+
+  }, []);
 
   return (
     <nav className={`sidebar  w-full h-full px-4 py-10 flex flex-col justify-between items-center`}>
       <div className="sidebar__top  w-full">
-        
         <div className="sidebar__logo w-[56px] h-[56px] rounded-full flex flex-row  mx-auto justify-center items-center">
           <img src="/icono.png" alt="" className="sidebar__logo max-w-[2.5rem]" />
         </div>
         <ul className="sidebar__menu flex flex-col gap-6 mt-20 items-center text-white">
-          <li className={`sidebar__menu-item `}>
+          <li className={`sidebar__menu-item`}>
             <a href="/" className="sidebar__menu-link">
             <i className="fa-solid fa-house text-white text-2xl"></i>
             </a>
           </li>
-          <li className={`sidebar__menu-item `}>
+          <li id="cursos" className={`sidebar__menu-item `}>
             <a href="/courses" className="sidebar__menu-link">
               <i className="fas fa-book text-white text-2xl"></i>
             </a>

@@ -31,7 +31,6 @@ body.neumorphism .sidebar .sidebar__top .sidebar__logo img {
 }
 
 .sidebar .sidebar__top .sidebar__menu .sidebar__menu-item{
-
     @apply h-12 w-full rounded-lg flex items-center justify-center transition-all duration-300;
 }
 
@@ -49,10 +48,22 @@ body.dark .sidebar .sidebar__top .sidebar__menu .sidebar__menu-item:hover{
 
 body.neumorphism .sidebar .sidebar__top .sidebar__menu .sidebar__menu-item:hover{
     background: #8f6bcb;
-    box-shadow: inset -6px -6px 6px #8462bb,
-            inset 6px 6px 6px #9a74db;
+    box-shadow: inset -6px -6px 6px #8462bb, inset 6px 6px 6px #9a74db;
 }
 
 .sidebar .sidebar__bottom button{
     @apply h-12 w-full rounded-lg flex items-center mx-auto transform  hover:scale-110 justify-center transition-all duration-300;
+}
+
+body.light .sidebar__menu-item.active {
+    background-color: #2F3136;
+}
+
+body.dark .sidebar__menu-item.active {
+    background-color: #786396;
+}
+
+body.neumorphism .sidebar__menu-item.active {
+    background: #8f6bcb;
+    box-shadow: inset -6px -6px 6px #8462bb, inset 6px 6px 6px #9a74db;
 }
