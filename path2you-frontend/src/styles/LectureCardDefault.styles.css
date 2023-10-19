@@ -44,17 +44,18 @@ body.dark .lecturecard__content {
 body.light .lecturecard__media button {
     background: #7342b0;
     border-radius: 7px;
-    color: #ffffff7f;
+    color: #ffffffbf;
 }
 
 body.dark .lecturecard__media button {
     background: #766f87;
     border-radius: 7px;
-    color: #ffffff7f;
+    color: #ffffff8a;
 }
 
 body.neumorphism .lecturecard__media button {
     border-radius: 7px;
+    color: #9c7ed8;
     background: #e5d9f2;
     background: linear-gradient(115deg, rgba(255,255,255,1) 0%, rgba(232,221,244,1) 50%);
     box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;

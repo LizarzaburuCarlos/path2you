@@ -16,15 +16,15 @@ const LectureCard = (lecture: Lecture) => {
     const extension = fileName.split(".").pop()?.toLowerCase();
     switch (extension) {
       case "pdf":
-        return <img src="/icons/pdf-light-icon.png" className="h-6 mx-auto" alt="Lectura en PDF" />;
+        return <i className="fa-regular fa-file-pdf mx-auto text-lg"></i>;
       case "png":
       case "jpg":
       case "jpeg":
       case "gif":
       case "webp":
-        return <img src="/icons/image-light-icon.png" className="h-6 mx-auto" alt="Lectura en Imagen" />;
+        return <i class="fa-regular fa-file-image mx-auto text-lg"></i>;
       case "mp4":
-        return <img src="/icons/video-light-icon.png" className="h-6 mx-auto" alt="Lectura en Video" />;
+        return <i class="fa-regular fa-file-video mx-auto text-lg"></i>;
       default:
         return null;
     }
