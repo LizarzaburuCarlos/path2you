@@ -21,7 +21,7 @@ body.neumorphism .lecturecard {
 }
 
 body.light .lecturecard__img {
-    background: #6933ad;
+    background: #7342b0;
 }
 
 body.dark .lecturecard__img {
@@ -29,7 +29,7 @@ body.dark .lecturecard__img {
 }
 
 body.neumorphism .lecturecard__img {
-    background: linear-gradient(180deg, #6933AD 0%, #562792 100%);
+    background: linear-gradient(180deg, #9c7ed8 0%, #7342b0 100%);
     box-shadow: -10px -10px 15px 0px #FFF, 10px 10px 15px 0px #D0CCD8;
 }
 
@@ -42,19 +42,19 @@ body.dark .lecturecard__content {
 }
 
 body.light .lecturecard__media button {
-    background: #6933ad;
-    border-radius: 5px;
+    background: #7342b0;
+    border-radius: 7px;
     color: #ffffff7f;
 }
 
 body.dark .lecturecard__media button {
     background: #766f87;
-    border-radius: 5px;
+    border-radius: 7px;
     color: #ffffff7f;
 }
 
 body.neumorphism .lecturecard__media button {
-    border-radius: 5px;
+    border-radius: 7px;
     background: #e5d9f2;
     background: linear-gradient(115deg, rgba(255,255,255,1) 0%, rgba(232,221,244,1) 50%);
     box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;

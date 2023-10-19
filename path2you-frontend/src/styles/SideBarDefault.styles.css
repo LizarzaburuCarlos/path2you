@@ -41,7 +41,6 @@ body.neumorphism .sidebar__top .sidebar__menu .sidebar__menu-item{
 
 body.light .sidebar .sidebar__top .sidebar__menu .sidebar__menu-item:hover{
     background-color: #2F3136;
-    opacity: 80%;
 }
 
 body.dark .sidebar .sidebar__top .sidebar__menu .sidebar__menu-item:hover{

@@ -112,7 +112,7 @@ body.neumorphism .topbar .topbar__side-buttons .topbar__button:hover{
 }
 
 body.light .topbar .topbar__side-buttons .topbar__button:hover{
-    @apply bg-[#6933ad] text-white scale-105;
+    @apply bg-[#7342b0] text-white scale-105;
 }
 
 body.dark .topbar .topbar__side-buttons .topbar__button:hover{
@@ -132,7 +132,7 @@ body.dark .topbar .topbar__side-buttons .topbar__button:hover{
 }
 
 #btnLight.active {
-    @apply bg-[#6933ad] text-white
+    @apply bg-[#7342b0] text-white
 }
 
 #btnDark.active {
