@@ -26,7 +26,7 @@ const LectureList = (course: Course) => {
   }, [courseId]);
 
   return (
-    <section className="lecturelist w-full mt-20">
+    <section className="lecturelist w-full mt-10">
       {lectures.length > 0 ? (
         <div className="lecturelist__container grid grid-cols-1 lg:grid-cols-2 gap-4">
           {lectures.map((lecture) => (

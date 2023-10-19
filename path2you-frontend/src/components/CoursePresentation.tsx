@@ -97,21 +97,22 @@ const CoursePresentation = (course: Course) => {
           <h3 className="course__title font-bold text-3xl lg:text-5xl mb-6">
             {course.attributes.title}
           </h3>
-          <p className="course__description mb-20 font-medium text-lg">
+          <p className="course__description font-medium text-lg">
             {course.attributes.description}
           </p>
-          <div className="course__inscription w-36 bottom-0 absolute">
-            {inscription ? (
+          {inscription ? (
               <></>
             ) : (
-              <button
-                className={`button-primary w-full`}
-                onClick={() => handleInscription()}
-              >
-                Inscribirse
-              </button>
+              <div className="course__inscription w-36 mt-8 absolute">
+                <button
+                  className={`button-primary w-full`}
+                  onClick={() => handleInscription()}
+                >
+                  Inscribirse
+                </button>
+              </div>
             )}
-          </div>
+          
         </div>
         <div className="course__image w-full rounded-xl overflow-hidden aspect-[3/2]">
           {!course.attributes.photo.data ? (
