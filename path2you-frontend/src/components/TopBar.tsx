@@ -85,8 +85,6 @@ const TopBar = () => {
 
     const handleNeumorphismMode = () => {
 
-
-
       if (neumorphism === false) {
         setLight(false);
         setDark(false);
@@ -102,8 +100,6 @@ const TopBar = () => {
     }
 
     const handleDarkMode = () => {
-
-      
 
       if (dark === false) {
         setLight(false);

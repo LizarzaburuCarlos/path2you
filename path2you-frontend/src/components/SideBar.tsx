@@ -15,7 +15,10 @@ const SideBar = () => {
   return (
     <nav className={`sidebar  w-full h-full px-4 py-10 flex flex-col justify-between items-center`}>
       <div className="sidebar__top  w-full">
-        <img src="/icono.png" alt="" className="sidebar__logo max-w-[3rem] mx-auto" />
+        
+        <div className="sidebar__logo w-[56px] h-[56px] rounded-full flex flex-row  mx-auto justify-center items-center">
+          <img src="/icono.png" alt="" className="sidebar__logo max-w-[2.5rem]" />
+        </div>
         <ul className="sidebar__menu flex flex-col gap-6 mt-20 items-center text-white">
           <li className={`sidebar__menu-item `}>
             <a href="/" className="sidebar__menu-link">
@@ -39,7 +42,7 @@ const SideBar = () => {
           </li>
         </ul>
       </div>
-      <div className="sidebar__bottom text-white w-full">
+      <div className="sidebar__bottom  text-white w-full">
         <button onClick={logout} className={`w-full`}>
         <i className="fa fa-right-to-bracket text-2xl mx-auto"></i>
         </button>

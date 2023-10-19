@@ -35,19 +35,22 @@ body.dark .topbar .topbar__searchbar .topbar__search-input:hover::-webkit-input-
 }
 
 body.neumorphism .topbar .topbar__searchbar{
-    background: linear-gradient(135deg, #FFFAFF 0%, #DAD3E5 100%);
-    box-shadow: -5px -5px 11px 0px #FFF, 5px 5px 11px 0px #CEC8D9;
+    background: #e5d9f2;
+    background: linear-gradient(115deg, rgba(255,255,255,1) 0%, rgba(232,221,244,1) 50%);
+    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
 }
 
 body.neumorphism .topbar .topbar__searchbar:hover{
-    background: #6933AD;
-    box-shadow: -10px -10px 20px 0px #6933AD inset, 10px 10px 20px 0px #501B93 inset;
+    background: #8e6bc7;
+    box-shadow: inset -6px -6px 12px #8362b7,
+                inset 6px 6px 12px #9974d7;
     color: #FFF;
 }
 
 body.neumorphism .topbar .topbar__searchbar:focus-within{
-    background: #6933AD;
-    box-shadow: -10px -10px 20px 0px #6933AD inset, 10px 10px 20px 0px #501B93 inset;
+    background: #8e6bc7;
+box-shadow: inset -6px -6px 12px #8362b7,
+            inset 6px 6px 12px #9974d7;
     color: #FFF;
 }
 
@@ -83,7 +86,7 @@ body.light .topbar .topbar__searchbar:focus-within{
 }
 
 .topbar .topbar__side-buttons .topbar__button{
-    @apply h-full rounded-lg flex items-center justify-center transition-all duration-300;
+    @apply h-full rounded-lg flex items-center justify-center transform hover:scale-105 transition-all duration-300;
 }
 
 body.light .topbar .topbar__side-buttons .topbar__button{
@@ -95,13 +98,16 @@ body.dark .topbar .topbar__side-buttons .topbar__button{
 }
 
 body.neumorphism .topbar .topbar__side-buttons .topbar__button{
-    background: linear-gradient(135deg, #FFFAFF 0%, #DAD3E5 100%);
-    box-shadow: -5px -5px 11px 0px #FFF, 5px 5px 11px 0px #CEC8D9;
+    background: #e2d2f4;
+    background: linear-gradient(115deg, rgba(255,255,255,0.4) 0%, rgba(232,221,244,1) 100%);
+    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+    text-shadow: 0px 2px 4px rgba(103, 102, 102, 0.3);
 }
 
 body.neumorphism .topbar .topbar__side-buttons .topbar__button:hover{
-    background: #6933AD;
-    box-shadow: -10px -10px 20px 0px #6933AD inset, 10px 10px 20px 0px #501B93 inset;
+    background: #8f6bcb;
+    box-shadow: inset -6px -6px 6px #8462bb,
+            inset 6px 6px 6px #9a74db;
     color: #FFF;
 }
 
@@ -134,7 +140,8 @@ body.dark .topbar .topbar__side-buttons .topbar__button:hover{
 }
 
 #btnNeu.active {
-    background: linear-gradient(135deg, #6933AD 0%, #562792 100%);
-    box-shadow: -5px -5px 11px 0px #FFF, 5px 5px 11px 0px #CEC8D9;
+    background: linear-gradient(145deg, #9c7ed8, #7342b0);
+    box-shadow: -10px -10px 15px 0px #FFF, 5px 6px 10px 0px #c1b5da;
     color: white;
+    text-shadow: 0px 2px 4px rgba(10, 10, 10, 0.5);
 }

@@ -1,5 +1,9 @@
 .lecturecard{
-    @apply rounded-lg transition-all duration-300;
+    @apply rounded-xl transition-all duration-300;
+}
+
+.lecturecard__media button{
+    @apply transform transition-all duration-300 hover:scale-105;
 }
 
 body.light .lecturecard {
@@ -11,8 +15,9 @@ body.dark .lecturecard {
 }
 
 body.neumorphism .lecturecard {
-    background: #F5F0FE;
-    box-shadow: -10px -10px 15px 0px #FFF, 10px 10px 15px 0px #D0CCD8;
+    background: #e5d9f2;
+    background: linear-gradient(115deg, rgba(255,255,255,1) 0%, rgba(232,221,244,1) 50%);
+    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
 }
 
 body.light .lecturecard__img {
@@ -50,7 +55,7 @@ body.dark .lecturecard__media button {
 
 body.neumorphism .lecturecard__media button {
     border-radius: 5px;
-    background: linear-gradient(135deg, #FFFAFF 0%, #DAD3E5 100%);
-    box-shadow: -5px -5px 11px 0px #FFF, 5px 5px 11px 0px #CEC8D9;
-    color: #6933AD;
+    background: #e5d9f2;
+    background: linear-gradient(115deg, rgba(255,255,255,1) 0%, rgba(232,221,244,1) 50%);
+    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
 }
