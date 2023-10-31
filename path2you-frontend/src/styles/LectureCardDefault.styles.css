@@ -33,6 +33,58 @@ body.neumorphism .lecturecard__img {
     box-shadow: -10px -10px 15px 0px #FFF, 10px 10px 15px 0px #D0CCD8;
 }
 
+body.light .skill .circle {
+    background: conic-gradient(#7342b0 3.6deg, #1b1d21 0deg);
+}
+
+body.light .skill .circle::before {
+    content: "";
+    position: absolute;
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    background: #f8f8f8;
+}
+
+body.dark .skill .circle {
+    background: conic-gradient(#766f87 3.6deg, #37343e 0deg);
+}
+
+body.dark .skill .circle::before {
+    content: "";
+    position: absolute;
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    background: #48454f;
+}
+
+body.neumorphism .skill .circle {
+    background: conic-gradient(#7342b0 3.6deg, #9c7ed8 0deg);
+    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+}
+
+body.neumorphism .skill .circle::before {
+    content: "";
+    position: absolute;
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    background: #f3eef9;
+}
+
+body.light .skill .circle span {
+    color: #1b1d21;
+}
+
+body.neumorphism .skill .circle span {
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.20);
+}
+
+body.dark .skill .circle span {
+    color: #ffff;
+}
+
 body.light .lecturecard__content, body.neumorphism .lecturecard__content {
     color: black;
 }

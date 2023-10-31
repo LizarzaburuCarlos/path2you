@@ -106,14 +106,11 @@ export const getUsuario = async (id: string) => {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
-    console.log(res);
 
     if (!res.ok) {
       throw new Error("Failed to fetch user");
     } else {
-        console.log("Usuario obtenido");
-        const { data } = await res.json();
-        
+        const data = await res.json();
         return data;    
     }
 
