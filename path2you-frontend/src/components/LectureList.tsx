@@ -30,7 +30,7 @@ const LectureList = (course: Course) => {
       {lectures.length > 0 ? (
         <div className="lecturelist__container grid grid-cols-1 lg:grid-cols-2 gap-4">
           {lectures.map((lecture) => (
-            <LectureCard {...lecture} />
+            <LectureCard slug={course.attributes.slug} lecture={lecture} />
           ))}
         </div>
       ) : (

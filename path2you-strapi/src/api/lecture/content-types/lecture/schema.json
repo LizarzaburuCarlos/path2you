@@ -4,7 +4,8 @@
   "info": {
     "singularName": "lecture",
     "pluralName": "lectures",
-    "displayName": "Lecture"
+    "displayName": "Lecture",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,26 +18,35 @@
       "required": true,
       "minLength": 3
     },
-    "description": {
-      "type": "text",
-      "default": "Lectura sin Descripción",
-      "minLength": 3
-    },
     "media": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "course": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::course.course",
       "inversedBy": "lectures"
+    },
+    "slug": {
+      "type": "uid",
+      "required": true
+    },
+    "lessons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::lesson.lesson",
+      "mappedBy": "lecture"
+    },
+    "description": {
+      "type": "richtext"
     }
   }
 }

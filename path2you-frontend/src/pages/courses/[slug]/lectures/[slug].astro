@@ -1,0 +1,27 @@
+---
+import { LecturesUI } from "../../../../components/LecturesUI";
+import type Course from "../../../../interfaces/course";
+import type Lecture from "../../../../interfaces/lecture";
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import fetchApi from "../../../../lib/strapi";
+
+export async function getStaticPaths() {
+  const lectures = await fetchApi<Lecture[]>({
+    endpoint: "lectures",
+    wrappedByKey: "data",
+  });
+
+  return lectures.map((lecture) => ({
+    params: { slug: lecture.attributes.slug },
+    props: lecture,
+  }));
+}
+
+type Props = Course;
+
+const lecture = Astro.props;
+---
+
+<BaseLayout title={`Lectura: ${lecture.attributes.title}`}>
+    <LecturesUI {...lecture} client:load />
+</BaseLayout>

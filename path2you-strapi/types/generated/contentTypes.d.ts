@@ -778,6 +778,7 @@ export interface ApiLectureLecture extends Schema.CollectionType {
     singularName: 'lecture';
     pluralName: 'lectures';
     displayName: 'Lecture';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -789,17 +790,19 @@ export interface ApiLectureLecture extends Schema.CollectionType {
         minLength: 3;
       }> &
       Attribute.DefaultTo<'Lectura sin Nombre'>;
-    description: Attribute.Text &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }> &
-      Attribute.DefaultTo<'Lectura sin Descripci\u00F3n'>;
     media: Attribute.Media;
     course: Attribute.Relation<
       'api::lecture.lecture',
       'manyToOne',
       'api::course.course'
     >;
+    slug: Attribute.UID & Attribute.Required;
+    lessons: Attribute.Relation<
+      'api::lecture.lecture',
+      'oneToMany',
+      'api::lesson.lesson'
+    >;
+    description: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -811,6 +814,132 @@ export interface ApiLectureLecture extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::lecture.lecture',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLessonLesson extends Schema.CollectionType {
+  collectionName: 'lessons';
+  info: {
+    singularName: 'lesson';
+    pluralName: 'lessons';
+    displayName: 'Lesson';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    content: Attribute.RichText & Attribute.Required;
+    media: Attribute.Media;
+    description: Attribute.Text;
+    lecture: Attribute.Relation<
+      'api::lesson.lesson',
+      'manyToOne',
+      'api::lecture.lecture'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::lesson.lesson',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::lesson.lesson',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProgressProgress extends Schema.CollectionType {
+  collectionName: 'progresses';
+  info: {
+    singularName: 'progress';
+    pluralName: 'progresses';
+    displayName: 'Progress';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    finished: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    user: Attribute.Relation<
+      'api::progress.progress',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    lesson: Attribute.Relation<
+      'api::progress.progress',
+      'oneToOne',
+      'api::lesson.lesson'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::progress.progress',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::progress.progress',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRegisterRegister extends Schema.CollectionType {
+  collectionName: 'registers';
+  info: {
+    singularName: 'register';
+    pluralName: 'registers';
+    displayName: 'Register';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    status: Attribute.Decimal & Attribute.Required;
+    finished: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    lecture: Attribute.Relation<
+      'api::register.register',
+      'oneToOne',
+      'api::lecture.lecture'
+    >;
+    user: Attribute.Relation<
+      'api::register.register',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::register.register',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::register.register',
       'oneToOne',
       'admin::user'
     > &
@@ -884,6 +1013,9 @@ declare module '@strapi/types' {
       'api::course.course': ApiCourseCourse;
       'api::inscription.inscription': ApiInscriptionInscription;
       'api::lecture.lecture': ApiLectureLecture;
+      'api::lesson.lesson': ApiLessonLesson;
+      'api::progress.progress': ApiProgressProgress;
+      'api::register.register': ApiRegisterRegister;
       'api::review.review': ApiReviewReview;
     }
   }

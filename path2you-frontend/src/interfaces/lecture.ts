@@ -6,6 +6,7 @@ export default interface Lecture {
         media: {
             data: {};
         };
+        slug: string;
         createdAt: string;
         updatedAt: string;
         publishedAt: string;

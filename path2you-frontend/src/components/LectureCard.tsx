@@ -7,8 +7,15 @@ import "../styles/LectureCardDefault.styles.css";
 import type User from "../interfaces/user";
 import { userData } from "../core/helpers";
 import { getUsuario } from "../core/service";
+import { LecturesUI } from "./LecturesUI";
 
-const LectureCard = (lecture: Lecture) => {
+type LectureCardProps = {
+  slug: string;
+  lecture: Lecture;
+};
+
+const LectureCard : React.FC<LectureCardProps> = ({ slug, lecture }) => {
+  const [resolution, setResolution] = useState<boolean | null>(null);
   const circleRef = useRef(null);
   const prevUsuarioRef = useRef<User | null>(null);
   const [valueProgress, setValueProgress] = useState(60);
@@ -86,7 +93,13 @@ const LectureCard = (lecture: Lecture) => {
     fetchProgress();
   }, [usuario, valueProgress]);
   
-  
+  const handleLecture = () => {
+    if (resolution === null) {
+      setResolution(true);
+    } else {
+      setResolution(!resolution);
+    }
+  }
 
   const getFileIcon = (fileName: string) => {
     const extension = fileName.split(".").pop()?.toLowerCase();
@@ -121,8 +134,9 @@ const LectureCard = (lecture: Lecture) => {
     return undefined;
   };
 
+
   return (
-    <div className={`lecturecard w-full h-44 px-8 py-6 flex gap-6 items-center`}>
+    <a href={`${slug}/lectures/${lecture.attributes.slug}`} className={`lecturecard w-full h-44 px-8 py-6 flex gap-6 items-center`}>
       {/* <div className={`lecturecard__img w-16 h-16 rounded-full`}>
         <div className="w-20 h-20 rounded-full" />
       </div> */}
@@ -142,15 +156,18 @@ const LectureCard = (lecture: Lecture) => {
           </p>
         </div>
         <div className={`lecturecard__media mt-4 w-full gap-6 flex justify-start items-center`}>
-          {mediaData.length > 0 &&
+          {/* {mediaData.length > 0 &&
             mediaData.map((mediaItem) => (
               <button className="h-10 w-10 cursor-pointer" onClick={() => handleDownload(mediaItem)}>
                 {getFileIcon(mediaItem.attributes.name)}
               </button>
-            ))}
+            ))} */}
+            <button className="h-10 w-10 cursor-pointer">
+                Pijaaaa
+              </button>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 
