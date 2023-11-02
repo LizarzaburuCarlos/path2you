@@ -1,9 +1,12 @@
 ---
 import SideBar from "../components/SideBar.tsx";
 import TopBar from "../components/TopBar";
+import BottomBar from "../components/BottomBar";
 import "../styles/Utils.styles.css";
 import "../styles/SideBarDefault.styles.css";
 import "../styles/TopBarDefault.styles.css";
+import "../styles/BottomBarDefault.styles.css";
+
 export interface Props {
   title: string;
   description?: string;
@@ -68,10 +71,13 @@ const { title, description = defaultDescription } = Astro.props as Props;
   </script>
   <body class="">
     <div class="h-screen 2xl:w-[1280px] mx-auto p-4 flex">
-      <div class="sidebar min-w-[5rem] w-32 h-full">
+      <div class="sidebar min-w-[5rem] w-32 h-full max-sm:hidden">
         <SideBar client:load />
       </div>
-      <div class="content w-full py-4 px-10 h-full overflow-y-auto">
+      <div class="bottombar w-fit sm:hidden overflow-hidden ">
+        <BottomBar client:load />
+      </div>
+      <div class="content w-full py-4 px-10 h-full max-sm:pb-40 overflow-y-auto">
         <TopBar client:load />
         <slot />
       </div>
