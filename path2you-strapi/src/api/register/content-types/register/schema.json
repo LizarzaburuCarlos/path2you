@@ -13,8 +13,9 @@
   "pluginOptions": {},
   "attributes": {
     "status": {
-      "type": "decimal",
-      "required": true
+      "type": "integer",
+      "required": true,
+      "max": 100
     },
     "finished": {
       "type": "boolean",

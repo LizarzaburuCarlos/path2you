@@ -37,22 +37,22 @@ export const LecturesUI: React.FC<LectureUIProps> = ({ lecture }) => {
           });
           
           setLessons(lecciones);
+         
       };
       setLeccion(null);
       fetchLessons();
-  
+   
       }, []);
 
     useEffect(() => {
         const fetchData = async () => {
-            const userDataResponse = userData();
+            const userDataResponse = await userData();
             setUser(userDataResponse);
             handleRegister(userDataResponse);
         };
-      
         fetchData();
-        
     }, [lessons]);
+
 
     async function handleRegister(user) {
 
@@ -70,10 +70,6 @@ export const LecturesUI: React.FC<LectureUIProps> = ({ lecture }) => {
             wrappedByKey: "data",
           });
 
-          // console.log('====================================');
-          // console.log(finishedLessonsResponse);
-          // console.log('====================================');
-
           const totalLessons = lessons.length;
       
           if (existingRecordResponse.length > 0) {
@@ -84,31 +80,44 @@ export const LecturesUI: React.FC<LectureUIProps> = ({ lecture }) => {
 
             const finishedLessons = finishedLessonsResponse.length;
             const existingProgress = existingRecordResponse[0];
-            
-            const updatedStatus = (finishedLessons / totalLessons) * 100;
 
-            const registerUpdated = { ...existingProgress, status: updatedStatus };
-      
-            // Actualiza el valor status en el registro existente
-            try {
-              const res = await editarRegistroLecture(existingProgress.id, registerUpdated);
-        
-              console.log(res);
-              if (!res.status) {
+            console.log(finishedLessons, totalLessons);
+            
+            
+            const updatedStatus = Number((finishedLessons / totalLessons) * 100);
+            
+         
+            const registerUpdated = { id: existingProgress.id, attributes: 
+              {...existingProgress.attributes, 
+                status: updatedStatus, user:user.id, lecture:lecture.id, finished: updatedStatus === 100 ? true : false }};
+            const data = { data: registerUpdated }
            
-              } else {
-        
-                console.log(res);
+              console.log(Number(updatedStatus));
+              
+              
+            const res = await fetchApi({
+              endpoint: "registers/"+existingProgress.id,
+              method: "PUT",
+              body: {
+               data:{
+                status: Math.floor(updatedStatus),
+                user: user.id,
+                lecture: lecture.id,
+                finished: updatedStatus === 100 ? true : false,
+               }
               }
-            } catch (error) {
-              console.log("Error al actualizar el registro");
-            }
+              ,
+            });
+            
+            console.log(res);
+            
+           
           } else {
             // Si el usuario no tiene un registro, crea uno nuevo con el valor status calculado
-
-            const finishedLessons = finishedLessonsResponse.length;
-                const status = (finishedLessons / totalLessons) * 100; // Calcula el porcentaje de lecciones terminadas
-          
+         
+                const status = (1 / lessons.length) * 100; // Calcula el porcentaje de lecciones terminadas
+                console.log(lessons.length);
+                
                 const terminado = status === 100 ? true : false;
 
                 // Crea un nuevo registro
@@ -117,7 +126,7 @@ export const LecturesUI: React.FC<LectureUIProps> = ({ lecture }) => {
                   method: "POST",
                   body: {
                    data:{
-                    status: Number(status),
+                    status: Math.floor(status),
                     user: user.id,
                     lecture: lecture.id,
                     finished: terminado,

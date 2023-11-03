@@ -5,12 +5,6 @@ import type User from "../interfaces/user";
 import { userData } from "../core/helpers";
 import { getUsuario } from "../core/service";
 import "../styles/LectureCardDefault.styles.css";
-import { LessonViewer } from "./LessonViewer";
-type LessonCardProps = {
-    lesson: Lesson;
-    url: string;
-  };
-  
 
 const LessonCard = ({ lesson, setResolution, setLeccion }) => {
     const [hasMedia, setHasMedia] = useState<boolean>(false);
@@ -28,8 +22,6 @@ const LessonCard = ({ lesson, setResolution, setLeccion }) => {
       setResolution(true);
       setLeccion(lesson);
     }
-
-    
   
     return (
         <button onClick={handleLesson} className={`lecturecard w-full md:w-[70%] mx-4 h-24 px-6 py-6 flex gap-6 items-center`}>

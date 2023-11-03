@@ -984,7 +984,11 @@ export interface ApiRegisterRegister extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    status: Attribute.Decimal & Attribute.Required;
+    status: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        max: 100;
+      }>;
     finished: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;

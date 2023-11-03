@@ -78,6 +78,8 @@ export const editarUsuario = async (id, data) => {
 };
 
 export const editarRegistroLecture = async (id, data) => {
+  console.log("data", data);
+  
   try {
     const res = await fetch(`${API_URL}/registers/${id}`, {
       method: "PUT",
@@ -86,9 +88,11 @@ export const editarRegistroLecture = async (id, data) => {
     });
 
     if (!res.ok) {
+      
       throw new Error("Fallo al editar registro");
+    
     } else {
-      // Convierte el cuerpo de la respuesta a un objeto JSON
+
       const data = await res.json();
 
       console.log("Registro editado:", data);

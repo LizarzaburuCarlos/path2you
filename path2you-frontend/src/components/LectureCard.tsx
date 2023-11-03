@@ -37,15 +37,17 @@ const LectureCard : React.FC<LectureCardProps> = ({ slug, lecture }) => {
     if (existingRecordResponse.length > 0) {
       const progress = existingRecordResponse[0].attributes.status;
       setValueProgress(progress);
+      console.log('====================================');
+    console.log(existingRecordResponse);
+    console.log('====================================');
     }
+    
   }
 
   useEffect(() => {
 
     const fetchData = async () => {
       const { id } = userData();
-      const { darkmode } = userData();
-      const { neumorphismmode } = userData();
       const fetchedUsuario = await getUsuario(id);
     
       setUsuario(fetchedUsuario);
