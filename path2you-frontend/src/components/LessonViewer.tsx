@@ -3,11 +3,15 @@ import fetchApi from "../lib/strapi";
 import type User from "../interfaces/user";
 import { userData } from "../core/helpers";
 import type Progress from "../interfaces/progress";
+import remarkGfm from "remark-gfm";
+import Markdown from "react-markdown";
 
 export const LessonViewer = ({leccion, setResolution, setLeccion, setHasProgress, user}) => {
 
     const [isNew, setIsNew] = useState<boolean|null>(null);
-
+    console.log('====================================');
+    console.log(leccion.attributes.content);
+    console.log('====================================');
     useEffect(() => {
         const checkIsNew = async () => {
             const usuario = user!;
@@ -61,14 +65,16 @@ export const LessonViewer = ({leccion, setResolution, setLeccion, setHasProgress
                     setLeccion(null)
                     }}>Volver</button>
             </div>
-            <div className="lesson__viewer__video">
+            {/* <div className="lesson__viewer__video">
                 <video controls className="lesson__viewer__video__player">
                     <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
                     Your browser does not support HTML video.
                 </video>
-            </div>
+            </div> */}
             <div className="lesson__viewer__content">
-                <h4 className="lesson__viewer__title font-semibold text-2xl mb-2">{leccion.attributes.title}</h4>
+                <h4 className="lesson__viewer__title font-semibold text-2xl mb-4">{leccion.attributes.title}</h4>
+                <Markdown skipHtml={false} remarkPlugins={[remarkGfm]} className="lesson__viewer__text">
+                  {leccion.attributes.content}</Markdown>
             </div>
         </div>
     )
