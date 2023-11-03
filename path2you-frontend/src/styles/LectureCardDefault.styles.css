@@ -1,9 +1,5 @@
 .lecturecard{
-    @apply rounded-xl transition-all duration-300;
-}
-
-.lecturecard__media button{
-    @apply transform transition-all duration-300 hover:scale-105;
+    @apply rounded-xl transition-all duration-300 hover:scale-105;
 }
 
 body.light .lecturecard {
@@ -93,19 +89,19 @@ body.dark .lecturecard__content {
     color: #FFF;
 }
 
-body.light .lecturecard__media button {
+body.light .lecturecard__media div {
     background: #7342b0;
     border-radius: 7px;
     color: #ffffffbf;
 }
 
-body.dark .lecturecard__media button {
+body.dark .lecturecard__media div {
     background: #766f87;
     border-radius: 7px;
     color: #ffffff8a;
 }
 
-body.neumorphism .lecturecard__media button {
+body.neumorphism .lecturecard__media div {
     border-radius: 7px;
     color: #9c7ed8;
     background: #e5d9f2;

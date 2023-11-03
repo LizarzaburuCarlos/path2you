@@ -732,6 +732,36 @@ export interface ApiCourseCourse extends Schema.CollectionType {
   };
 }
 
+export interface ApiExamExam extends Schema.CollectionType {
+  collectionName: 'exams';
+  info: {
+    singularName: 'exam';
+    pluralName: 'exams';
+    displayName: 'Exam';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.String;
+    date: Attribute.DateTime;
+    course: Attribute.Relation<
+      'api::exam.exam',
+      'oneToOne',
+      'api::course.course'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::exam.exam', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::exam.exam', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiInscriptionInscription extends Schema.CollectionType {
   collectionName: 'inscriptions';
   info: {
@@ -903,6 +933,45 @@ export interface ApiProgressProgress extends Schema.CollectionType {
   };
 }
 
+export interface ApiQuestionQuestion extends Schema.CollectionType {
+  collectionName: 'questions';
+  info: {
+    singularName: 'question';
+    pluralName: 'questions';
+    displayName: 'Question';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    course: Attribute.Relation<
+      'api::question.question',
+      'oneToOne',
+      'api::course.course'
+    >;
+    title: Attribute.String;
+    firstQuestion: Attribute.String & Attribute.Required;
+    firstQuestionAnswer: Attribute.Boolean & Attribute.Required;
+    secondQuestion: Attribute.String & Attribute.Required;
+    secondQuestionAnswer: Attribute.Boolean & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::question.question',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::question.question',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiRegisterRegister extends Schema.CollectionType {
   collectionName: 'registers';
   info: {
@@ -994,6 +1063,44 @@ export interface ApiReviewReview extends Schema.CollectionType {
   };
 }
 
+export interface ApiScoreScore extends Schema.CollectionType {
+  collectionName: 'scores';
+  info: {
+    singularName: 'score';
+    pluralName: 'scores';
+    displayName: 'Score';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    users_permissions_user: Attribute.Relation<
+      'api::score.score',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    exam: Attribute.Relation<'api::score.score', 'oneToOne', 'api::exam.exam'>;
+    Score: Attribute.Integer & Attribute.Required;
+    approved: Attribute.Boolean & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::score.score',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::score.score',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1011,12 +1118,15 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::course.course': ApiCourseCourse;
+      'api::exam.exam': ApiExamExam;
       'api::inscription.inscription': ApiInscriptionInscription;
       'api::lecture.lecture': ApiLectureLecture;
       'api::lesson.lesson': ApiLessonLesson;
       'api::progress.progress': ApiProgressProgress;
+      'api::question.question': ApiQuestionQuestion;
       'api::register.register': ApiRegisterRegister;
       'api::review.review': ApiReviewReview;
+      'api::score.score': ApiScoreScore;
     }
   }
 }

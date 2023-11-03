@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "scores",
+  "info": {
+    "singularName": "score",
+    "pluralName": "scores",
+    "displayName": "Score",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "exam": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::exam.exam"
+    },
+    "Score": {
+      "type": "integer",
+      "required": true
+    },
+    "approved": {
+      "type": "boolean",
+      "required": true
+    }
+  }
+}

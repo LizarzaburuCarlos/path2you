@@ -17,11 +17,11 @@ export async function getStaticPaths() {
   }));
 }
 
-type Props = Course;
+type Props = Lecture;
 
 const lecture = Astro.props;
 ---
 
 <BaseLayout title={`Lectura: ${lecture.attributes.title}`}>
-    <LecturesUI {...lecture} client:load />
+    <LecturesUI lecture={lecture} client:load />
 </BaseLayout>

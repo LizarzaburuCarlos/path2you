@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questions",
+  "info": {
+    "singularName": "question",
+    "pluralName": "questions",
+    "displayName": "Question"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "course": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::course.course"
+    },
+    "title": {
+      "type": "string"
+    },
+    "firstQuestion": {
+      "type": "string",
+      "required": true
+    },
+    "firstQuestionAnswer": {
+      "type": "boolean",
+      "required": true
+    },
+    "secondQuestion": {
+      "type": "string",
+      "required": true
+    },
+    "secondQuestionAnswer": {
+      "type": "boolean",
+      "required": true
+    }
+  }
+}

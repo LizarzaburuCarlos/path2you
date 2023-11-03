@@ -151,21 +151,15 @@ const LectureCard : React.FC<LectureCardProps> = ({ slug, lecture }) => {
           <h3 className="lecturecard__title font-bold text-lg">
             {lecture.attributes.title}
           </h3>
-          <p className="lecturecard__text text-base overflow-hidden">
-            {lecture.attributes.description}
-          </p>
         </div>
-        <div className={`lecturecard__media mt-4 w-full gap-6 flex justify-start items-center`}>
-          {/* {mediaData.length > 0 &&
+        {/* <div className={`lecturecard__media mt-4 w-full gap-6 flex justify-start items-center`}>
+         {mediaData.length > 0 &&
             mediaData.map((mediaItem) => (
               <button className="h-10 w-10 cursor-pointer" onClick={() => handleDownload(mediaItem)}>
                 {getFileIcon(mediaItem.attributes.name)}
               </button>
-            ))} */}
-            <button className="h-10 w-10 cursor-pointer">
-                Pijaaaa
-              </button>
-        </div>
+            ))} 
+        </div> */}
       </div>
     </a>
   );

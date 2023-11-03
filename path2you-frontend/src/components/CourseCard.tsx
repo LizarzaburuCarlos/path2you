@@ -1,7 +1,6 @@
 
 import { getPhoto } from "../core/service";
 
-
 // FALTA:
 // 2. Mejorar apariencia de cards
 // 3. Definir que información se colocará en las cards
@@ -10,7 +9,7 @@ const CourseCard = (course: any) => {
 
   return (
     <a
-      href={`/courses/${course.slug}/`}
+      href={`/courses/${course.slug}`}
       aria-label={`Curso ${course.title}`}
       className={`coursecard w-full h-32 px-8 py-6 flex gap-6 justify-between items-center`}
     >
