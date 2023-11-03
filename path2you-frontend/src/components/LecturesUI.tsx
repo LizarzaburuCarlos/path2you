@@ -64,19 +64,24 @@ export const LecturesUI: React.FC<LectureUIProps> = ({ lecture }) => {
             wrappedByKey: "data",
           });
 
-          if (existingRecordResponse[0].attributes.finished === true) {
-            return;
-          }
-
           const finishedLessonsResponse = await fetchApi<Progress[]>({
             endpoint: `progresses?filters[user][id][$eq]=${user.id}&filters[lesson][lecture][id][$eq]=${lecture.id}&filters[finished][$eq]=${true}`,
             method: "GET",
             wrappedByKey: "data",
           });
 
+          // console.log('====================================');
+          // console.log(finishedLessonsResponse);
+          // console.log('====================================');
+
           const totalLessons = lessons.length;
       
           if (existingRecordResponse.length > 0) {
+
+            if (existingRecordResponse[0].attributes.finished === true) {
+              return;
+            }
+
             const finishedLessons = finishedLessonsResponse.length;
             const existingProgress = existingRecordResponse[0];
             
@@ -96,10 +101,11 @@ export const LecturesUI: React.FC<LectureUIProps> = ({ lecture }) => {
                 console.log(res);
               }
             } catch (error) {
-              console.log("Error al actualizar el usuario");
+              console.log("Error al actualizar el registro");
             }
           } else {
             // Si el usuario no tiene un registro, crea uno nuevo con el valor status calculado
+
             const finishedLessons = finishedLessonsResponse.length;
                 const status = (finishedLessons / totalLessons) * 100; // Calcula el porcentaje de lecciones terminadas
           

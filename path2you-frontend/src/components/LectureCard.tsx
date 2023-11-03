@@ -16,24 +16,16 @@ type LectureCardProps = {
   lecture: Lecture;
 };
 
+//!PROBLEMAS:
+// 1. El estilo del círculo de progreso no se actualiza cuando se cambia de estilo
+// 2. El usuario en el useEffect genera un bucle infinito de getUsuario() 
+
 const LectureCard : React.FC<LectureCardProps> = ({ slug, lecture }) => {
   const [resolution, setResolution] = useState<boolean | null>(null);
   const circleRef = useRef(null);
   const prevUsuarioRef = useRef<User | null>(null);
   const [valueProgress, setValueProgress] = useState(0);
   const [usuario, setUsuario] = useState<User>();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const { id } = userData();
-      const fetchedUsuario = await getUsuario(id);
-      setUsuario(fetchedUsuario);
-      getProgress(id);
-    };
-  
-    fetchData();
-  
-  }, []);
 
   async function getProgress(id) {
     const existingRecordResponse = await fetchApi<Register[]>({
@@ -49,10 +41,25 @@ const LectureCard : React.FC<LectureCardProps> = ({ slug, lecture }) => {
   }
 
   useEffect(() => {
-    prevUsuarioRef.current = usuario!;
+
+    const fetchData = async () => {
+      const { id } = userData();
+      const { darkmode } = userData();
+      const { neumorphismmode } = userData();
+      const fetchedUsuario = await getUsuario(id);
+    
+      setUsuario(fetchedUsuario);
+      getProgress(id);
+    };
   
-  }, [usuario]);
+    fetchData();
+
+    prevUsuarioRef.current = usuario!;
+
+  }, []);
+
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+
   useEffect(() => {
     const circle = circleRef.current as unknown as HTMLElement;
     const prevUsuario = prevUsuarioRef.current;
@@ -102,58 +109,41 @@ const LectureCard : React.FC<LectureCardProps> = ({ slug, lecture }) => {
     fetchProgress();
   }, [usuario, valueProgress]);
   
-  const handleLecture = () => {
-    if (resolution === null) {
-      setResolution(true);
-    } else {
-      setResolution(!resolution);
-    }
-  }
-
-  const getFileIcon = (fileName: string) => {
-    const extension = fileName.split(".").pop()?.toLowerCase();
-    switch (extension) {
-      case "pdf":
-        return <i className="fa-regular fa-file-pdf mx-auto text-lg"></i>;
-      case "png":
-      case "jpg":
-      case "jpeg":
-      case "gif":
-      case "webp":
-        return <i className="fa-regular fa-file-image mx-auto text-lg"></i>;
-      case "mp4":
-        return <i className="fa-regular fa-file-video mx-auto text-lg"></i>;
-      default:
-        return null;
-    }
-  };
-
-  const handleDownload = (mediaItem: any) => {
-    
-    const fileName = mediaItem.attributes.url;
-    const fileUrl = `${STRAPI_URL}${fileName}`;
-
-    const anchor = document.createElement("a");
-    anchor.href = fileUrl;
-    anchor.download = fileName;
-    anchor.target = "_blank";
-    anchor.rel = "noopener noreferrer";
-    anchor.click();
-
-    return undefined;
-  };
-
+ 
+  // const getFileIcon = (fileName: string) => {
+  //   const extension = fileName.split(".").pop()?.toLowerCase();
+  //   switch (extension) {
+  //     case "pdf":
+  //       return <i className="fa-regular fa-file-pdf mx-auto text-lg"></i>;
+  //     case "png":
+  //     case "jpg":
+  //     case "jpeg":
+  //     case "gif":
+  //     case "webp":
+  //       return <i className="fa-regular fa-file-image mx-auto text-lg"></i>;
+  //     case "mp4":
+  //       return <i className="fa-regular fa-file-video mx-auto text-lg"></i>;
+  //     default:
+  //       return null;
+  //   }
+  // };
 
   return (
-    <a href={`${slug}/lectures/${lecture.attributes.slug}`} className={`lecturecard w-full h-44 px-8 py-6 flex gap-6 items-center`}>
-      {/* <div className={`lecturecard__img w-16 h-16 rounded-full`}>
-        <div className="w-20 h-20 rounded-full" />
-      </div> */}
-      <div className={`skill w-20 h-20 relative`}>
-        <div id="circle" className="circle w-20 h-20 flex items-center justify-center rounded-full" ref={circleRef} > 
-          <span className="font-semibold relative" id="number">{valueProgress}%</span>
+    <a href={`${slug}/lectures/${lecture.attributes.slug}`} className={`lecturecard w-full h-36 px-8 py-6 flex gap-6 items-center`}>
+      
+      {valueProgress === 0 && (
+        <div className={`lecturecard__img flex items-center justify-center w-[75px] h-[75px] rounded-full`}>
+          <div className="w-[75px] h-[75px] rounded-full" />
         </div>
-      </div>
+      )}
+
+      {valueProgress > 0 && (
+        <div className={`skill w-20 h-20 relative`}>
+          <div id="circle" className="circle w-20 h-20 flex items-center justify-center rounded-full" ref={circleRef} > 
+            <span className="font-semibold relative" id="number">{valueProgress}%</span>
+          </div>
+        </div>
+      )}     
 
       <div className={`lecturecard__content w-full h-full flex flex-col justify-center items-start`}>
         <div className="lecturecard__presentation">

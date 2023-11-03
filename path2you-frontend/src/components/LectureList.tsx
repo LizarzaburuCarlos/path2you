@@ -28,7 +28,7 @@ const LectureList = (course: Course) => {
   return (
     <section className="lecturelist w-full mt-10">
       {lectures.length > 0 ? (
-        <div className="lecturelist__container grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="lecturelist__container grid grid-cols-1 lg:grid-cols-2 gap-6">
           {lectures.map((lecture) => (
             <LectureCard slug={course.attributes.slug} lecture={lecture} />
           ))}
