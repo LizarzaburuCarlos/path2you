@@ -1,9 +1,9 @@
 ---
-import { LecturesUI } from "../../../../components/LecturesUI";
-import type Course from "../../../../interfaces/course";
-import type Lecture from "../../../../interfaces/lecture";
-import BaseLayout from "../../../../layouts/BaseLayout.astro";
-import fetchApi from "../../../../lib/strapi";
+import { Fragment } from 'react';
+import { LecturesUI } from '../../../../components/LecturesUI';
+import type Lecture from '../../../../interfaces/lecture';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import fetchApi from '../../../../lib/strapi';
 
 export async function getStaticPaths() {
   const lectures = await fetchApi<Lecture[]>({
@@ -17,11 +17,16 @@ export async function getStaticPaths() {
   }));
 }
 
+const { params } = Astro;
+
+// Acceso a los dos parámetros llamados slug
+const firstSlug = params.slug; // Accede al primer slug
+
 type Props = Lecture;
 
 const lecture = Astro.props;
 ---
 
 <BaseLayout title={`Lectura: ${lecture.attributes.title}`}>
-    <LecturesUI lecture={lecture} client:load />
+    <LecturesUI client:load url={Astro.url} pene={firstSlug} lecture={lecture} />
 </BaseLayout>

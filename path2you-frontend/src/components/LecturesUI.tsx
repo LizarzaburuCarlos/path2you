@@ -5,19 +5,24 @@ import { useEffect, useState } from "react";
 import type Lesson from "../interfaces/lesson";
 import fetchApi from "../lib/strapi";
 import LessonCard from "./LessonCard";
+import { LessonViewer } from "./LessonViewer";
 
 type LectureUIProps = {
     lecture: Lecture;
+    url: URL;
+    pene: string;
   };
 
-export const LecturesUI: React.FC<LectureUIProps> = ({ lecture }) => {
+export const LecturesUI: React.FC<LectureUIProps> = ({ lecture, url, pene }) => {
 
+    const [resolution, setResolution] = useState<boolean | null>(null);
+    const [leccion, setLeccion] = useState<Lesson | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [lessons, setLessons] = useState<Lesson[]>([]);
 
 
     useEffect(() => {
-        const fetchLectures = async () => {
+        const fetchLessons = async () => {
             const lectureId = lecture.id.toString();
           const lecciones = await fetchApi<Lesson[]>({
             endpoint: "lessons?populate=media",
@@ -29,12 +34,15 @@ export const LecturesUI: React.FC<LectureUIProps> = ({ lecture }) => {
           
           setLessons(lecciones);
       };
-    
-      fetchLectures();
-    
-      }, [lecture.id]);
+      setLeccion(null);
+      fetchLessons();
+  
+      }, []);
 
-      
+    if (resolution === true)
+        return (
+        <LessonViewer setResolution={setResolution} setLeccion={setLeccion} leccion={leccion} />
+    );
 
     return (
         <section className="lecture w-full">
@@ -50,11 +58,8 @@ export const LecturesUI: React.FC<LectureUIProps> = ({ lecture }) => {
                         {lessons.map((lesson) => (
                             <div className="lesson__card">
                                 <div className="lesson__card__info">
-                                    <LessonCard lesson={lesson} />
+                                    <LessonCard setResolution={setResolution} setLeccion={setLeccion} lesson={lesson} />
                                 </div>
-                                {/* <div className="lesson__card__media">
-                                    <img className="lesson__card__img" src={lesson.attributes.media.data.attributes.url} alt={lesson.attributes.media.data.attributes.name} />
-                                </div> */}
                             </div>
                         ))}
                     </div>
