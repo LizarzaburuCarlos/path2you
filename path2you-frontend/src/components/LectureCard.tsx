@@ -8,6 +8,8 @@ import type User from "../interfaces/user";
 import { userData } from "../core/helpers";
 import { getUsuario } from "../core/service";
 import { LecturesUI } from "./LecturesUI";
+import type Register from "../interfaces/register";
+import fetchApi from "../lib/strapi";
 
 type LectureCardProps = {
   slug: string;
@@ -18,26 +20,33 @@ const LectureCard : React.FC<LectureCardProps> = ({ slug, lecture }) => {
   const [resolution, setResolution] = useState<boolean | null>(null);
   const circleRef = useRef(null);
   const prevUsuarioRef = useRef<User | null>(null);
-  const [valueProgress, setValueProgress] = useState(60);
+  const [valueProgress, setValueProgress] = useState(0);
   const [usuario, setUsuario] = useState<User>();
-
-  let mediaData: any = {};
-
-  if (lecture.attributes.media.data) {
-    mediaData = Object.values(lecture.attributes.media.data);
-  }
 
   useEffect(() => {
     const fetchData = async () => {
       const { id } = userData();
       const fetchedUsuario = await getUsuario(id);
       setUsuario(fetchedUsuario);
+      getProgress(id);
     };
   
     fetchData();
-    
   
-  }, [usuario]);
+  }, []);
+
+  async function getProgress(id) {
+    const existingRecordResponse = await fetchApi<Register[]>({
+      endpoint: `registers?filters[user][id][$eq]=${id}&filters[lecture][id][$eq]=${lecture.id}`,
+      method: "GET",
+      wrappedByKey: "data",
+    });
+
+    if (existingRecordResponse.length > 0) {
+      const progress = existingRecordResponse[0].attributes.status;
+      setValueProgress(progress);
+    }
+  }
 
   useEffect(() => {
     prevUsuarioRef.current = usuario!;
