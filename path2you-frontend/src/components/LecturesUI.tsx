@@ -19,6 +19,7 @@ export const LecturesUI: React.FC<LectureUIProps> = ({ lecture, url, pene }) => 
     const [leccion, setLeccion] = useState<Lesson | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [lessons, setLessons] = useState<Lesson[]>([]);
+    const [hasProgress, setHasProgress] = useState<boolean>(false);
 
 
     useEffect(() => {
@@ -41,7 +42,7 @@ export const LecturesUI: React.FC<LectureUIProps> = ({ lecture, url, pene }) => 
 
     if (resolution === true)
         return (
-        <LessonViewer setResolution={setResolution} setLeccion={setLeccion} leccion={leccion} />
+        <LessonViewer setHasProgress={setHasProgress} setResolution={setResolution} setLeccion={setLeccion} leccion={leccion} />
     );
 
     return (
