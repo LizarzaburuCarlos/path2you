@@ -4,22 +4,9 @@ import type User from "../interfaces/user";
 import { userData } from "../core/helpers";
 import type Progress from "../interfaces/progress";
 
-export const LessonViewer = ({leccion, setResolution, setLeccion, setHasProgress}) => {
+export const LessonViewer = ({leccion, setResolution, setLeccion, setHasProgress, user}) => {
 
-    const [user, setUser] = useState<User>();
     const [isNew, setIsNew] = useState<boolean|null>(null);
-
-    useEffect(() => {
-
-        const fetchData = async () => {
-            const userDataResponse = await userData();
-            setUser(userDataResponse);
-       
-        };
-      
-          fetchData();
-        
-    }, []);
 
     useEffect(() => {
         const checkIsNew = async () => {
@@ -32,6 +19,7 @@ export const LessonViewer = ({leccion, setResolution, setLeccion, setHasProgress
             });
             if (progressData.length > 0) {
                 setIsNew(false);
+                
             } else {
                 setIsNew(true);
                 await handleProgress(usuario);

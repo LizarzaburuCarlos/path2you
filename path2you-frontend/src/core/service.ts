@@ -77,6 +77,28 @@ export const editarUsuario = async (id, data) => {
   }
 };
 
+export const editarRegistroLecture = async (id, data) => {
+  try {
+    const res = await fetch(`${API_URL}/registers/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+      throw new Error("Fallo al editar registro");
+    } else {
+      // Convierte el cuerpo de la respuesta a un objeto JSON
+      const data = await res.json();
+
+      console.log("Registro editado:", data);
+      return data;
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
 
 export const getCourses = async () => {
   try {
