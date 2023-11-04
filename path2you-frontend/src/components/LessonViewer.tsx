@@ -6,13 +6,13 @@ import type Progress from "../interfaces/progress";
 import remarkGfm from "remark-gfm";
 import Markdown from "react-markdown";
 import "../styles/LessonsViewer.styles.css";
+import { getMedia } from "../core/service";
 
 export const LessonViewer = ({leccion, setResolution, setLeccion, setHasProgress, user}) => {
 
     const [isNew, setIsNew] = useState<boolean|null>(null);
-    console.log('====================================');
-    console.log(leccion.attributes.content);
-    console.log('====================================');
+    const [hasMedia, setHasMedia] = useState<boolean>(false);
+
     useEffect(() => {
         const checkIsNew = async () => {
             const usuario = user!;
@@ -31,6 +31,14 @@ export const LessonViewer = ({leccion, setResolution, setLeccion, setHasProgress
             }
             
         };
+
+        if (leccion.attributes.media.data) {
+            setHasMedia(true);
+            console.log(leccion.attributes.media.data);
+            
+        } else {
+            setHasMedia(false);
+        }
       
         checkIsNew();
       
@@ -70,6 +78,16 @@ export const LessonViewer = ({leccion, setResolution, setLeccion, setHasProgress
       </div>
         <div className="lesson__viewer p-6">
           
+          {hasMedia === true && (
+            <div className="lesson__viewer__video w-full rounded-xl mb-6 overflow-hidden">
+                <video 
+                controlsList="nodownload"
+                controls className="lesson__viewer__video__player rounded-xl">
+                    <source src={getMedia({ lesson: leccion.attributes })} type="video/mp4" />
+                    Tu navegador no soporta la reproducción del video.
+                </video>
+            </div>
+          )}
             {/* <div className="lesson__viewer__video">
                 <video controls className="lesson__viewer__video__player">
                     <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />

@@ -151,6 +151,10 @@ export function getPhoto({course}){
   return `${STRAPI_URL}${url}`
 }
 
+export function getMedia({lesson}){
+  const { url } = lesson.media.data.attributes;
+  return `${STRAPI_URL}${url}`
+}
 
 export default {
   logIn,
