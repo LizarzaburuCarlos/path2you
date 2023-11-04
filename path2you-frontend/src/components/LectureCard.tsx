@@ -131,7 +131,7 @@ const LectureCard : React.FC<LectureCardProps> = ({ slug, lecture }) => {
   // };
 
   return (
-    <a href={`${slug}/lectures/${lecture.attributes.slug}`} className={`lecturecard w-full h-36 px-8 py-6 flex gap-6 items-center`}>
+    <a href={`lectures/${lecture.attributes.slug}`} className={`lecturecard w-full h-36 px-8 py-6 flex gap-6 items-center`}>
       
       {valueProgress === 0 && (
         <div className={`lecturecard__img flex items-center justify-center w-[75px] h-[75px] rounded-full`}>

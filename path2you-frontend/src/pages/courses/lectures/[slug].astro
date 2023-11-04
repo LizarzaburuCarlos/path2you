@@ -1,9 +1,9 @@
 ---
 import { Fragment } from 'react';
-import { LecturesUI } from '../../../../components/LecturesUI';
-import type Lecture from '../../../../interfaces/lecture';
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import fetchApi from '../../../../lib/strapi';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import fetchApi from '../../../lib/strapi';
+import Lecture from '../../../interfaces/lecture';
+import {LecturesUI} from '../../../components/LecturesUI';
 
 export async function getStaticPaths() {
   const lectures = await fetchApi<Lecture[]>({
@@ -24,5 +24,5 @@ const lecture = Astro.props;
 ---
 
 <BaseLayout title={`Lectura: ${lecture.attributes.title}`}>
-    <LecturesUI client:load lecture={lecture} />
+    <LecturesUI lecture={lecture} client:load />
 </BaseLayout>

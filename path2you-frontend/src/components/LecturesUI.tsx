@@ -11,11 +11,8 @@ import type Register from "../interfaces/register";
 import type Progress from "../interfaces/progress";
 import Markdown from "react-markdown";
 
-type LectureUIProps = {
-    lecture: Lecture;
-  };
 
-export const LecturesUI: React.FC<LectureUIProps> = ({ lecture }) => {
+export const LecturesUI = ({ lecture }) => {
 
     const [resolution, setResolution] = useState<boolean | null>(null);
     const [leccion, setLeccion] = useState<Lesson | null>(null);
