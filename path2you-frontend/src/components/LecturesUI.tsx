@@ -25,6 +25,7 @@ export const LecturesUI: React.FC<LectureUIProps> = ({ lecture }) => {
     const [user, setUser] = useState<User>();
 
     useEffect(() => {
+      setLoading(true);
         const fetchLessons = async () => {
             const lectureId = lecture.id.toString();
           const lecciones = await fetchApi<Lesson[]>({
@@ -34,9 +35,9 @@ export const LecturesUI: React.FC<LectureUIProps> = ({ lecture }) => {
               "filters[lecture][id][$eq]": lectureId || "",
             },
           });
-          
+        
           setLessons(lecciones);
-         
+          setLoading(false);
       };
       setLeccion(null);
       fetchLessons();
@@ -147,10 +148,15 @@ export const LecturesUI: React.FC<LectureUIProps> = ({ lecture }) => {
     if (resolution === true)
         return (
         <LessonViewer user={user} setHasProgress={setHasProgress} setResolution={setResolution} setLeccion={setLeccion} leccion={leccion} />
-    );
+    )
 
     return (
         <section className="lecture w-full">
+          {loading && (
+            <div className="loader">
+              <div className="spinner"></div>
+            </div>
+          )}
             <div className="lecture__info mb-5">
                 <h4 className="lecture__title font-semibold text-2xl mb-2">{lecture.attributes.title}</h4>
                 <Markdown remarkPlugins={[remarkGfm]} className="lecture__description ml-4">
