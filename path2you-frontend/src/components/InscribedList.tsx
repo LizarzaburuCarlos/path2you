@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type Course from "../interfaces/course";
-import { userData } from "../core/helpers";
+import { userData, formatDate } from "../core/helpers";
 import fetchApi from "../lib/strapi";
 import type Inscription from "../interfaces/inscription";
 
@@ -53,7 +53,7 @@ const InscribedList = () => {
           <h4>{course.title}</h4>
         </div>
         <p className="inscribedcourse__date w-6/12 pr-6">
-          {inscriptionData.date.toString()}
+        {formatDate(inscriptionData.date)}
         </p>
       </a>
     );
