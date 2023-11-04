@@ -24,7 +24,7 @@ const LessonCard = ({ lesson, setResolution, setLeccion }) => {
     }
   
     return (
-        <button onClick={handleLesson} className={`lecturecard w-full md:w-[70%] mx-4 h-24 px-6 py-6 flex gap-6 items-center`}>
+        <button onClick={handleLesson} className={`lecturecard w-full md:w-[60%] mx-4 h-24 px-6 py-6 flex gap-6 items-center`}>
             <div className={`lecturecard__media w-[15%] lg:w-[10%] flex justify-start items-center`}>
                 {hasMedia === true && (
                     <div className="h-10 w-10 md:h-14 md:w-14 flex justify-center items-center">

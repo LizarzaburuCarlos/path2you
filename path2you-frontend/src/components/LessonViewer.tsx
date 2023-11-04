@@ -60,7 +60,7 @@ export const LessonViewer = ({leccion, setResolution, setLeccion, setHasProgress
     return (
 
       <>
-      <div className="lesson__return mb-3 w-fit">
+      <div className="lesson__return mb-2 w-fit">
           <button className="h-fit py-1 px-2 w-full font-semibold" onClick={() => {
               setResolution(null)
               setLeccion(null)
@@ -77,7 +77,7 @@ export const LessonViewer = ({leccion, setResolution, setLeccion, setHasProgress
                 </video>
             </div> */}
             <div className="lesson__viewer__content">
-                <h4 className="lesson__viewer__title font-semibold text-2xl mb-4">{leccion.attributes.title}</h4>
+                <h4 className="lesson__viewer__title font-bold text-3xl mb-4">{leccion.attributes.title}</h4>
                 <Markdown skipHtml={false} remarkPlugins={[remarkGfm]} className="lesson__viewer__text">
                   {leccion.attributes.content}</Markdown>
             </div>
