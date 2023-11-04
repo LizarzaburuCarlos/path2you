@@ -1,4 +1,3 @@
-import ReactMarkdown from "react-markdown";
 import type Lecture from "../interfaces/lecture";
 import remarkGfm from "remark-gfm";
 import { useEffect, useState } from "react";
@@ -10,7 +9,7 @@ import type User from "../interfaces/user";
 import { userData } from "../core/helpers";
 import type Register from "../interfaces/register";
 import type Progress from "../interfaces/progress";
-import { editarRegistroLecture } from "../core/service";
+import Markdown from "react-markdown";
 
 type LectureUIProps = {
     lecture: Lecture;
@@ -154,7 +153,8 @@ export const LecturesUI: React.FC<LectureUIProps> = ({ lecture }) => {
         <section className="lecture w-full">
             <div className="lecture__info mb-5">
                 <h4 className="lecture__title font-semibold text-2xl mb-2">{lecture.attributes.title}</h4>
-                <ReactMarkdown remarkPlugins={[remarkGfm]} className="lecture__description ml-4">{lecture.attributes.description}</ReactMarkdown>
+                <Markdown remarkPlugins={[remarkGfm]} className="lecture__description ml-4">
+                  {lecture.attributes.description}</Markdown>
             </div>
 
             <div className="lecture__lessons">
