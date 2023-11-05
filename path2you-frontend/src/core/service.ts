@@ -148,12 +148,12 @@ export const getUsuario = async (id: string) => {
 
 export function getPhoto({course}){
   const { url } = course.photo.data.attributes;
-  return `${STRAPI_URL}${url}`
+  return `${url}`
 }
 
 export function getMedia({lesson}){
   const { url } = lesson.media.data.attributes;
-  return `${STRAPI_URL}${url}`
+  return `${url}`
 }
 
 export default {
