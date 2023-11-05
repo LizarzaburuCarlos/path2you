@@ -36,7 +36,7 @@ const SideBar = () => {
   }, []);
 
   return (
-    <nav className={`sidebar  w-full h-full px-4 py-10 flex flex-col justify-between items-center`}>
+    <nav className={`sidebar w-full h-full px-4 py-10 flex flex-col justify-between items-center`}>
       <div className="sidebar__top  w-full">
         <div className="sidebar__logo w-[56px] h-[56px] rounded-full flex flex-row  mx-auto justify-center items-center">
           <img src="/icono.png" alt="" className="sidebar__logo max-w-[2.5rem]" />

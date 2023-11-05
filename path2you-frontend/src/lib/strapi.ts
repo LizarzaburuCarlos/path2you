@@ -36,10 +36,10 @@ export default async function fetchApi<T>({
   } else if (STRAPI_URL) {
     url = new URL(`${STRAPI_URL}/api/${endpoint}`);
   } else {
-    console.error('No se encontró una URL válida');
+    console.error("No se encontró una URL válida");
   }
   // console.log(url);
-  
+
   if (query) {
     Object.entries(query).forEach(([key, value]) => {
       url.searchParams.append(key, value);
