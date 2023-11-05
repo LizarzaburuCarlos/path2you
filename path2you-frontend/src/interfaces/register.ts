@@ -1,4 +1,4 @@
-import type Lecture from "./lecture";
+import type Module from "./module";
 import type User from "./user";
 
 export default interface Register {
@@ -6,8 +6,8 @@ export default interface Register {
     attributes: {
         status: number;
         finished: boolean;
-        lecture: {
-            data: Lecture;
+        module: {
+            data: Module;
         };
         user: {
             data: User;

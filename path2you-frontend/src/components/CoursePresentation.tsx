@@ -3,7 +3,7 @@ import type Course from "../interfaces/course";
 import { getPhoto } from "../core/service";
 import { userData } from "../core/helpers";
 import fetchApi from "../lib/strapi";
-import LectureList from "./LectureList";
+import ModuleList from "./ModuleList";
 import type User from "../interfaces/user";
 import "../styles/CoursePresentation.styles.css";
 
@@ -130,7 +130,7 @@ const CoursePresentation = (course: Course) => {
         </div>
       </div>
       {inscription ? (
-        <LectureList {...course} />
+        <ModuleList {...course} />
       ) : (
         <div className={`course__empty w-full text-center mt-20`}>
           <p className="text-lg font-semibold opacity-80 ">

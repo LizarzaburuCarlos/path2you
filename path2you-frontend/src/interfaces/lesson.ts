@@ -1,4 +1,4 @@
-import type Lecture from "./lecture";
+import type Module from "./module";
 
 export default interface Lesson {
     id: number;
@@ -9,8 +9,8 @@ export default interface Lesson {
             data: {};
         };
         description: string;
-        lecture: {
-            data: Lecture;
+        module: {
+            data: Module;
         };
         createdAt: string;
         updatedAt: string;

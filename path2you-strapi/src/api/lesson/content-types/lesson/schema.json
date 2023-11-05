@@ -34,10 +34,10 @@
     "description": {
       "type": "text"
     },
-    "lecture": {
+    "module": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::lecture.lecture",
+      "target": "api::module.module",
       "inversedBy": "lessons"
     }
   }

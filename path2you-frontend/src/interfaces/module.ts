@@ -1,11 +1,8 @@
-export default interface Lecture {
+export default interface Module {
     id: number;
     attributes: {
         title: string;
         description: string;
-        media: {
-            data: {};
-        };
         slug: string;
         createdAt: string;
         updatedAt: string;

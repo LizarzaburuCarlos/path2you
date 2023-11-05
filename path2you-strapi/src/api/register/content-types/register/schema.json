@@ -22,15 +22,15 @@
       "default": false,
       "required": true
     },
-    "lecture": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::lecture.lecture"
-    },
     "user": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "module": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::module.module"
     }
   }
 }

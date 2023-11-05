@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import fetchApi from '../../../lib/strapi';
+import {ModulesUI} from '../../../components/ModulesUI';
+import type Module from '../../../interfaces/module';
+
+export async function getStaticPaths() {
+  const modules = await fetchApi<Module[]>({
+    endpoint: "modules",
+    wrappedByKey: "data",
+  });
+  
+  return modules.map((module) => ({
+    params: { slug: module.attributes.slug },
+    props: module,
+  }));
+}
+
+
+type Props = Module;
+
+const module = Astro.props;
+---
+
+<BaseLayout title={`Módulo: ${module.attributes.title}`}>
+    <ModulesUI module={module} client:load />
+</BaseLayout>

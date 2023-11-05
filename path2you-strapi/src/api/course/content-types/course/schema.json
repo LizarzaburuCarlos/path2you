@@ -38,10 +38,10 @@
     "duration": {
       "type": "integer"
     },
-    "lectures": {
+    "modules": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::lecture.lecture",
+      "target": "api::module.module",
       "mappedBy": "course"
     }
   }

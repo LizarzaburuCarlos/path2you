@@ -1,30 +1,30 @@
-.lecturecard{
+.modulecard{
     @apply rounded-xl transition-all duration-300 hover:scale-105;
 }
 
-body.light .lecturecard {
+body.light .modulecard {
     background-color: #F8F8F8;
 }
 
-body.dark .lecturecard {
+body.dark .modulecard {
     background-color: #48454f;
 }
 
-body.neumorphism .lecturecard {
+body.neumorphism .modulecard {
     background: #e5d9f2;
     background: linear-gradient(115deg, rgba(255,255,255,1) 0%, rgba(232,221,244,1) 50%);
     box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
 }
 
-body.light .lecturecard__img {
+body.light .modulecard__img {
     background: #7342b0;
 }
 
-body.dark .lecturecard__img {
+body.dark .modulecard__img {
     background: #564869;
 }
 
-body.neumorphism .lecturecard__img {
+body.neumorphism .modulecard__img {
     background: linear-gradient(180deg, #9c7ed8 0%, #7342b0 100%);
     box-shadow: -10px -10px 15px 0px #FFF, 10px 10px 15px 0px #D0CCD8;
 }
@@ -81,27 +81,27 @@ body.dark .skill .circle span {
     color: #ffff;
 }
 
-body.light .lecturecard__content, body.neumorphism .lecturecard__content {
+body.light .modulecard__content, body.neumorphism .modulecard__content {
     color: black;
 }
 
-body.dark .lecturecard__content {
+body.dark .modulecard__content {
     color: #FFF;
 }
 
-body.light .lecturecard__media div {
+body.light .modulecard__media div {
     background: #7342b0;
     border-radius: 7px;
     color: #ffffffbf;
 }
 
-body.dark .lecturecard__media div {
+body.dark .modulecard__media div {
     background: #766f87;
     border-radius: 7px;
     color: #ffffff8a;
 }
 
-body.neumorphism .lecturecard__media div {
+body.neumorphism .modulecard__media div {
     border-radius: 7px;
     color: #9c7ed8;
     background: #e5d9f2;
@@ -109,18 +109,18 @@ body.neumorphism .lecturecard__media div {
     box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
 }
 
-.lecture__description h4 {
+.module__description h4 {
     @apply text-[17px];
 }
 
-body.dark .lecture__title {
+body.dark .module__title {
     color: #FFF;
 }
 
-body.dark .lecture__description {
+body.dark .module__description {
     color: #FFF;
 }
 
-body.neumorphism .lecture__title {
+body.neumorphism .module__title {
     text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.20);
 }

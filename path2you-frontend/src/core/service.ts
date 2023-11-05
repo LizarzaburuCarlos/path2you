@@ -77,7 +77,7 @@ export const editarUsuario = async (id, data) => {
   }
 };
 
-export const editarRegistroLecture = async (id, data) => {
+export const editarRegistroModule = async (id, data) => {
   console.log("data", data);
   
   try {
