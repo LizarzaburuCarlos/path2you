@@ -136,7 +136,7 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ slug, module }) => {
 
   return (
     <a
-      href={`${slug}/modules/${module.attributes.slug}`}
+      href={`modules/${module.attributes.slug}`}
       className={`modulecard w-full h-36 px-8 py-6 flex gap-6 items-center`}
     >
       {valueProgress === 0 && (
