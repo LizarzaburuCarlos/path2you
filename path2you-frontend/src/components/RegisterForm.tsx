@@ -2,11 +2,11 @@ import { ToastContainer, toast } from "react-toastify";
 import { register } from "../core/service";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
+import fetchApi from "../lib/strapi";
+import type User from "../interfaces/user";
 
 // FALTA:
 // 1. Validar username y email que no se repitan
-// 2. Que no se permitan espacios en blanco en el username
-// 3. Que el username no tenga caracteres especiales
 
 const RegisterForm = () => {
 
@@ -20,7 +20,7 @@ const RegisterForm = () => {
     setLoading(true);
     try {
       if (!data.name || !data.username || !data.email || !data.password) {
-        throw new Error("Por favor, ingresa todos los datos.");
+        toast.error("Por favor, ingresa todos los datos.");
       }
 
       const res = await register({
@@ -37,10 +37,22 @@ const RegisterForm = () => {
         toast.error(res);
       }
     } catch (error:any) {
+      console.log(error);
+      
       toast.error(error.message);
     }
     setLoading(false);
   };
+
+  function preventSpaces(event) {
+    const input = event.target;
+    let value = input.value;
+  
+    value = value.replace(/\s/g, '');
+    value = value.replace(/[^a-zA-Z0-9]/g, '');
+
+    input.value = value;
+  }
 
   return (
     <section className="register w-full h-full bg-white text-white rounded-lg flex flex-col justify-center items-center max-lg:px-8">
@@ -85,6 +97,7 @@ const RegisterForm = () => {
           name="username"
           id="username"
           className="form__input"
+          onInput={preventSpaces}
           required
         />
         <input
