@@ -1,8 +1,9 @@
 ---
-import BaseLayout from "../../../layouts/BaseLayout.astro";
-import fetchApi from "../../../lib/strapi";
-import { ModulesUI } from "../../../components/ModulesUI";
-import type Module from "../../../interfaces/module";
+import { ModulesUI } from '../../../../components/ModulesUI';
+import type Module from '../../../../interfaces/module';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import fetchApi from '../../../../lib/strapi';
+
 
 export async function getStaticPaths() {
   const modules = await fetchApi<Module[]>({

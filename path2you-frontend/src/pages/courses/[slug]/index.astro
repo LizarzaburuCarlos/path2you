@@ -1,8 +1,8 @@
 ---
-import CoursePresentation from "../../components/CoursePresentation";
-import type Course from "../../interfaces/course";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import fetchApi from "../../lib/strapi";
+import CoursePresentation from "../../../components/CoursePresentation";
+import type Course from "../../../interfaces/course";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import fetchApi from "../../../lib/strapi";
 
 export async function getStaticPaths() {
   const courses = await fetchApi<Course[]>({
