@@ -1,8 +1,9 @@
 ---
-import { ModulesUI } from '../../../../components/ModulesUI';
-import type Module from '../../../../interfaces/module';
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import fetchApi from '../../../../lib/strapi';
+import { Fragment } from 'react';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { ModulesUI } from '../../components/ModulesUI';
+import fetchApi from '../../lib/strapi';
+import type Module from "../../interfaces/module";
 
 
 export async function getStaticPaths() {
