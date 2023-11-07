@@ -938,6 +938,7 @@ export interface ApiQuestionQuestion extends Schema.CollectionType {
     singularName: 'question';
     pluralName: 'questions';
     displayName: 'Question';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -949,9 +950,7 @@ export interface ApiQuestionQuestion extends Schema.CollectionType {
       'api::course.course'
     >;
     title: Attribute.String;
-    firstQuestion: Attribute.String & Attribute.Required;
     firstQuestionAnswer: Attribute.Boolean & Attribute.Required;
-    secondQuestion: Attribute.String & Attribute.Required;
     secondQuestionAnswer: Attribute.Boolean & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1078,7 +1077,7 @@ export interface ApiScoreScore extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    users_permissions_user: Attribute.Relation<
+    user: Attribute.Relation<
       'api::score.score',
       'oneToOne',
       'plugin::users-permissions.user'

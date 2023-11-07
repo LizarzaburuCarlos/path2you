@@ -4,7 +4,8 @@
   "info": {
     "singularName": "question",
     "pluralName": "questions",
-    "displayName": "Question"
+    "displayName": "Question",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,16 +20,8 @@
     "title": {
       "type": "string"
     },
-    "firstQuestion": {
-      "type": "string",
-      "required": true
-    },
     "firstQuestionAnswer": {
       "type": "boolean",
-      "required": true
-    },
-    "secondQuestion": {
-      "type": "string",
       "required": true
     },
     "secondQuestionAnswer": {
