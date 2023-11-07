@@ -1083,7 +1083,7 @@ export interface ApiScoreScore extends Schema.CollectionType {
       'plugin::users-permissions.user'
     >;
     exam: Attribute.Relation<'api::score.score', 'oneToOne', 'api::exam.exam'>;
-    Score: Attribute.Integer & Attribute.Required;
+    score: Attribute.Integer & Attribute.Required;
     approved: Attribute.Boolean & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

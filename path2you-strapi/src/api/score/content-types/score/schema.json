@@ -22,7 +22,7 @@
       "relation": "oneToOne",
       "target": "api::exam.exam"
     },
-    "Score": {
+    "score": {
       "type": "integer",
       "required": true
     },
