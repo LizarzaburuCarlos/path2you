@@ -746,7 +746,6 @@ export interface ApiExamExam extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     description: Attribute.String;
-    date: Attribute.DateTime;
     course: Attribute.Relation<
       'api::exam.exam',
       'oneToOne',
@@ -944,14 +943,14 @@ export interface ApiQuestionQuestion extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    course: Attribute.Relation<
+    exam: Attribute.Relation<
       'api::question.question',
       'oneToOne',
-      'api::course.course'
+      'api::exam.exam'
     >;
     title: Attribute.String;
-    firstQuestionAnswer: Attribute.Boolean & Attribute.Required;
-    secondQuestionAnswer: Attribute.Boolean & Attribute.Required;
+    true: Attribute.Boolean & Attribute.Required;
+    false: Attribute.Boolean & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

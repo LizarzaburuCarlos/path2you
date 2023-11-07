@@ -1,14 +1,14 @@
-import type Course from "./course";
+import type Exam from "./exam";
 
 export default interface Question {
     id: number;
     attributes: {
-        course: {
-            data: Course;
+        exam: {
+            data: Exam;
         };
         title: string;
-        firstQuestionAnswer:boolean;
-        secondQuestionAnswer:boolean;
+        true:boolean;
+        false:boolean;
         createdAt: string;
         updatedAt: string;
         publishedAt: string;

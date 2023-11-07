@@ -12,19 +12,19 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "course": {
+    "exam": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::course.course"
+      "target": "api::exam.exam"
     },
     "title": {
       "type": "string"
     },
-    "firstQuestionAnswer": {
+    "true": {
       "type": "boolean",
       "required": true
     },
-    "secondQuestionAnswer": {
+    "false": {
       "type": "boolean",
       "required": true
     }

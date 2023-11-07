@@ -5,7 +5,6 @@ export default interface Exam {
     attributes: {
         title: string;
         description: string;
-        date: Date;
         course: {
             data: Course;
         };

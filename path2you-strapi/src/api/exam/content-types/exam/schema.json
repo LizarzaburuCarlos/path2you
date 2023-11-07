@@ -19,9 +19,6 @@
     "description": {
       "type": "string"
     },
-    "date": {
-      "type": "datetime"
-    },
     "course": {
       "type": "relation",
       "relation": "oneToOne",
