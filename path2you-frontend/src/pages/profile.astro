@@ -1,0 +1,11 @@
+---
+import { UserCard } from "../components/UserCard";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+
+const title = "Path 2 You - Perfil";
+---
+
+<BaseLayout title={title}>
+  <UserCard client:load />
+</BaseLayout>
