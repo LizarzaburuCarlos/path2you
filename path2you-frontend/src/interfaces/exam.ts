@@ -8,6 +8,7 @@ export default interface Exam {
         course: {
             data: Course;
         };
+        slug: string;
         createdAt: string;
         updatedAt: string;
         publishedAt: string;

@@ -6,15 +6,17 @@ import fetchApi from "../lib/strapi";
 import ModuleList from "./ModuleList";
 import type User from "../interfaces/user";
 import "../styles/CoursePresentation.styles.css";
+import type Exam from "../interfaces/exam";
 
 //FALTA:
 // 2. Reorganizar el código para que sea más legible
 // 3. Revisar el manejo de errores
 
 const CoursePresentation = (course: Course) => {
+  const courseId = course.id.toString();
   const [inscription, setInscription] = useState(false);
   const [user, setUser] = useState({ id: null });
-
+ 
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {

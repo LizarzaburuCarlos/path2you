@@ -7,8 +7,8 @@ export default interface Question {
             data: Exam;
         };
         title: string;
-        true:boolean;
-        false:boolean;
+        true: boolean;
+        false: boolean;
         createdAt: string;
         updatedAt: string;
         publishedAt: string;

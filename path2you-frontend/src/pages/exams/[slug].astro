@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { ExamUI } from '../../components/ExamUI';
+import fetchApi from '../../lib/strapi';
+import type Exam from "../../interfaces/exam";
+
+
+export async function getStaticPaths() {
+  const exams = await fetchApi<Exam[]>({
+    endpoint: "exams",
+    wrappedByKey: "data",
+  });
+
+  return exams.map((exam) => ({
+    params: { slug: exam.attributes.slug },
+    props: exam,
+  }));
+}
+
+type Props = Exam;
+
+const exam = Astro.props;
+---
+
+<BaseLayout title={`${exam.attributes.title}`}>
+  <ExamUI exam={exam} client:load />
+</BaseLayout>
