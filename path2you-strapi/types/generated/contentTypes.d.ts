@@ -751,6 +751,7 @@ export interface ApiExamExam extends Schema.CollectionType {
       'oneToOne',
       'api::course.course'
     >;
+    slug: Attribute.UID<'api::exam.exam', 'title'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
