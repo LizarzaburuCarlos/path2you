@@ -100,7 +100,7 @@ const CoursePresentation = (course: Course) => {
           <h3 className="course__title font-bold text-3xl lg:text-5xl mb-6">
             {course.attributes.title}
           </h3>
-          <p className="course__description font-medium text-base md:text-lg">
+          <p className="course__description font-medium text-base md:text-lg text-justify">
             {course.attributes.description}
           </p>
           {inscription ? (
