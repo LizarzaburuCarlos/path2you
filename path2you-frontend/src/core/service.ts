@@ -53,6 +53,25 @@ export const register = async (data: any) => {
   }
 };
 
+// export const getUsernames = async () => {
+//   try {
+//     const res = await fetch(`${API_URL}/users`, {
+//       method: "GET",
+//       headers: { "Content-Type": "application/json" },
+//     });
+
+//     if (!res.ok) {
+//       throw new Error("Fallo al obtener usuarios");
+//     } else {
+//       const { data } = await res.json();
+//       const usernames = data.map((user) => user.username);
+//       return usernames;
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     throw error;
+//   }
+// }
 
 export const editarUsuario = async (id, data) => {
   try {
