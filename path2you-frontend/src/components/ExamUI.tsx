@@ -159,7 +159,7 @@ export const ExamUI = (exam: Exam) => {
                 </div>
                 <div className="exam__button--submit my-6">
                   <button type="submit" className="transform duration-300 hover:scale-105 py-2 px-4 rounded-full">
-                  <i class="fa-solid fa-check-double mr-2"></i>
+                  <i className="fa-solid fa-check-double mr-2"></i>
                     Presentar Examen
                   </button>
                 </div>

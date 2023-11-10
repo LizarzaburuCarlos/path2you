@@ -3,6 +3,18 @@
     @apply sticky top-0 z-10;
 }
 
+body.neumorphism .topbar {
+    background: #f7f3ff;
+}
+
+body.light .topbar {
+    @apply bg-[#fff];
+}
+
+body.dark .topbar {
+    @apply bg-[#37343e];
+}
+
 .topbar .topbar__searchbar{
     display: flex;
     align-items: center;
