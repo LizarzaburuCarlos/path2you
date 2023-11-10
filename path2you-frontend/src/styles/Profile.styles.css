@@ -1,0 +1,54 @@
+body.light .profile__info {
+    background-color: #F8F8F8;
+}
+
+body.dark .profile__info {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    background-color: #48454f;
+}
+
+body.neumorphism .profile__info {
+    background: #e5d9f2;
+    background: linear-gradient(115deg, rgba(255,255,255,1) 0%, rgba(232,221,244,1) 50%);
+    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+}
+
+body.light .profile__course--card {
+    background-color: #F8F8F8;
+}
+
+body.dark .profile__course--card {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    background-color: #48454f;
+}
+
+body.neumorphism .profile__course--card {
+    background: #e5d9f2;
+    background: linear-gradient(115deg, rgba(255,255,255,1) 0%, rgba(232,221,244,1) 50%);
+    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+    
+}
+
+body.light .profile__title {
+    color: #7342b0
+}
+
+body.neumorphism .profile__title {
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.20);
+    color: black;
+
+}
+
+body.dark .profile__container {
+    color: #F8F8F8
+}
+
+.profile__course--card--link {
+    @apply cursor-pointer transition-all duration-300;
+    
+}
+
+.profile__course--card--link:hover{
+    animation-duration: 300ms;
+    transform: scale(1.02);
+}
