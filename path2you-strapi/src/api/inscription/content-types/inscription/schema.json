@@ -4,7 +4,8 @@
   "info": {
     "singularName": "inscription",
     "pluralName": "inscriptions",
-    "displayName": "Inscription"
+    "displayName": "Inscription",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -23,6 +24,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "finished": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

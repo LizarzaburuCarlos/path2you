@@ -10,6 +10,7 @@ export default interface Inscription {
         course: {
             data: Course;
         };
+        finished: boolean;
         createdAt: string;
         updatedAt: string;
         publishedAt: string;

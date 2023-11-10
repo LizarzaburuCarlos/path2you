@@ -768,6 +768,7 @@ export interface ApiInscriptionInscription extends Schema.CollectionType {
     singularName: 'inscription';
     pluralName: 'inscriptions';
     displayName: 'Inscription';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -784,6 +785,9 @@ export interface ApiInscriptionInscription extends Schema.CollectionType {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
+    finished: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

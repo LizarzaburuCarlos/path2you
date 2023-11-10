@@ -5,14 +5,19 @@ import ModuleCard from "./ModuleCard";
 import type Module from "../interfaces/module";
 import type Exam from "../interfaces/exam";
 import ExamCard from "./ExamCard";
+import { userData } from "../core/helpers";
+import type Inscription from "../interfaces/inscription";
 
 const ModuleList = (course: Course) => {
+  const user = userData();
+  const [inscription, setInscription] = useState<Inscription>();
   const courseId = course.id.toString();
   const [modules, setModules] = useState<Module[]>([]);
   const [exam, setExam] = useState<Exam>();
 
   useEffect(() => {
     const fetchModules = async () => {
+
       const modulesData = await fetchApi<Module[]>({
         endpoint: "modules",
         wrappedByKey: "data",
@@ -29,7 +34,20 @@ const ModuleList = (course: Course) => {
         },
       });
 
+      const getInscription = await fetchApi<Inscription>({
+        endpoint: "inscriptions",
+        method: "GET",
+        wrappedByKey: "data",
+        query: {
+          "filters[user][id][$eq]": user.id,
+          "filters[course][id][$eq]": courseId,
+        },
+      });
+      
+      console.log(getInscription);
+      
       setExam(examData[0]);
+      setInscription(getInscription[0]);
       setModules(modulesData);
     };
 
@@ -55,19 +73,16 @@ const ModuleList = (course: Course) => {
           </p>
         </div>
       )}
-      <h3 className="modulelist__title text-2xl my-6 font-semibold">
-        Evaluación
-      </h3>
-      {exam !== undefined ? (
-        <ExamCard exam={exam} />
-      ) : (
-        <div className="modulelist__empty w-fullt text-center">
-          <p className="text-lg font-semibold opacity-50 ">
-            No hay clases disponibles para este curso. <br />
-            ¡Vuelve pronto!
-          </p>
-        </div>
-      )}
+      {inscription?.attributes.finished === false && (
+        <>
+        <h3 className="modulelist__title text-2xl my-6 font-semibold">
+          Evaluación
+        </h3>
+        {exam !== undefined && (
+        <ExamCard exam={exam!} />
+        )}
+        </>
+       )}
     </section>
   );
 };

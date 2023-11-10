@@ -7,7 +7,7 @@ import type Exam from "../../interfaces/exam";
 
 export async function getStaticPaths() {
   const exams = await fetchApi<Exam[]>({
-    endpoint: "exams",
+    endpoint: "exams?populate=*",
     wrappedByKey: "data",
   });
 
@@ -23,5 +23,5 @@ const exam = Astro.props;
 ---
 
 <BaseLayout title={`${exam.attributes.title}`}>
-  <ExamUI exam={exam} client:load />
+  <ExamUI {...exam} client:load />
 </BaseLayout>

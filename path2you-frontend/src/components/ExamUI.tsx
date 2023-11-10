@@ -3,22 +3,26 @@ import type Question from "../interfaces/question";
 import fetchApi from "../lib/strapi";
 import { userData } from "../core/helpers";
 import type User from "../interfaces/user";
+import type Inscription from "../interfaces/inscription";
+import type Exam from "../interfaces/exam";
 
-
-export const ExamUI = ({ exam }) => { 
-
+export const ExamUI = (exam: Exam) => { 
+  
     const examId = exam.id.toString();
     const [questions, setQuestions] = useState<Question[]>([]);
     const [user, setUser] = useState<User>();
+    const courseId = exam.attributes.course.data.id.toString();
+    const [inscription, setInscription] = useState<Inscription>();
 
     useEffect(() => {
 
         const userDataResponse = async () => {
             const userDataResponse = await userData();
             setUser(userDataResponse);
-        
+            const ins = await getInscription(userDataResponse.id);            
+            setInscription(ins);
+            
         }
-
         const fetchQuestions = async () => {
             const questions = await fetchApi<Question[]>({
                 endpoint: "questions",
@@ -29,16 +33,29 @@ export const ExamUI = ({ exam }) => {
             });
 
             setQuestions(questions);
-            console.log(questions);
+            // console.log(questions);
             
         };
-
         userDataResponse();
         fetchQuestions();
 
     }, []);
 
+    const getInscription = async (id) => {      
+          const getInscription = await fetchApi<Inscription>({
+            endpoint: "inscriptions",
+            wrappedByKey: "data",
+            method: "GET",
+            query: {
+              "filters[user][id][$eq]": id,
+              "filters[course][id][$eq]": courseId,
+            },
+        });       
+       return getInscription[0];
+    };
+
     const handleScore = async (event: React.FormEvent<HTMLFormElement>) => {
+
         event.preventDefault();
         const answers = Object.fromEntries(
             new FormData(event.currentTarget).entries()
@@ -77,12 +94,40 @@ export const ExamUI = ({ exam }) => {
               },
             });
             console.log(res);
-            location.replace("/profile");
             
         } catch (error) {
             console.log("error", error);
-         }
+        }
 
+        let finished: boolean;
+
+        if (score >= 6) {
+          finished = true;
+        } else {
+          finished = false;
+        }
+        console.log(inscription);
+        
+        try {
+            const res = await fetchApi({
+              endpoint: "inscriptions/" + inscription!.id,
+              method: "PUT",
+              body: {
+                  data: {
+                    user: user!.id,
+                    course: courseId,
+                    date: inscription!.attributes.date,
+                    finished: finished,
+                  },
+                },
+              });
+              console.log(res);
+              location.replace("/profile");
+                
+            } catch (error) {
+              console.log("error", error);
+        }
+         
     }
 
     return (

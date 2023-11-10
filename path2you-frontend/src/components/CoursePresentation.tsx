@@ -75,6 +75,7 @@ const CoursePresentation = (course: Course) => {
             user: user.id,
             course: course.id,
             date: new Date(),
+            finished: false,
           },
         },
       });
