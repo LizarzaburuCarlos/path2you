@@ -90,6 +90,7 @@ const TopBar = () => {
       setDark(false);
       setNeumorphism(true);
       editStyleUsuario(false, true);
+      setIsOpen(false);
     }
 
     document.body.classList.remove("dark");
@@ -105,6 +106,7 @@ const TopBar = () => {
       setNeumorphism(false);
       setDark(true);
       editStyleUsuario(true, false);
+      setIsOpen(false);
     }
 
     document.body.classList.remove("neumorphism");
@@ -120,6 +122,7 @@ const TopBar = () => {
       setNeumorphism(false);
       setLight(true);
       editStyleUsuario(false, false);
+      setIsOpen(false);
     }
 
     document.body.classList.remove("dark");
