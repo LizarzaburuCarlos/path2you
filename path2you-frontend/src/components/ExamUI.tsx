@@ -131,29 +131,39 @@ export const ExamUI = (exam: Exam) => {
     }
 
     return (
-        <div className="">
-            <h4 className="text-3xl font-semibold mb-4">{exam.attributes.title}</h4>
-            <div>{exam.attributes.description}</div>
+        <div className="exam__container w-[80%]">
+            <h4 className="exam__title text-2xl font-bold mb-3">{exam.attributes.title}</h4>
+            <div className=" mb-6">{exam.attributes.description}</div>
             
             <form 
             onSubmit={handleScore}
             >
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-6">
                     {questions.map((question, index) => (
-                        <div className="flex flex-col gap-4">
-                            <h5 className="text-xl font-semibold">{index+1}. {question.attributes.title}</h5>
+                        <div className="exam__question--container rounded-lg p-6 flex flex-col gap-4">
+                            <h5 className="text font-semibold">0{index+1}. {question.attributes.title}</h5>
                             <div className="flex flex-col gap-6">
-                                <div className="flex items-center gap-4">
-                                    <input type="radio" name={`${question.id}`} id={`question${index}`} value="verdadero" />
-                                    <label className="mr-10" htmlFor={`question${index}`}>Verdadero</label>
-                                    <input type="radio" name={`${question.id}`} id={`question${index}`} value="falso" />
-                                    <label htmlFor={`question${index}`}>Falso</label>
+                                <div className="flex text items-center gap-8">
+                                  <div className="question__option rounded-lg py-2 flex-row flex gap-4 ">
+                                    <input className="text-xl" type="radio" name={`${question.id}`} id={`question-a-${index}`} value="verdadero" />
+                                    <label htmlFor={`question-a-${index}`}>Verdadero</label>
+                                  </div>
+                                  <div className="question__option rounded-lg py-1 px-4 flex-row flex gap-4">
+                                    <input type="radio" name={`${question.id}`} id={`question-b-${index}`} value="falso" />
+                                    <label htmlFor={`question-b-${index}`}>Falso</label>
+                                  </div>
                                 </div>  
                             </div>
                         </div>
                     ))}
                 </div>
-                <button type="submit" className="btn btn-primary">Enviar</button>
+                <div className="exam__button--submit my-6">
+                  <button type="submit" className="transform duration-300 hover:scale-105 py-2 px-4 rounded-full">
+                  <i class="fa-solid fa-check-double mr-2"></i>
+                    Presentar Examen
+                  </button>
+                </div>
+                
 
             </form>
 

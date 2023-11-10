@@ -1,0 +1,129 @@
+body.neumorphism .exam__title {
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.20);
+    color: black;
+}
+
+body.light .exam__title {
+    color: #6933ad;
+}
+
+body.dark .exam__container {
+    color: #FFF;
+}
+
+body.light .exam__question--container {
+    background-color: #F8F8F8;
+}
+
+body.dark .exam__question--container  {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    background-color: #48454f;
+}
+
+body.neumorphism .exam__question--container {
+    background: #e5d9f2;
+    background: linear-gradient(115deg, rgba(255,255,255,1) 0%, rgba(232,221,244,1) 50%);
+    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+}
+
+.question__option {
+    @apply transition-all duration-300 hover:scale-105;
+}
+
+.question__option input[type="radio"] {
+    display: none;
+}
+
+.question__option label {
+    position: relative;
+    padding: 10px 30px;
+    border-radius: 10px;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+}
+
+body.light .question__option label {
+    background-color: #fff;
+}
+
+body.dark .question__option label {
+    background-color: #37343e;
+}
+
+body.neumorphism .question__option label {
+    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+}
+
+.question__option label::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+body.light .question__option label::before {
+    border: 3px solid #6933ad;
+    background-color: #fff;
+}
+
+body.dark .question__option label::before {
+    border: 3px solid #f8f8f8;
+    background-color: #37343e;
+}
+
+body.neumorphism .question__option label::before {
+    border: 3px solid #9371d0;
+    background-color: #f4effa;
+}
+
+body.light .question__option input[type="radio"]:checked + label {
+    background-color: #6933ad;
+    color: #fff;
+}
+
+body.dark .question__option input[type="radio"]:checked + label {
+    background-color: #665483;
+    color: #fff;
+}
+
+body.neumorphism .question__option input[type="radio"]:checked + label {
+    background: linear-gradient(145deg, #9c7ed8, #7342b0);
+    color: white;
+}
+
+.question__option input[type="radio"]:checked + label::before {
+    height: 8px;
+    width: 8px;
+    border: 6px solid #fff;
+}
+
+body.light .exam__button--submit button {
+    background-color: #e55503;
+    color: #fff;
+}
+
+body.dark .exam__button--submit button {
+    @apply bg-[#786396] text-white;
+}
+
+body.neumorphism .exam__button--submit button {
+    font-weight: 700;
+    background: #e2d2f4;
+    background: linear-gradient(115deg, rgba(255, 255, 255, 0.4) 0%, rgba(232, 221, 244, 1) 100%);
+    box-shadow: 6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+    text-shadow: 0px 2px 4px rgba(103, 102, 102, 0.3);
+}
+
+body.neumorphism .exam__button--submit button:hover {
+    background: linear-gradient(145deg, #9c7ed8, #7342b0);
+    color: #FFFAFF;
+}
+
+  
+  
+  
+  
+  
+  
