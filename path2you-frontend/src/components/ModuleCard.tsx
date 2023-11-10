@@ -141,9 +141,9 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ slug, module }) => {
     >
       {valueProgress === 0 && (
         <div
-          className={`modulecard__img flex items-center justify-center w-[75px] h-[75px] rounded-full`}
+          className={`modulecard__img flex items-center justify-center w-12 md:w-[75px] h-12 md:h-[75px] rounded-full`}
         >
-          <div className="w-[75px] h-[75px] rounded-full" />
+          <div className="w-12 md:w-[75px] h-12 md:h-[75px] rounded-full" />
         </div>
       )}
 
@@ -165,7 +165,7 @@ const ModuleCard: React.FC<ModuleCardProps> = ({ slug, module }) => {
         className={`modulecard__content w-full h-full flex flex-col justify-center items-start`}
       >
         <div className="modulecard__presentation">
-          <h3 className="modulecard__title font-bold text-lg">
+          <h3 className="modulecard__title font-bold text-base md:text-lg">
             {module.attributes.title}
           </h3>
         </div>

@@ -56,7 +56,7 @@ const ModuleList = (course: Course) => {
 
   return (
     <section className="modulelist w-full">
-      <h3 className="modulelist__title text-2xl mb-6 font-semibold">
+      <h3 className="modulelist__title text-xl md:text-2xl mb-6 font-semibold">
         Módulos
       </h3>
       {modules.length > 0 ? (

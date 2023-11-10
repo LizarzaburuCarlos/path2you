@@ -95,18 +95,18 @@ const CoursePresentation = (course: Course) => {
         </div>
       )}
 
-      <div className="course__container grid gap-6 grid-cols-2">
+      <div className="course__container grid gap-6 md:grid-cols-2 mb-6">
         <div className={`course__presentation relative`}>
           <h3 className="course__title font-bold text-3xl lg:text-5xl mb-6">
             {course.attributes.title}
           </h3>
-          <p className="course__description font-medium text-lg">
+          <p className="course__description font-medium text-base md:text-lg text-justify">
             {course.attributes.description}
           </p>
           {inscription ? (
               <></>
             ) : (
-              <div className="course__inscription w-36 mt-8 absolute">
+              <div className="course__inscription w-36 mt-8 md:absolute">
                 <button
                   className={`button-primary w-full`}
                   onClick={() => handleInscription()}
@@ -136,7 +136,7 @@ const CoursePresentation = (course: Course) => {
         <ModuleList {...course} />
       ) : (
         <div className={`course__empty w-full text-center mt-20`}>
-          <p className="text-lg font-semibold opacity-80 ">
+          <p className="text-base md:text-lg font-semibold opacity-80 ">
             No estás inscrito en este curso. <br />
             ¡Inscríbete!
           </p>
