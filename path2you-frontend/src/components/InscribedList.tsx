@@ -48,11 +48,11 @@ const InscribedList = () => {
         href={`/courses/${course.slug}`}
         className={`inscribedcourse w-full h-20 py-4 rounded-lg flex items-center gap-6`}
       >
-        <div className="inscribedcourse__presentation w-6/12 pl-6 flex items-center gap-6">
-          <div className="img h-11 w-11 rounded-lg "></div>
+        <div className="inscribedcourse__presentation w-full sm:w-6/12 pl-6 flex items-center gap-6">
+          <div className="img h-11 w-11 rounded-lg flex-none"></div>
           <h4>{course.title}</h4>
         </div>
-        <p className="inscribedcourse__date w-6/12 pr-6">
+        <p className="inscribedcourse__date w-6/12 pr-6 max-sm:hidden">
         {formatDate(inscriptionData.date)}
         </p>
       </a>
@@ -73,8 +73,8 @@ const InscribedList = () => {
             <div
               className={`inscribedlist__header flex items-center gap-6 mb-6`}
             >
-              <h3 className="w-6/12 font-semibold ">Cursos del usuario:</h3>
-              <h3 className="w-6/12">Fecha de inicio:</h3>
+              <h3 className="w-full sm:w-6/12 font-semibold ">Cursos del usuario:</h3>
+              <h3 className="w-6/12 max-sm:hidden">Fecha de inicio:</h3>
             </div>
             <div className="inscribedlist__content flex flex-col gap-4">
               {inscribedCourses.map((inscription) => (

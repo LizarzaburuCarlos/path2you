@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    @apply h-10 rounded-lg px-4 py-2 w-96 transition-all duration-300 text-lg text-customText;
+    @apply h-10 rounded-lg px-4 py-2 w-96 max-sm:hidden transition-all duration-300 text-lg text-customText;
 }
 
 body.dark .topbar .topbar__searchbar{
