@@ -5,6 +5,7 @@ import { userData } from "../core/helpers";
 import type Inscription from "../interfaces/inscription";
 import type Progress from "../interfaces/progress";
 import type Lesson from "../interfaces/lesson";
+import dayjs from 'dayjs';
 
 export const UserUI = () => {
 
@@ -43,6 +44,12 @@ export const UserUI = () => {
             method: "GET",
         });
         setInscriptions(inscriptions);
+    };
+
+    const fechaFormateada = (fecha) => {
+        let formateada = dayjs(fecha).format("DD/MM/YYYY");
+        console.log(formateada);
+        return formateada;
     };
 
     // const calculateProgress = async (idCourse) => {
@@ -96,40 +103,40 @@ export const UserUI = () => {
     
 
     return (
-        <div className="container mx-auto mt-8">
+        <div className="profile__container mx-auto mt-8">
     
         <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-800">Perfil de Usuario</h1>
-            <p className="text-gray-600">¡Es un gusto tenerte aquí, {user?.name}!</p>
+            <h1 className="profile__title text-3xl font-bold">Perfil de Usuario</h1>
         </div>
 
-        <div className="mt-8 px-8 mx-auto w-fit bg-white p-8 rounded-lg shadow-md">
-            <div className="flex items-center justify-center">
-                <img src="public/icono.png" alt="Foto de perfil" className="w-20 h-20 rounded-full" />
+        <div className="profile__info mt-8 flex flex-col md:flex-row gap-2 md:gap-8 px-10 mx-auto w-fit p-8 rounded-lg">
+            <div className="flex items-center p-4 justify-center">
+                <img src="/usericon.png" alt="Foto de perfil" className="w-28 h-28 rounded-full" />
             </div>
-            <div className="mt-4 text-center">
-                <h2 className="text-xl font-semibold text-gray-800">{user?.username}</h2>
-                <p className="text-gray-600 italic">{user?.email}</p>
-                <p className="text-gray-600">Unido desde el {user?.createdAt}</p>
+            <div className="flex flex-col gap-[1px] md:mt-4 text-center">
+                <h2 className="text-xl font-semibold ">{user?.name}</h2>
+                <p className="">@{user?.username}</p>
+                <p className=" italic">{user?.email}</p>
+                <p className=" text-xs mt-3">Estás aquí desde {fechaFormateada(user?.createdAt)}</p>
             </div>
         </div>
 
         <div className="mt-8">
-            <h2 className="text-2xl font-bold text-gray-800">Cursos</h2>
-            <p className="text-gray-600">Estos son los cursos que has tomado.</p>
-            <div className="grid grid-cols-3 gap-6">            
+            <h2 className="profile__title text-2xl font-bold">Cursos</h2>
+            <p className="">Estos son los cursos que has tomado.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-6">            
             {inscriptions.map((inscription) => {
-                let curso = inscription.attributes.course.data.id;
+                let curso = inscription.attributes.course.data;
                 return (
-                <div className="mt-4">
-                    <div className="bg-white px-6 py-4 w-fit p-4 rounded-md shadow-md mb-4">
-                        <h3 className="text-lg font-semibold text-gray-800">{inscription.attributes.course.data.attributes.title}</h3>
-                        <div className="text-gray-600">
-                            <p>Fecha de inicio: {inscription.attributes.date.toString()}</p>
+                <a href={`/courses/${curso.attributes.slug}`} className="mt-4 profile__course--card--link">
+                    <div  className="mt-4 profile__course--card w-full lg:w-full p-6 rounded-md mb-4">
+                        <h3 className="text-lg font-semibold ">{inscription.attributes.course.data.attributes.title}</h3>
+                        <div className="text-base">
+                            <p>Fecha de inicio: {fechaFormateada(inscription.attributes.date)}</p>
                             <p>Estado: {inscription.attributes.finished ? "Finalizado" : "En curso"}</p>
                         </div>
                     </div>
-                </div>)})}
+                </a>)})}
             </div>
         </div>
     </div>
