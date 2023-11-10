@@ -137,3 +137,16 @@ body.dark .module__description {
 body.neumorphism .module__title {
     text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.20);
 }
+
+body.light .check__icon {
+    color: #7342b0;
+}
+
+body.dark .check__icon {
+    color: #ffff;
+}
+
+body.neumorphism .check__icon {
+    color: #8b65c8;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.20);
+}
