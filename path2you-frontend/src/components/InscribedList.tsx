@@ -3,6 +3,7 @@ import type Course from "../interfaces/course";
 import { userData, formatDate } from "../core/helpers";
 import fetchApi from "../lib/strapi";
 import type Inscription from "../interfaces/inscription";
+import dayjs from "dayjs";
 
 //FALTA:
 // 2. Poner un mensaje de toast ante un error
@@ -40,6 +41,12 @@ const InscribedList = () => {
     }
   }
 
+  const fechaFormateada = (fecha) => {
+    let formateada = dayjs(fecha).format("DD/MM/YYYY");
+    console.log(formateada);
+    return formateada;
+};
+
   const InscribedCourse = (inscription: Inscription) => {
     const course = inscription.attributes.course.data.attributes;
     const inscriptionData = inscription.attributes;
@@ -48,12 +55,15 @@ const InscribedList = () => {
         href={`/courses/${course.slug}`}
         className={`inscribedcourse w-full h-20 py-4 rounded-lg flex items-center gap-6`}
       >
-        <div className="inscribedcourse__presentation w-full sm:w-6/12 pl-6 flex items-center gap-6">
+        <div className="inscribedcourse__presentation w-full sm:w-5/12 pl-6 flex items-center gap-6">
           <div className="img h-11 w-11 rounded-lg flex-none"></div>
           <h4>{course.title}</h4>
         </div>
-        <p className="inscribedcourse__date w-6/12 pr-6 max-sm:hidden">
-        {formatDate(inscriptionData.date)}
+        <p className="inscribedcourse__date w-3/12 max-sm:hidden">
+          {fechaFormateada(inscriptionData.date)}
+        </p>
+        <p className="inscribedcourse__date w-4/12 pr-6 max-sm:hidden">
+        {inscriptionData.finished ? "Finalizado" : "En curso"}
         </p>
       </a>
     );
@@ -73,8 +83,9 @@ const InscribedList = () => {
             <div
               className={`inscribedlist__header flex items-center gap-6 mb-6`}
             >
-              <h3 className="w-full sm:w-6/12 font-semibold ">Cursos del usuario:</h3>
-              <h3 className="w-6/12 max-sm:hidden">Fecha de inicio:</h3>
+              <h3 className="w-full sm:w-5/12 font-semibold ">Cursos del usuario:</h3>
+              <h3 className="w-3/12 max-sm:hidden">Fecha de inicio:</h3>
+              <h3 className="w-4/12 max-sm:hidden">Estado:</h3>
             </div>
             <div className="inscribedlist__content flex flex-col gap-4">
               {inscribedCourses.map((inscription) => (
