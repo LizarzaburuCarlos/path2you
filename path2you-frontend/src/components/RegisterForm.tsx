@@ -2,14 +2,12 @@ import { ToastContainer, toast } from "react-toastify";
 import { register } from "../core/service";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
-import fetchApi from "../lib/strapi";
 import type User from "../interfaces/user";
 
 // FALTA:
 // 1. Validar username y email que no se repitan
 
 const RegisterForm = () => {
-
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -18,11 +16,11 @@ const RegisterForm = () => {
       new FormData(e.currentTarget).entries()
     ) as any;
     setLoading(true);
+
     try {
       if (!data.name || !data.username || !data.email || !data.password) {
         toast.error("Por favor, ingresa todos los datos.");
       }
-
       const res = await register({
         name: data.name,
         username: data.username,
@@ -36,9 +34,9 @@ const RegisterForm = () => {
       } else {
         toast.error(res);
       }
-    } catch (error:any) {
+    } catch (error: any) {
       console.log(error);
-      
+
       toast.error(error.message);
     }
     setLoading(false);
@@ -47,9 +45,9 @@ const RegisterForm = () => {
   function preventSpaces(event) {
     const input = event.target;
     let value = input.value;
-  
-    value = value.replace(/\s/g, '');
-    value = value.replace(/[^a-zA-Z0-9]/g, '');
+
+    value = value.replace(/\s/g, "");
+    value = value.replace(/[^a-zA-Z0-9]/g, "");
 
     input.value = value;
   }
