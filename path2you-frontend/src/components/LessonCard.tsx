@@ -67,12 +67,12 @@ const LessonCard = ({ lesson, setResolution, setLeccion }) => {
             <div className={`modulecard__status w-[15%] lg:w-[10%] flex justify-end items-center`}>
                 {isFinished === true && (
                     <div className="h-10 w-10 md:h-14 md:w-14 flex justify-center items-center">
-                        <i className="fa-solid fa-check mx-auto text-lg md:text-xl"></i>
+                        <i className="fa-solid fa-circle-check text-lg md:text-xl"></i>
                     </div>
                 )}
                 {isFinished === false && (
                     <div className="h-10 w-10 md:h-14 md:w-14 flex justify-center items-center">
-                        <i className="fa-solid fa-circle mx-auto text-lg md:text-xl"></i>
+                     
                     </div>
                 )}
             </div>

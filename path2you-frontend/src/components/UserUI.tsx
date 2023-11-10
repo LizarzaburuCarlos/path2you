@@ -11,15 +11,16 @@ export const UserUI = () => {
 
     const [user, setUser] = useState<User>();
     const [inscriptions, setInscriptions] = useState<Inscription[]>([]);
-    const [progreso, setProgreso] = useState<number>(0);
-    const [progress, setProgress] = useState({});
+    const [loading, setLoading] = useState<boolean>(true);
 
 
     useEffect(() => {
+        
         const userDataResponse = async () => {
             const userDataResponse = await userData();
             fetchUser(userDataResponse.id);
             fetchInscriptions(userDataResponse.id)
+            setLoading(false);
         };
         userDataResponse();
        
@@ -103,6 +104,14 @@ export const UserUI = () => {
     
 
     return (
+        <>
+
+        {loading && (
+                <div className="loader">
+                <div className="spinner"></div>
+                </div>
+            )}
+
         <div className="profile__container mx-auto mt-8">
     
         <div className="text-center">
@@ -140,6 +149,7 @@ export const UserUI = () => {
             </div>
         </div>
     </div>
+    </>
     );
        
 
