@@ -99,13 +99,6 @@ export const ExamUI = (exam: Exam) => {
             console.log("error", error);
         }
 
-        let finished: boolean;
-
-        if (score >= 6) {
-          finished = true;
-        } else {
-          finished = false;
-        }
         console.log(inscription);
         
         try {
@@ -117,7 +110,7 @@ export const ExamUI = (exam: Exam) => {
                     user: user!.id,
                     course: courseId,
                     date: inscription!.attributes.date,
-                    finished: finished,
+                    finished: true,
                   },
                 },
               });

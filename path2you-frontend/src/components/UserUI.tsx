@@ -6,13 +6,14 @@ import type Inscription from "../interfaces/inscription";
 import type Progress from "../interfaces/progress";
 import type Lesson from "../interfaces/lesson";
 import dayjs from 'dayjs';
+import type Score from "../interfaces/score";
 
 export const UserUI = () => {
 
     const [user, setUser] = useState<User>();
     const [inscriptions, setInscriptions] = useState<Inscription[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-
+    const [score, setScore] = useState<Score>();
 
     useEffect(() => {
         
@@ -34,6 +35,19 @@ export const UserUI = () => {
         setUser(user);
         console.log();
     };
+
+    // const fetchScore = async (id) => {
+    //     const score = await fetchApi<Score>({
+    //         endpoint: "scores/" + id.toString(),
+    //         query:{
+    //             "filters[user][id][$eq]": id.toString() || "",
+    //             "filters[exam][course][id][$eq]": id.toString() || "
+    //         }
+    //         method: "GET",
+    //     });
+    //     setScore(score);
+    //     console.log();
+    // };
 
     const fetchInscriptions = async (id) => {
         const inscriptions = await fetchApi<Inscription[]>({
@@ -135,6 +149,7 @@ export const UserUI = () => {
             <p className="">Estos son los cursos que has tomado.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-6">            
             {inscriptions.map((inscription) => {
+
                 let curso = inscription.attributes.course.data;
                 return (
                 <a href={`/courses/${curso.attributes.slug}`} className="mt-4 profile__course--card--link">
