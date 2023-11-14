@@ -683,6 +683,37 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAskAsk extends Schema.CollectionType {
+  collectionName: 'asks';
+  info: {
+    singularName: 'ask';
+    pluralName: 'asks';
+    displayName: 'Ask';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    practice: Attribute.Relation<
+      'api::ask.ask',
+      'oneToOne',
+      'api::practice.practice'
+    >;
+    title: Attribute.String & Attribute.Required;
+    true: Attribute.Boolean & Attribute.Required;
+    false: Attribute.Boolean & Attribute.Required;
+    trueSentence: Attribute.String & Attribute.Required;
+    falseSentence: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::ask.ask', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::ask.ask', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCourseCourse extends Schema.CollectionType {
   collectionName: 'courses';
   info: {
@@ -886,6 +917,43 @@ export interface ApiModuleModule extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::module.module',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPracticePractice extends Schema.CollectionType {
+  collectionName: 'practices';
+  info: {
+    singularName: 'practice';
+    pluralName: 'practices';
+    displayName: 'Practice';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    module: Attribute.Relation<
+      'api::practice.practice',
+      'oneToOne',
+      'api::module.module'
+    >;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::practice.practice',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::practice.practice',
       'oneToOne',
       'admin::user'
     > &
@@ -1123,11 +1191,13 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::ask.ask': ApiAskAsk;
       'api::course.course': ApiCourseCourse;
       'api::exam.exam': ApiExamExam;
       'api::inscription.inscription': ApiInscriptionInscription;
       'api::lesson.lesson': ApiLessonLesson;
       'api::module.module': ApiModuleModule;
+      'api::practice.practice': ApiPracticePractice;
       'api::progress.progress': ApiProgressProgress;
       'api::question.question': ApiQuestionQuestion;
       'api::register.register': ApiRegisterRegister;

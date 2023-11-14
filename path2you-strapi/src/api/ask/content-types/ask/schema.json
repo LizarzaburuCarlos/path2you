@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "asks",
+  "info": {
+    "singularName": "ask",
+    "pluralName": "asks",
+    "displayName": "Ask"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "practice": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::practice.practice"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "true": {
+      "type": "boolean",
+      "required": true
+    },
+    "false": {
+      "type": "boolean",
+      "required": true
+    },
+    "trueSentence": {
+      "type": "string",
+      "required": true
+    },
+    "falseSentence": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
