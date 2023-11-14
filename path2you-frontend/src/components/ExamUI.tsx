@@ -13,6 +13,7 @@ export const ExamUI = (exam: Exam) => {
     const [user, setUser] = useState<User>();
     const courseId = exam.attributes.course.data.id.toString();
     const [inscription, setInscription] = useState<Inscription>();
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
 
@@ -33,6 +34,7 @@ export const ExamUI = (exam: Exam) => {
             });
 
             setQuestions(questions);
+            setLoading(false);
             // console.log(questions);
             
         };
@@ -124,6 +126,13 @@ export const ExamUI = (exam: Exam) => {
     }
 
     return (
+      <section>
+         {loading && (
+          <div className="loader">
+            <div className="spinner"></div>
+          </div>
+        )}
+
         <div className="exam__container w-[80%]">
             <h4 className="exam__title text-2xl font-bold mb-3">{exam.attributes.title}</h4>
             <div className=" mb-6">{exam.attributes.description}</div>
@@ -161,5 +170,6 @@ export const ExamUI = (exam: Exam) => {
             </form>
 
         </div>
+      </section>
     );
 }
