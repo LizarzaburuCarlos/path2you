@@ -7,6 +7,7 @@ import type Progress from "../interfaces/progress";
 import type Lesson from "../interfaces/lesson";
 import dayjs from 'dayjs';
 import type Score from "../interfaces/score";
+import { UserCourseCard } from "./UserCourseCard";
 
 export const UserUI = () => {
 
@@ -148,19 +149,9 @@ export const UserUI = () => {
             <h2 className="profile__title text-2xl font-bold">Cursos</h2>
             <p className="">Estos son los cursos que has tomado.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-6">            
-            {inscriptions.map((inscription) => {
-
-                let curso = inscription.attributes.course.data;
-                return (
-                <a href={`/courses/${curso.attributes.slug}`} className="mt-4 profile__course--card--link">
-                    <div  className="mt-4 profile__course--card w-full lg:w-full p-6 rounded-md mb-4">
-                        <h3 className="text-lg font-semibold ">{inscription.attributes.course.data.attributes.title}</h3>
-                        <div className="text-base">
-                            <p>Fecha de inicio: {fechaFormateada(inscription.attributes.date)}</p>
-                            <p>Estado: {inscription.attributes.finished ? "Finalizado" : "En curso"}</p>
-                        </div>
-                    </div>
-                </a>)})}
+            {inscriptions.map((inscription) => (
+                <UserCourseCard user={user} inscription={inscription} />
+            ))}
             </div>
         </div>
     </div>
