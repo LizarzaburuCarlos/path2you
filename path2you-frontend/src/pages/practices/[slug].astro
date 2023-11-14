@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import fetchApi from '../../lib/strapi';
+import "../../styles/ExamUI.styles.css";
+import type Practice from '../../interfaces/practice';
+import { PracticeUI } from '../../components/practice/PracticeUI';
+
+export async function getStaticPaths() {
+  const practices = await fetchApi<Practice[]>({
+    endpoint: "practices?populate=*",
+    wrappedByKey: "data",
+  });
+
+  return practices.map((practice) => ({
+    params: { slug: practice.attributes.slug },
+    props: practice,
+  }));
+}
+
+type Props = Practice;
+
+const practice = Astro.props;
+---
+
+<BaseLayout title={`${practice.attributes.title}`}>
+  <PracticeUI {...practice} client:load />
+</BaseLayout>

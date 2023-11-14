@@ -68,7 +68,7 @@ const ModuleList = (course: Course) => {
       ) : (
         <div className="modulelist__empty w-fullt text-center">
           <p className="text-lg font-semibold opacity-50 ">
-            No hay clases disponibles para este curso. <br />
+            No hay módulos disponibles para este curso. <br />
             ¡Vuelve pronto!
           </p>
         </div>

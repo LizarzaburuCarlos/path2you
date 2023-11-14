@@ -943,6 +943,7 @@ export interface ApiPracticePractice extends Schema.CollectionType {
       'api::module.module'
     >;
     description: Attribute.Text;
+    slug: Attribute.UID<'api::practice.practice', 'title'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

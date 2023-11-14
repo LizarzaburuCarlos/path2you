@@ -8,6 +8,7 @@ export default interface Practice {
             data: Module;
         };
         description: string;
+        slug: string;
         createdAt: string;
         updatedAt: string;
         publishedAt: string;

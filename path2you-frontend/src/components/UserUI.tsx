@@ -37,19 +37,6 @@ export const UserUI = () => {
         console.log();
     };
 
-    // const fetchScore = async (id) => {
-    //     const score = await fetchApi<Score>({
-    //         endpoint: "scores/" + id.toString(),
-    //         query:{
-    //             "filters[user][id][$eq]": id.toString() || "",
-    //             "filters[exam][course][id][$eq]": id.toString() || "
-    //         }
-    //         method: "GET",
-    //     });
-    //     setScore(score);
-    //     console.log();
-    // };
-
     const fetchInscriptions = async (id) => {
         const inscriptions = await fetchApi<Inscription[]>({
             endpoint: "inscriptions?populate=*",

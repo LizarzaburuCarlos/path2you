@@ -10,6 +10,7 @@ import { userData } from "../core/helpers";
 import type Register from "../interfaces/register";
 import type Progress from "../interfaces/progress";
 import Markdown from "react-markdown";
+import type Practice from "../interfaces/practice";
 
 export const ModulesUI = ({ module }) => {
   const [resolution, setResolution] = useState<boolean | null>(null);
@@ -18,6 +19,7 @@ export const ModulesUI = ({ module }) => {
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [hasProgress, setHasProgress] = useState<boolean>(false);
   const [user, setUser] = useState<User>();
+  const [practice, setPractice] = useState<Practice>();
 
   useEffect(() => {
     setLoading(true);
@@ -34,8 +36,23 @@ export const ModulesUI = ({ module }) => {
       setLessons(lecciones);
       setLoading(false);
     };
+
+    const fetchPractice = async () => {
+      const practiceData = await fetchApi<Practice>({
+        endpoint: "practices?populate=module",
+        wrappedByKey: "data",
+        query: {
+          "filters[module][id][$eq]": module.id.toString() || "",
+        },
+      });
+      console.log(practiceData);
+      
+      setPractice(practiceData[0]);
+    };
+
     setLeccion(null);
     fetchLessons();
+    fetchPractice();
   }, []);
 
   useEffect(() => {
@@ -168,7 +185,7 @@ export const ModulesUI = ({ module }) => {
         </Markdown>
       </div>
 
-      <div className="module__lessons">
+      <div className="module__lessons mb-6">
         <h4 className="module__title font-semibold text-2xl mb-4">Temario</h4>
         {lessons.length > 0 ? (
           <div className="module__lessons__container grid grid-cols-1 gap-6">
@@ -187,12 +204,33 @@ export const ModulesUI = ({ module }) => {
         ) : (
           <div className="module__lessons__empty w-fullt text-center">
             <p className="text-lg font-semibold opacity-50 ">
-              Aún no hay clases disponibles para esta lección. <br />
+              Aún no hay lecciones disponibles para este módulo. <br />
               ¡Vuelve pronto!
             </p>
           </div>
         )}
-      </div>
+        </div>
+
+        {practice !== undefined && (
+          <>
+           <a href={`/practices/${practice.attributes.slug}`} className={`modulecard w-full md:w-[70%] mx-4 h-24 px-6 py-6 flex gap-6 items-center`}>
+              <div className={`modulecard__media w-[15%] lg:w-[10%] flex justify-start items-center`}>
+                  <div className="h-10 w-10 md:h-14 md:w-14 flex justify-center items-center">
+                    <i className="fa-solid fa-brain mx-auto text-lg md:text-xl"></i>
+                  </div>
+              </div>
+      
+              <div className={`modulecard__content w-full md:w-[80%] h-full flex flex-col justify-center items-start`}>
+                  <div className="modulecard__presentation">
+                      <h3 className="modulecard__title font-semibold text-base md:text-lg">
+                          {practice.attributes.title}
+                      </h3>
+                  </div>
+              </div>
+            </a>
+            </>
+        ) }
+      
     </section>
   );
 };

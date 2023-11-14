@@ -27,7 +27,7 @@ body.neumorphism .exam__question--container {
 }
 
 .question__option {
-    @apply transition-all duration-300 hover:scale-105;
+    @apply transition-all duration-300 hover:scale-[1.01];
 }
 
 .question__option input[type="radio"] {
@@ -121,6 +121,45 @@ body.neumorphism .exam__button--submit button:hover {
     color: #FFFAFF;
 }
 
+.ask__option label {
+    @apply transition-all duration-300 hover:scale-[1.01];
+}
+
+.ask__option label::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+body.light .ask__option label {
+    background-color: #fff;
+}
+
+.ask__option input[type="radio"] {
+    display: none;
+}
+
+.ask__option label {
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 100%;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+}
+
+body.light .ask__option label::before {
+    border: 3px solid #6933ad;
+    background-color: #fff;
+}
+
+body.light .ask__option input[type="radio"]:checked + label {
+    background-color: #6933ad;
+    color: #fff;
+}
   
   
   
