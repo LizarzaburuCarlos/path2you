@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import type Score from "../interfaces/score";
 import fetchApi from "../lib/strapi";
 import dayjs from "dayjs";
-import type Progress from "../interfaces/progress";
+import { getPhoto } from "../core/service";
+import type Course from "../interfaces/course";
 
 export const UserCourseCard = ({ inscription, user }) => {
-    console.log(user.id);
     
     const curso = inscription.attributes.course.data;
+    
     const [score, setScore] = useState<Score>();
-    const [progreso, setProgreso] = useState<Progress>();
+    const [course, setCourse] = useState<Course>();
 
     const fechaFormateada = (fecha) => {
         let formateada = dayjs(fecha).format("DD/MM/YYYY");
-        console.log(formateada);
         return formateada;
     };
 
@@ -28,34 +28,47 @@ export const UserCourseCard = ({ inscription, user }) => {
             wrappedByKey: "data",
         });
         setScore(score[0]);
-
-        console.log(score);
     };
 
     useEffect(() => {
+
+        const getCurso = async (id) => {
+            const curso = await fetchApi<Course>({
+                endpoint: "courses/" + id.toString() + "?populate=*",
+                method: "GET",
+                wrappedByKey: "data",
+            });
+            setCourse(curso);
+        };
+
+        getCurso(curso.id);
+    }, []);
+
+    useEffect(() => {
         fetchScore(user.id);
-    }, [user]);
+    }, []);
 
     return (
         <a href={`/courses/${curso.attributes.slug}`} className="mt-4 profile__course--card--link">
             <div  className="mt-4 profile__course--card w-full lg:w-full p-6 rounded-md mb-4">
-                <h3 className="text-lg font-semibold ">{inscription.attributes.course.data.attributes.title}</h3>
-                <div className="text-base">
-                    <p>Fecha de inicio: {fechaFormateada(inscription.attributes.date)}</p>
-                    <p>Estado: {inscription.attributes.finished ? "Finalizado" : "En curso"}</p>
-                    {inscription.attributes.finished && (
-                        <div className="flex gap-2">
-                            <p>Calificación: {score?.attributes.score}</p>
-                            <p className={`font-bold ${score?.attributes.approved ? "":""}`}>{score?.attributes.approved ? "Aprobado":"Desaprobado"}</p>
-                        </div>
-                    )}
-                    {/* {inscription.attributes.finished === false && (
-                        <div className="flex gap-2">
-                            <p>Progreso: </p>
-                            <p className={`${score?.attributes.approved ? "":""}`}></p>
-                        </div>
-                    )}  */}
+                <div className="profile__course--info">
+                    <h3 className="text-lg font-semibold">{inscription.attributes.course.data.attributes.title}</h3>
+                    <div className="text-base">
+                        <p>Fecha de inicio: {fechaFormateada(inscription.attributes.date)}</p>
+                        {inscription.attributes.finished === false && (
+                            <div className="unfinished__course mt-2 inline-block rounded-full px-3 py-1 text-sm font-semibold mr-2">En Proceso</div>
+                        )}
+                        {inscription.attributes.finished && (
+                            <>
+                            <p className="mb-2" >Calificación: {score?.attributes.score}</p>
+                            <div className="finished__course inline-block rounded-full px-3 py-1 text-sm font-semibold mr-2">Finalizado</div>
+                            <div className={`inline-block ${score?.attributes.approved ? "approved__course":"disapproved__course"} rounded-full px-3 py-1 text-sm font-semibold mr-2`}>
+                                {score?.attributes.approved ? "Aprobado":"Desaprobado"}</div>
+                            </>
+                        )}
+                    </div>
                 </div>
+                
             </div>
         </a>
     );

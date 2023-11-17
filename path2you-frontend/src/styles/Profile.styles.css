@@ -13,6 +13,34 @@ body.neumorphism .profile__info {
     box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
 }
 
+.profile__course--card {
+    position: relative;
+    overflow: hidden;
+}
+
+.profile__course--card::before, .profile__course--card::after {
+    content: "";
+    position: absolute;
+    top: -5%;
+    right: -5%;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+.profile__course--card::after {
+    top: auto;
+    bottom: -5%;
+}
+
+body.light .profile__course--card::before, body.light .profile__course--card::after {
+    background: rgb(150, 120, 211, 0.1);
+}
+
+body.dark .profile__course--card::before, body.dark .profile__course--card::after {
+    background: rgb(255, 255, 255, 0.1);
+}
+
 body.light .profile__course--card {
     background-color: #F8F8F8;
 }
@@ -45,10 +73,78 @@ body.dark .profile__container {
 
 .profile__course--card--link {
     @apply cursor-pointer transition-all duration-300;
-    
 }
 
 .profile__course--card--link:hover{
     animation-duration: 300ms;
     transform: scale(1.02);
+}
+
+body.light .finished__course {
+    background-color: #7342b0;
+    color: white;
+}
+
+body.dark .finished__course {
+    background-color: #665483;
+    color: #f8f8f8;
+}
+
+body.neumorphism .finished__course {
+    background: #e5d9f2;
+    background: linear-gradient(145deg, #9c7ed8, #7342b0);
+    color: white;
+    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+ 
+}
+
+body.light .unfinished__course {
+    background-color: #1b1d21;
+    color: white;
+}
+
+body.dark .unfinished__course {
+    background-color: #f8f8f8;
+    color: #37343e
+}
+
+body.neumorphism .unfinished__course {
+    background: #e5d9f2;
+    background: linear-gradient(115deg, rgba(255,255,255,1) 0%, #e8ddf4 50%);
+    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+    color: black;
+}
+
+body.light .approved__course {
+    background-color: #ffc17d;
+    color: black;
+}
+
+body.dark .approved__course {
+    background-color: #ffc07d9a;
+    color: white;
+}
+
+body.neumorphism .approved__course {
+    background: linear-gradient(115deg, #ffd2a275 0%, #ffc07d75 70%);
+    border: 1px solid #ffc07d75;
+    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+    color: black;
+}
+
+body.light .disapproved__course {
+    background-color: #ff5e00a6;
+    color: black;
+}
+
+body.dark .disapproved__course {
+    background-color: #ff5e008c;
+    color: white;
+}
+
+body.neumorphism .disapproved__course {
+    background: linear-gradient(115deg, #ffa672a6 0%, #ff5e0064 70%);
+    border: 1px solid #ff5e0064;
+    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+    color: black;
 }
