@@ -9,11 +9,22 @@ export const CoursesUI = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetchCourses();
+    const userString = localStorage.getItem("user");
+  
+    if (userString) {
+      const user = JSON.parse(userString);
+      fetchCourses(user);
+    } else {
+      console.error("No se encontró usuario.");
+    }    
   }, []);
 
-  const fetchCourses = async () => {
+  const fetchCourses = async (user) => {
     const courses = await fetchApi<Course[]>({
+      headers:{
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.jwt}`,
+      },
       endpoint: "courses?populate=photo",
       wrappedByKey: "data",
     });

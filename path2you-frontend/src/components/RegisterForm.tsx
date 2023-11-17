@@ -2,7 +2,6 @@ import { ToastContainer, toast } from "react-toastify";
 import { register } from "../core/service";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
-import type User from "../interfaces/user";
 
 // FALTA:
 // 1. Validar username y email que no se repitan
@@ -18,9 +17,18 @@ const RegisterForm = () => {
     setLoading(true);
 
     try {
-      if (!data.name || !data.username || !data.email || !data.password) {
+      if (!data.name || !data.username || !data.email || !data.password || !data.confirmPassword) {
         toast.error("Por favor, ingresa todos los datos.");
+        setLoading(false);
+        return;
       }
+
+      if (data.password !== data.confirmPassword) {
+        toast.error("Las contraseñas no coinciden. Por favor, verifica.");
+        setLoading(false);
+        return;
+      }
+
       const res = await register({
         name: data.name,
         username: data.username,
@@ -77,7 +85,7 @@ const RegisterForm = () => {
         onSubmit={handleSubmit}
         method="post"
         autoComplete="off"
-        className="form h-fit max-w-sm mt-16"
+        className="form h-fit max-w-sm mt-8"
       >
         <input
           type="text"
@@ -86,6 +94,7 @@ const RegisterForm = () => {
           name="name"
           id="name"
           className="form__input"
+          minLength={3}
           required
         />
         <input
@@ -96,6 +105,7 @@ const RegisterForm = () => {
           id="username"
           className="form__input"
           onInput={preventSpaces}
+          minLength={3}
           required
         />
         <input
@@ -105,6 +115,7 @@ const RegisterForm = () => {
           name="email"
           id="email"
           className="form__input"
+          minLength={6}
           required
         />
         <input
@@ -114,6 +125,17 @@ const RegisterForm = () => {
           name="password"
           id="password"
           className="form__input"
+          minLength={5}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Repite la Contraseña"
+          aria-label="Repite la Contraseña"
+          name="confirmPassword"
+          id="confirmPassword"
+          className="form__input"
+          minLength={5}
           required
         />
         <div className="form__submit text-center mt-10">
@@ -121,7 +143,7 @@ const RegisterForm = () => {
             Registrarse
           </button>
           <p className="form__register-redirect text-customText font-medium">
-            Ya tienes una cuenta?
+            ¿Ya tienes una cuenta?
             <a
               className="ml-2 underline hover:opacity-80 transition-all duration-300"
               href="/login"

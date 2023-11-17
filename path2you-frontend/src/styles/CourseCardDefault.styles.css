@@ -1,4 +1,5 @@
-body.light .courselist__presentation h1 {
+body.light .courselist__presentation h1,
+body.light .search-results__presentation h1 {
     color: #6933ad;
 }
 

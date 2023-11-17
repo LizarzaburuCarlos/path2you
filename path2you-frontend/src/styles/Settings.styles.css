@@ -1,0 +1,49 @@
+body.light .settings__presentation .settings__title {
+    color: #7342b0
+}
+
+body.neumorphism .settings__presentation .settings__title {
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.20);
+    color: black;
+}
+
+body.dark .settings h1,
+body.dark .settings h2,
+body.dark .settings h3,
+body.dark .settings p {
+    color: white
+}
+
+body.light .settings .user-card__container {
+    background-color: #F8F8F8;
+}
+
+body.neumorphism .settings .user-card__container {
+    background: #e5d9f2;
+    background: linear-gradient(115deg, rgba(255,255,255,1) 0%, rgba(232,221,244,1) 50%);
+    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+}
+
+body.dark .settings .user-card__container {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    background-color: #48454f;
+}
+
+.preferences .preferences__option{
+    @apply w-full py-3 px-6 rounded-lg text-center font-semibold cursor-pointer transition-all duration-300 ;    
+}
+
+body.light .preferences .preferences__option{
+    background-color: #6933ad;
+    color: white;
+}
+
+body.neumorphism .preferences .preferences__option{
+    background-color: #6933ad;
+    color: white;
+}
+
+body.dark .preferences .preferences__option{
+    background-color: #6933ad;
+    color: white;
+}

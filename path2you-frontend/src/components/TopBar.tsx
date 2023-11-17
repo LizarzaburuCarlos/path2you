@@ -17,6 +17,7 @@ const TopBar = () => {
     location.replace("/");
   };
 
+
   useEffect(() => {
     const fetchData = async () => {
       const userDataResponse = await userData();
@@ -134,13 +135,15 @@ const TopBar = () => {
 
   return (
     <section className="topbar w-full h-16 mb-12 flex items-center justify-between">
-      <form className={`topbar__searchbar`}>
+      <form action="/search" method="get" className={`topbar__searchbar`}>
         <input
           type="text"
           placeholder="Buscar..."
           className="topbar__search-input"
+          name="title"
+          minLength={3}
         />
-        <button type="submit" className={`topbar__search-button `}>
+        <button type="submit" className={`topbar__search-button `} >
           <i className="fa-solid fa-magnifying-glass text-base"></i>
         </button>
       </form>

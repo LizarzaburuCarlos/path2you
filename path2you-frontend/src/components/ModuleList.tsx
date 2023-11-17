@@ -10,6 +10,7 @@ import type Inscription from "../interfaces/inscription";
 
 const ModuleList = (course: Course) => {
   const user = userData();
+  const [loading, setLoading] = useState<boolean>(true);
   const [inscription, setInscription] = useState<Inscription>();
   const courseId = course.id.toString();
   const [modules, setModules] = useState<Module[]>([]);
@@ -17,7 +18,6 @@ const ModuleList = (course: Course) => {
 
   useEffect(() => {
     const fetchModules = async () => {
-
       const modulesData = await fetchApi<Module[]>({
         endpoint: "modules",
         wrappedByKey: "data",
@@ -43,12 +43,13 @@ const ModuleList = (course: Course) => {
           "filters[course][id][$eq]": courseId,
         },
       });
-      
+
       console.log(getInscription);
-      
+
       setExam(examData[0]);
       setInscription(getInscription[0]);
       setModules(modulesData);
+      setLoading(false);
     };
 
     fetchModules();
@@ -56,6 +57,12 @@ const ModuleList = (course: Course) => {
 
   return (
     <section className="modulelist w-full">
+      {loading && (
+        <div className="loader">
+          <div className="spinner"></div>
+        </div>
+      )}
+
       <h3 className="modulelist__title text-xl md:text-2xl mb-6 font-semibold">
         Módulos
       </h3>
@@ -75,14 +82,12 @@ const ModuleList = (course: Course) => {
       )}
       {inscription?.attributes.finished === false && (
         <>
-        <h3 className="modulelist__title text-2xl my-6 font-semibold">
-          Evaluación
-        </h3>
-        {exam !== undefined && (
-        <ExamCard exam={exam!} />
-        )}
+          <h3 className="modulelist__title text-2xl my-6 font-semibold">
+            Evaluación
+          </h3>
+          {exam !== undefined && <ExamCard exam={exam!} />}
         </>
-       )}
+      )}
     </section>
   );
 };
