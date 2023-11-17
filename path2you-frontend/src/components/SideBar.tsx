@@ -1,7 +1,3 @@
-
-//FALTA:
-// 1. Agregar funcionalidad a cada sección del menú
-
 import { useEffect } from "react";
 
 const SideBar = () => {
@@ -28,7 +24,9 @@ const SideBar = () => {
           }
         }
 
-        if ((currentUrl.includes("/courses"))) {
+        if ((currentUrl.includes("/courses") || currentUrl.includes("/modules") 
+        || currentUrl.includes("/lessons") || currentUrl.includes("/practices")
+        || currentUrl.includes("/exams"))) {
           cursosItem.classList.add('active');
         }
       });
@@ -45,16 +43,19 @@ const SideBar = () => {
           <li className={`sidebar__menu-item`}>
             <a href="/" className="sidebar__menu-link">
             <i className="fa-solid fa-house text-white text-2xl"></i>
+            <p className="font-semibold tracking-wide mt-[2px] uppercase text-xs">Inicio</p>
             </a>
           </li>
-          <li id="cursos" className={`sidebar__menu-item `}>
+          <li id="cursos" className={`sidebar__menu-item`}>
             <a href="/courses" className="sidebar__menu-link">
               <i className="fas fa-book text-white text-2xl"></i>
+              <p className="font-semibold tracking-wide mt-[2px] uppercase text-xs">Cursos</p>
             </a>
           </li>
-          <li className={`sidebar__menu-item `}>
+          <li className={`sidebar__menu-item`}>
             <a href="/profile" className="sidebar__menu-link">
               <i className="fas fa-user text-white text-2xl"></i>
+              <p className="font-semibold tracking-wide mt-[2px] uppercase text-xs">Perfil</p>
             </a>
           </li>
           {/* <li className={`sidebar__menu-item `}>

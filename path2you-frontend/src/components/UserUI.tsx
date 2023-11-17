@@ -3,8 +3,6 @@ import type User from "../interfaces/user";
 import fetchApi from "../lib/strapi";
 import { userData } from "../core/helpers";
 import type Inscription from "../interfaces/inscription";
-import type Progress from "../interfaces/progress";
-import type Lesson from "../interfaces/lesson";
 import dayjs from 'dayjs';
 import type Score from "../interfaces/score";
 import { UserCourseCard } from "./UserCourseCard";
@@ -34,7 +32,7 @@ export const UserUI = () => {
             method: "GET",
         });
         setUser(user);
-        console.log();
+        console.log(user);
     };
 
     const fetchInscriptions = async (id) => {

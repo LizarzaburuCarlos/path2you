@@ -31,7 +31,11 @@ body.neumorphism .sidebar .sidebar__top .sidebar__logo img {
 }
 
 .sidebar .sidebar__top .sidebar__menu .sidebar__menu-item{
-    @apply h-12 w-full rounded-lg flex items-center justify-center transition-all duration-300;
+    @apply h-16 w-full rounded-lg flex items-center justify-center transition-all duration-300;
+}
+
+.sidebar .sidebar__top .sidebar__menu .sidebar__menu-item .sidebar__menu-link{
+    @apply flex flex-col justify-center items-center;
 }
 
 body.neumorphism .sidebar__top .sidebar__menu .sidebar__menu-item{
