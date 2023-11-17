@@ -7,6 +7,7 @@ interface Props {
   wrappedByList?: boolean;
   method?: string;
   body?: Record<string, any>;
+  headers?: Record<string, string>;
 }
 
 /**
@@ -15,6 +16,7 @@ interface Props {
  * @param query - The query parameters to add to the url
  * @param wrappedByKey - The key to unwrap the response from
  * @param wrappedByList - If the response is a list, unwrap it
+ * @param headers - The headers to add to the request
  * @returns
  */
 export default async function fetchApi<T>({
@@ -24,6 +26,7 @@ export default async function fetchApi<T>({
   wrappedByList,
   method = "GET",
   body,
+  headers,
 }: Props): Promise<T> {
   if (endpoint.startsWith("/")) {
     endpoint = endpoint.slice(1);
@@ -48,7 +51,7 @@ export default async function fetchApi<T>({
 
   const requestOptions: RequestInit = {
     method,
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...headers },
   };
 
   if (body) {
