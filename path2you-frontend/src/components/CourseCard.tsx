@@ -26,9 +26,6 @@ const CourseCard = (course: any) => {
       </div>
       <div className="coursecard__content w-full h-full flex flex-col justify-center items-start">
         <h3 className="coursecard__title  font-bold text-lg">{course.title}</h3>
-        <p className="coursecard__text max-h-[60px]  text-base overflow-hidden">
-          {course.description}
-        </p>
       </div>
     </a>
   );

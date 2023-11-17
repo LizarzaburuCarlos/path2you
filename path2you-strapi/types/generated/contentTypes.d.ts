@@ -720,6 +720,7 @@ export interface ApiCourseCourse extends Schema.CollectionType {
     singularName: 'course';
     pluralName: 'courses';
     displayName: 'Course';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -731,12 +732,6 @@ export interface ApiCourseCourse extends Schema.CollectionType {
         minLength: 3;
       }> &
       Attribute.DefaultTo<'Curso sin Nombre'>;
-    description: Attribute.Text &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }> &
-      Attribute.DefaultTo<'Curso sin Descripci\u00F3n.'>;
     slug: Attribute.UID<'api::course.course', 'title'> & Attribute.Required;
     photo: Attribute.Media;
     duration: Attribute.Integer;
@@ -745,6 +740,7 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'oneToMany',
       'api::module.module'
     >;
+    description: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

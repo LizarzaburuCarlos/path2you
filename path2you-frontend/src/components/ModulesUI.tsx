@@ -1,4 +1,3 @@
-import type module from "../interfaces/module";
 import remarkGfm from "remark-gfm";
 import { useEffect, useState } from "react";
 import type Lesson from "../interfaces/lesson";

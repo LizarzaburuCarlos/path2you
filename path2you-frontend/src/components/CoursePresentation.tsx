@@ -7,6 +7,8 @@ import ModuleList from "./ModuleList";
 import type User from "../interfaces/user";
 import "../styles/CoursePresentation.styles.css";
 import type Exam from "../interfaces/exam";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 //FALTA:
 // 2. Reorganizar el código para que sea más legible
@@ -97,12 +99,12 @@ const CoursePresentation = (course: Course) => {
 
       <div className="course__container grid gap-6 md:grid-cols-2 mb-6">
         <div className={`course__presentation relative`}>
-          <h3 className="course__title font-bold text-3xl lg:text-5xl mb-6">
+          <h3 className="course__title font-bold text-3xl lg:text-5xl lg:leading-[50px] mb-6">
             {course.attributes.title}
           </h3>
-          <p className="course__description font-medium text-base md:text-lg text-justify">
-            {course.attributes.description}
-          </p>
+          <div className="course__description font-medium text-base md:text-lg text-justify">
+            <Markdown remarkPlugins={[remarkGfm]} >{course.attributes.description}</Markdown>
+          </div>
           {inscription ? (
               <></>
             ) : (
