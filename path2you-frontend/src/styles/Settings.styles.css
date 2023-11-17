@@ -20,30 +20,106 @@ body.light .settings .user-card__container {
 
 body.neumorphism .settings .user-card__container {
     background: #e5d9f2;
-    background: linear-gradient(115deg, rgba(255,255,255,1) 0%, rgba(232,221,244,1) 50%);
-    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+    background: linear-gradient(115deg, rgba(255, 255, 255, 1) 0%, rgba(232, 221, 244, 1) 50%);
+    box-shadow: 6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
 }
 
 body.dark .settings .user-card__container {
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     background-color: #48454f;
 }
 
-.preferences .preferences__option{
-    @apply w-full py-3 px-6 rounded-lg text-center font-semibold cursor-pointer transition-all duration-300 ;    
+.preferences .preferences__option {
+    @apply w-full py-3 px-6 rounded-lg text-center font-semibold cursor-pointer transition-all duration-300;
 }
 
-body.light .preferences .preferences__option{
+body.light .preferences .preferences__option {
     background-color: #6933ad;
     color: white;
 }
 
-body.neumorphism .preferences .preferences__option{
+body.neumorphism .preferences .preferences__option {
     background-color: #6933ad;
     color: white;
 }
 
-body.dark .preferences .preferences__option{
+body.dark .preferences .preferences__option {
     background-color: #6933ad;
+    color: white;
+}
+
+body.light .new-password .new-password__title {
+    color: #7342b0;
+}
+
+body.neumorphism .new-password .new-password__title {
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.20);
+    color: black;
+}
+
+body.dark .new-password h1,
+body.dark .new-password h2,
+body.dark .new-password h3,
+body.dark .new-password p {
+    color: white
+}
+
+body.light .form .form__container {
+    background-color: #F8F8F8;
+}
+
+body.neumorphism .form .form__container {
+    background: #e5d9f2;
+    background: linear-gradient(115deg, rgba(255, 255, 255, 1) 0%, rgba(232, 221, 244, 1) 50%);
+    box-shadow: 6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+}
+
+body.dark .form .form__container {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    background-color: #48454f;
+}
+
+.form .form__input {
+    width: 100%;
+    height: 40px;
+    padding: 25px 0px;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+body.light .form .form__input {
+    border-bottom: 2px solid #5D5D5D;
+    color: black;
+    background-color: #F8F8F8;
+}
+
+body.neumorphism .form .form__input {
+    border-radius: 5px;
+    border-bottom: 2px solid #5D5D5D;
+    color: black;
+    background-color: #F8F8F8;
+}
+
+body.dark .form .form__input {
+    border-bottom: 2px solid white;
+    color: white;
+    background-color: #48454f;
+}
+
+.form .form__input::placeholder {
+    font-weight: 500;
+}
+
+body.light .form .form__input::placeholder {
+    color: #5D5D5D;
+}
+
+body.neumorphism .form .form__input::placeholder {
+    color: #5D5D5D;
+}
+
+body.dark .form .form__input::placeholder {
     color: white;
 }
