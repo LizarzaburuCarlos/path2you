@@ -58,11 +58,12 @@ const SideBar = () => {
               <p className="font-semibold tracking-wide mt-[2px] uppercase text-xs">Perfil</p>
             </a>
           </li>
-          {/* <li className={`sidebar__menu-item `}>
+          <li className={`sidebar__menu-item `}>
             <a href="/settings" className="sidebar__menu-link">
               <i className="fas fa-cog text-white text-2xl"></i>
+              <p className="font-semibold tracking-wide mt-[2px] uppercase text-xs">Ajustes</p>
             </a>
-          </li> */}
+          </li>
         </ul>
       </div>
       <div className="sidebar__bottom  text-white w-full">
