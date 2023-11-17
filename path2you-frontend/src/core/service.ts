@@ -166,7 +166,10 @@ export const getUsuario = async (id: string) => {
 };
 
 export function getPhoto({course}){
+  console.log(course);
   const { url } = course.photo.data.attributes;
+  
+  
   return `${url}`
 }
 
