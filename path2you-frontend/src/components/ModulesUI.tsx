@@ -173,6 +173,12 @@ export const ModulesUI = ({ module }) => {
           <div className="spinner"></div>
         </div>
       )}
+
+      <div className="button__return mb-6 w-fit hover:scale-105 transition-all duration-300">
+        <a href={`/courses/${module.attributes.course.data.attributes.slug}`} className="h-fit py-1 px-2 w-full font-semibold">
+        <i className="fa-solid fa-arrow-left-long pr-1"></i>
+        Volver</a>
+      </div>
       <div className="module mb-5">
         <h4 className="module__title font-semibold text-2xl mb-2">
           {module.attributes.title}
