@@ -32,6 +32,7 @@ const InscribedList = () => {
         wrappedByKey: "data",
         query: {
           "filters[user][id][$eq]": user.id,
+          "filters[finished][$eq]": "false",
         },
       });
 
@@ -40,6 +41,21 @@ const InscribedList = () => {
       console.log("error", error);
     }
   }
+
+  const calcularDiferenciaEnDias = (fechaInscripcionString) => {
+    const fechita = fechaFormateada(fechaInscripcionString);
+    const [dia, mes, año] = fechita.split('/');
+  
+    const fechaInscripcionDate = new Date(`${año}-${mes}-${dia}`);
+  
+    const fechaActual = new Date();
+  
+    const diferenciaEnMilisegundos = fechaActual.getTime() - fechaInscripcionDate.getTime();
+    
+    const resultado = Math.floor(diferenciaEnMilisegundos / (1000 * 60 * 60 * 24));
+
+    if (resultado === 0) {return "hoy"} else if (resultado === 1) {return "ayer"} else {return `hace ${resultado} días`};
+  };
 
   const fechaFormateada = (fecha) => {
     let formateada = dayjs(fecha).format("DD/MM/YYYY");
@@ -53,18 +69,17 @@ const InscribedList = () => {
     return (
       <a
         href={`/courses/${course.slug}`}
-        className={`inscribedcourse w-full h-20 py-4 rounded-lg flex items-center gap-6`}
+        className={`inscribedcourse transform transition-all duration-300 hover:scale-[1.02] w-fit h-fit px-6 py-4 rounded-lg flex flex-col justify-center gap-1`}
       >
-        <div className="inscribedcourse__presentation w-full sm:w-5/12 pl-6 flex items-center gap-6">
-          <div className="img h-11 w-11 rounded-lg flex-none"></div>
-          <h4>{course.title}</h4>
+        
+        <div className="inscribedcourse__presentation w-full flex items-center gap-6">
+          <h4 className="md:text-lg font-semibold">{course.title}</h4>
         </div>
-        <p className="inscribedcourse__date w-3/12 max-sm:hidden">
-          {fechaFormateada(inscriptionData.date)}
+        <p className="inscribedcourse__date text-sm md:text-base">
+          Desde {calcularDiferenciaEnDias(inscriptionData.date)}
         </p>
-        <p className="inscribedcourse__date w-4/12 pr-6 max-sm:hidden">
-        {inscriptionData.finished ? "Finalizado" : "En curso"}
-        </p>
+        <div className=" flex mt-2 w-full justify-end  text-sm font-semibold mr-2">
+          <p className="unfinished__course text-sm md:text-base rounded-full px-3 py-1">En Curso</p></div>
       </a>
     );
   };
@@ -81,13 +96,11 @@ const InscribedList = () => {
         {inscribedCourses.length > 0 ? (
           <>
             <div
-              className={`inscribedlist__header flex items-center gap-6 mb-6`}
+              className={`inscribedlist__header mb-6`}
             >
-              <h3 className="w-full sm:w-5/12 font-semibold ">Cursos del usuario:</h3>
-              <h3 className="w-3/12 max-sm:hidden">Fecha de inicio:</h3>
-              <h3 className="w-4/12 max-sm:hidden">Estado:</h3>
+              <h3 className="w-full text-lg font-semibold ">Continúa estudiando</h3>
             </div>
-            <div className="inscribedlist__content flex flex-col gap-4">
+            <div className="inscribedlist__content flex gap-4">
               {inscribedCourses.map((inscription) => (
                 <InscribedCourse {...inscription} />
               ))}
@@ -96,8 +109,8 @@ const InscribedList = () => {
         ) : (
           <div className="inscribedlist__empty w-full text-center">
             <p className="text-lg font-semibold opacity-50 ">
-              No hay cursos inscritos. <br />
-              ¡Inscríbete ahora!
+              No hay cursos inscritos o en progreso. <br />
+              ¡Inscríbete en uno ahora!
             </p>
           </div>
         )}

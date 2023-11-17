@@ -50,3 +50,20 @@ body.neumorphism .inscribedcourse .inscribedcourse__presentation .img {
     background: linear-gradient(145deg, #9c7ed8, #7342b0);
     box-shadow: -10px -10px 15px 0px #FFF, 5px 6px 10px 0px #c1b5da;
 }
+
+body.light .unfinished__course {
+    background-color: #1b1d21;
+    color: white;
+}
+
+body.dark .unfinished__course {
+    background-color: #f8f8f8;
+    color: #37343e
+}
+
+body.neumorphism .unfinished__course {
+    background: #e5d9f2;
+    background: linear-gradient(115deg, rgba(255,255,255,1) 0%, #e8ddf4 50%);
+    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+    color: black;
+}

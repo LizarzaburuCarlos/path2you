@@ -56,7 +56,7 @@ export const UserCourseCard = ({ inscription, user }) => {
                     <div className="text-base">
                         <p>Fecha de inicio: {fechaFormateada(inscription.attributes.date)}</p>
                         {inscription.attributes.finished === false && (
-                            <div className="unfinished__course mt-2 inline-block rounded-full px-3 py-1 text-sm font-semibold mr-2">En Proceso</div>
+                            <div className="unfinished__course mt-2 inline-block rounded-full px-3 py-1 text-sm font-semibold mr-2">En Curso</div>
                         )}
                         {inscription.attributes.finished && (
                             <>
