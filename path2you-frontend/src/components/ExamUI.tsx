@@ -14,6 +14,7 @@ export const ExamUI = (exam: Exam) => {
     const courseId = exam.attributes.course.data.id.toString();
     const [inscription, setInscription] = useState<Inscription>();
     const [loading, setLoading] = useState<boolean>(true);
+    const [selectedOptions, setSelectedOptions] = useState<any>([]);
 
     useEffect(() => {
 
@@ -35,7 +36,6 @@ export const ExamUI = (exam: Exam) => {
 
             setQuestions(questions);
             setLoading(false);
-            // console.log(questions);
             
         };
         userDataResponse();
@@ -125,6 +125,20 @@ export const ExamUI = (exam: Exam) => {
          
     }
 
+    const handleOptionChange = (questionId: number) => {
+      setSelectedOptions((prevSelectedOptions) => {
+        if (!prevSelectedOptions.includes(questionId)) {
+          const newSelectedOptions = [...prevSelectedOptions, questionId];
+          return newSelectedOptions;
+        }
+        return prevSelectedOptions;
+      });
+    };
+
+    const isFormValid = () => {
+      return selectedOptions.length === questions.length;
+    };
+
     return (
       <section>
          {loading && (
@@ -134,41 +148,44 @@ export const ExamUI = (exam: Exam) => {
         )}
 
         <div className="exam__container w-[80%]">
+            <div className="button__return mb-6 w-fit hover:scale-105 transition-all duration-300">
+              <a href={`/courses/${exam.attributes.course.data.attributes.slug}`} className="h-fit py-1 px-2 w-full font-semibold">
+              <i className="fa-solid fa-arrow-left-long pr-1"></i>
+              Volver</a>
+            </div>
             <h4 className="exam__title text-2xl font-bold mb-3">{exam.attributes.title}</h4>
             <div className=" mb-6">{exam.attributes.description}</div>
-            
-            <form 
-            onSubmit={handleScore}
-            >
-                <div className="flex flex-col gap-6">
-                    {questions.map((question, index) => (
-                        <div className="exam__question--container rounded-lg p-6 flex flex-col gap-4">
-                            <h5 className="text font-semibold">0{index+1}. {question.attributes.title}</h5>
-                            <div className="flex flex-col gap-6">
-                                <div className="flex text items-center gap-8">
-                                  <div className="question__option rounded-lg py-2 flex-row flex gap-4 ">
-                                    <input className="text-xl" type="radio" name={`${question.id}`} id={`question-a-${index}`} value="verdadero" />
-                                    <label htmlFor={`question-a-${index}`}>Verdadero</label>
-                                  </div>
-                                  <div className="question__option rounded-lg py-1 px-4 flex-row flex gap-4">
-                                    <input type="radio" name={`${question.id}`} id={`question-b-${index}`} value="falso" />
-                                    <label htmlFor={`question-b-${index}`}>Falso</label>
-                                  </div>
-                                </div>  
-                            </div>
+            <form onSubmit={handleScore}>
+              <div className="flex flex-col gap-6">
+                {questions.map((question, index) => (
+                  <div className="exam__question--container rounded-lg p-6 flex flex-col gap-4">
+                    <h5 className="text font-semibold">0{index+1}. {question.attributes.title}</h5>
+                    <div className="flex flex-col gap-6">
+                      <div className="flex text items-center gap-8">
+                        <div className="question__option rounded-lg py-2 flex-row flex gap-4 ">
+                          <input 
+                            onChange={() => handleOptionChange(question.id)}
+                            type="radio" name={`${question.id}`} id={`question-a-${index}`} value="verdadero" />
+                          <label htmlFor={`question-a-${index}`}>Verdadero</label>
                         </div>
-                    ))}
-                </div>
-                <div className="exam__button--submit my-6">
-                  <button type="submit" className="transform duration-300 hover:scale-105 py-2 px-4 rounded-full">
+                        <div className="question__option rounded-lg py-1 px-4 flex-row flex gap-4">
+                          <input
+                            onChange={() => handleOptionChange(question.id)}
+                            type="radio" name={`${question.id}`} id={`question-b-${index}`} value="falso" />
+                          <label htmlFor={`question-b-${index}`}>Falso</label>
+                        </div>
+                      </div>  
+                    </div>
+                   </div>
+                  ))}
+              </div>
+              <div className="exam__button--submit my-6">
+                <button type="submit" disabled={!isFormValid()} className="transform duration-300 hover:scale-105 py-2 px-4 rounded-full">
                   <i className="fa-solid fa-check-double mr-2"></i>
                     Presentar Examen
-                  </button>
-                </div>
-                
-
+                </button>
+              </div>
             </form>
-
         </div>
       </section>
     );

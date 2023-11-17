@@ -18,7 +18,6 @@ export const PracticeUI = (practice: Practice) => {
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     useEffect(() => {
-
         const fetchAsks = async () => {
             const asksData = await fetchApi<Ask[]>({
                 endpoint: "asks",
@@ -29,19 +28,20 @@ export const PracticeUI = (practice: Practice) => {
             });
             setAsks(asksData);
             setLoading(false);
-            
         };
 
         setModule(practice.attributes.module.data);
- 
         fetchAsks();
 
     }, []);
 
     const handleOptionChange = (questionId: number) => {
       setSelectedOptions((prevSelectedOptions) => {
-        const newSelectedOptions = [...prevSelectedOptions, questionId];
-        return newSelectedOptions;
+        if (!prevSelectedOptions.includes(questionId)) {
+          const newSelectedOptions = [...prevSelectedOptions, questionId];
+          return newSelectedOptions;
+        }
+        return prevSelectedOptions;
       });
     };
 
