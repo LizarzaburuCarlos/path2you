@@ -55,6 +55,31 @@ body.neumorphism .button-primary{
     /* Animación de rotación */
 }
 
+.button__return button, .button__return a {
+    @apply transform text-[16px] rounded-full py-2 px-4 duration-300 hover:scale-105;
+}
+
+body.light .button__return button, body.light .button__return a {
+    @apply bg-[#e55503] text-white;
+}
+
+body.dark .button__return button, body.dark .button__return a {
+    @apply bg-[#786396] text-white;
+}
+
+body.neumorphism .button__return button, body.neumorphism .button__return a {
+    font-weight: 700;
+    background: #e2d2f4;
+    background: linear-gradient(115deg, rgba(255, 255, 255, 0.4) 0%, rgba(232, 221, 244, 1) 100%);
+    box-shadow: 6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+    text-shadow: 0px 2px 4px rgba(103, 102, 102, 0.3);
+}
+
+body.neumorphism .button__return button:hover, body.neumorphism .button__return a:hover {
+    background: linear-gradient(145deg, #9c7ed8, #7342b0);
+    color: #FFFAFF;
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);

@@ -68,7 +68,7 @@ export const LessonViewer = ({leccion, setResolution, setLeccion, setHasProgress
     return (
 
       <>
-      <div className="lesson__return mb-2 w-fit">
+      <div className="button__return mb-2 w-fit">
           <button className="h-fit py-1 px-2 w-full font-semibold" onClick={() => {
               location.reload()
               setResolution(null)

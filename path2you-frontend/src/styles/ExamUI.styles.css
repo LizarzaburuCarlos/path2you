@@ -99,6 +99,14 @@ body.neumorphism .question__option input[type="radio"]:checked + label {
     border: 6px solid #fff;
 }
 
+.exam__button--submit button {
+    @apply transform rounded-full py-2 px-4 duration-300 hover:scale-105;
+}
+
+.exam__button--submit button:disabled {
+    @apply rounded-full py-2 px-4 opacity-50 cursor-not-allowed hover:scale-100;
+}
+
 body.light .exam__button--submit button {
     background-color: #e55503;
     color: #fff;
@@ -160,7 +168,39 @@ body.light .ask__option input[type="radio"]:checked + label {
     background-color: #6933ad;
     color: #fff;
 }
-  
+
+.exam__question--container.correct .ask__option input[type="radio"]:checked + label {
+    background-color: rgba(0, 128, 0, 0.28);
+    color: green;
+}
+
+.exam__question--container.correct .ask__option input[type="radio"]:checked + label::before {
+    content: '\2713';
+    color: green;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+}
+.exam__question--container.incorrect .ask__option input[type="radio"]:checked + label::before {
+    content: '\2717';
+    color: red;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+}
+
+.exam__question--container.incorrect .ask__option input[type="radio"]:checked + label {
+    background-color: rgba(255, 0, 0, 0.28);
+    color: red;
+
+}
+
   
   
   
