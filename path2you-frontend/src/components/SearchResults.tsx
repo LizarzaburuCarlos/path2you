@@ -36,7 +36,6 @@ const SearchResults = () => {
       console.log(error);
     }
     setLoading(false);
-
   };
 
 //   const fetchModules = async (queryParams) => {
