@@ -127,14 +127,25 @@ export const UserUI = () => {
 
             <div className="mt-8">
                 <h2 className="profile__title text-2xl font-bold">Cursos</h2>
-                <p className="">Estos son los cursos que has tomado.</p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-6">            
-                {inscriptions.map((inscription) => (
-                    <UserCourseCard user={user} inscription={inscription} />
-                ))}
-                </div>
+                {inscriptions.length === 0 && (
+                    <>
+                        <p className="text-center my-8 opacity-50 font-semibold">Aún no has tomado ningún curso <br/> ¡Ve a la página de cursos y comienza a aprender!</p>
+                    </>
+                )} 
+                {inscriptions.length > 0 && (
+                    <>
+                        <p className="">Estos son los cursos que has tomado.</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-6">            
+                        {inscriptions.map((inscription) => (
+                            <UserCourseCard user={user} inscription={inscription} />
+                        ))}
+                        </div>
+                    </>
+                )}
+                    
             </div>
         </div>
+    
     </>
     );
        
