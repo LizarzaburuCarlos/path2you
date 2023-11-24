@@ -138,10 +138,11 @@ const TopBar = () => {
       <form action="/search" method="get" className={`topbar__searchbar`}>
         <input
           type="text"
-          placeholder="Buscar..."
+          placeholder="Buscar un curso..."
           className="topbar__search-input"
           name="title"
           minLength={3}
+          required
         />
         <button type="submit" className={`topbar__search-button `} >
           <i className="fa-solid fa-magnifying-glass text-base"></i>
