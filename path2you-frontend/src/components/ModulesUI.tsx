@@ -44,7 +44,6 @@ export const ModulesUI = ({ module }) => {
           "filters[module][id][$eq]": module.id.toString() || "",
         },
       });
-      console.log(practiceData);
       
       setPractice(practiceData[0]);
     };
@@ -125,8 +124,11 @@ export const ModulesUI = ({ module }) => {
 
         console.log(res);
       } else {
-        // Si el usuario no tiene un registro, crea uno nuevo con el valor status calculado
-
+      
+        if (finishedLessonsResponse.length === 0) {
+          return;
+        }
+  // Si el usuario no tiene un registro, crea uno nuevo con el valor status calculado
         const status = (1 / lessons.length) * 100; // Calcula el porcentaje de lecciones terminadas
         console.log(lessons.length);
 
