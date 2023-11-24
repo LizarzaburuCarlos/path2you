@@ -81,7 +81,7 @@ const DeleteAccount = () => {
           Estás a punto de eliminar tu cuenta en nuestra plataforma. Queremos
           informarte sobre las consecuencias de esta acción:
         </p>
-        <ol className="delete-account__list">
+        <ol className="delete-account__list mb-4">
           <li className="delete-account__item mb-2">
             <span className="font-semibold">Pérdida de Acceso:</span> Una vez
             que elimines tu cuenta, perderás el acceso permanente a nuestra
@@ -106,7 +106,7 @@ const DeleteAccount = () => {
             preferencias de configuración.
           </li>
         </ol>
-        <p className="delete-account__question text-center text-lg font-bold mb-6">
+        <p className="delete-account__question text-center text-lg font-bold mt-2 mb-6">
           ¿Estás seguro de que deseas eliminar tu cuenta?
         </p>
       </div>
@@ -114,14 +114,14 @@ const DeleteAccount = () => {
         <button
           type="submit"
           onClick={handleRedirect}
-          className="form__submit button-secondary change mb-4 w-1/2"
+          className="form__submit button-secondary change mb-4 w-full md:w-1/2"
         >
           No, deseo mantener mi cuenta
         </button>
         <button
           type="submit"
           onClick={handleDelete}
-          className="form__submit button-primary change mb-4 w-1/2"
+          className="form__submit button-primary change mb-4 w-full md:w-1/2"
         >
           Sí, deseo eliminar mi cuenta
         </button>

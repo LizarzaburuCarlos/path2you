@@ -123,3 +123,36 @@ body.neumorphism .form .form__input::placeholder {
 body.dark .form .form__input::placeholder {
     color: white;
 }
+
+body.light .new-names .new-names__title {
+    color: #7342b0;
+}
+
+body.neumorphism .new-names .new-names__title {
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.20);
+    color: black;
+}
+
+body.dark .new-names h1,
+body.dark .new-names h2,
+body.dark .new-names h3,
+body.dark .new-names p {
+    color: white
+}
+
+body.light .delete-account .delete-account__title {
+    color: #7342b0;
+}
+
+body.neumorphism .delete-account .delete-account__title {
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.20);
+    color: black;
+}
+
+body.dark .delete-account h1,
+body.dark .delete-account h2,
+body.dark .delete-account h3,
+body.dark .delete-account p, 
+body.dark .delete-account ol {
+        color: white
+}
