@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import NewNames from "../../components/settings/NewNames";
+import '../../styles/Settings.styles.css'
+
+const title = "Actualizar nombres";
+
+---
+
+
+<BaseLayout title={ title }>
+  <NewNames client:load/>
+</BaseLayout>
