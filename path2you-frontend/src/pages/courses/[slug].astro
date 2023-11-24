@@ -3,6 +3,7 @@ import CoursePresentation from "../../components/CoursePresentation";
 import type Course from "../../interfaces/course";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import fetchApi from "../../lib/strapi";
+import "../../styles/Profile.styles.css";
 
 export async function getStaticPaths() {
   const courses = await fetchApi<Course[]>({

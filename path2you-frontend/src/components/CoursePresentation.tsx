@@ -9,6 +9,7 @@ import "../styles/CoursePresentation.styles.css";
 import type Exam from "../interfaces/exam";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import type Inscription from "../interfaces/inscription";
 
 //FALTA:
 // 2. Reorganizar el código para que sea más legible
@@ -17,6 +18,7 @@ import remarkGfm from "remark-gfm";
 const CoursePresentation = (course: Course) => {
   const courseId = course.id.toString();
   const [inscription, setInscription] = useState(false);
+  const [inscriptionData, setInscriptionData] = useState<Inscription>();
   const [user, setUser] = useState({ id: null });
  
   const [loading, setLoading] = useState<boolean>(true);
@@ -58,6 +60,7 @@ const CoursePresentation = (course: Course) => {
 
       if (res.data[0]) {
         setInscription(true);
+        setInscriptionData(res.data[0]);
       } else {
         console.log("no inscrito");
       }
@@ -99,6 +102,23 @@ const CoursePresentation = (course: Course) => {
 
       <div className="course__container grid gap-6 md:grid-cols-2 mb-6">
         <div className={`course__presentation relative`}>
+        {inscription ? (
+              <>
+              {inscriptionData?.attributes.finished === false && (
+                <div className="unfinished__course mt-2 inline-block rounded-full px-3 py-1 text-sm font-semibold mb-4 mr-2">
+                  En Curso</div>
+              )}
+
+              {inscriptionData?.attributes.finished && (
+                <>
+                <div className="finished__course inline-block rounded-full px-3 py-1 text-sm mb-4 font-semibold mr-2">
+                  Finalizado</div>
+                </>
+              )}
+              </>
+            ) : (
+              <></>
+            )}
           <h3 className="course__title font-bold text-3xl lg:text-5xl lg:leading-[50px] mb-6">
             {course.attributes.title}
           </h3>
