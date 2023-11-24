@@ -57,7 +57,6 @@ const NewPassword = () => {
         setLoading(false);
         return;
       }
-      console.log(data.newPassword + " " + data.confirmPassword);
 
       if (data.newPassword !== data.confirmPassword) {
         toast.error("Las contraseñas no coinciden. Por favor, verifica.");
