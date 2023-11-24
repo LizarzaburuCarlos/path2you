@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DeleteAccount from "../../components/settings/DeleteAccount"
+import '../../styles/Settings.styles.css'
+
+const title = "Eliminar Cuenta";
+
+---
+
+
+<BaseLayout title={ title }>
+  <DeleteAccount client:load/>
+</BaseLayout>

@@ -7,6 +7,15 @@
     @apply w-full rounded-lg text-white text-base font-semibold cursor-pointer;
 }
 
+.button-secondary {
+    border: none;
+    padding: 15px 20px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+
+    @apply w-full rounded-lg text-black text-base font-semibold cursor-pointer;
+}
+
 .button-primary.login {
     background-color: #7342b0;
 }
@@ -25,6 +34,22 @@ body.neumorphism .button-primary{
 }
 
 .button-primary:hover{
+    transform: scale(1.05);
+}
+body.light .button-secondary{
+    background-color: #a28fb8;
+}
+
+body.dark .button-secondary{
+    background-color: #c1b6d9;
+}
+
+body.neumorphism .button-secondary{
+    background: linear-gradient(145deg, #b6a0e2, #a98eca);
+    box-shadow: -10px -10px 15px 0px #FFF, 5px 6px 10px 0px #c1b5da;
+}
+
+.button-secondary:hover{
     transform: scale(1.05);
 }
 
