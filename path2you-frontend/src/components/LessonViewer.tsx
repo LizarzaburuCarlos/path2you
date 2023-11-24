@@ -97,7 +97,8 @@ export const LessonViewer = ({leccion, setResolution, setLeccion, setHasProgress
             </div> */}
             <div className="lesson__viewer__content">
                 <h4 className="lesson__viewer__title font-bold text-3xl mb-4">{leccion.attributes.title}</h4>
-                <Markdown skipHtml={false} remarkPlugins={[remarkGfm]} className="lesson__viewer__text">
+                <Markdown skipHtml={false} remarkPlugins={[remarkGfm]} className="lesson__viewer__text"
+                >
                   {leccion.attributes.content}</Markdown>
             </div>
         </div>
