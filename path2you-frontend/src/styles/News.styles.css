@@ -2,13 +2,13 @@ body.light .img1, body.light .img2, body.light .img3, body.light .img4 {
     background: #f8f8f8;
 }
 
-body.dark .img1, body.dark .img2, body.dark .img3, body.dark .img4  {
+body.dark .img1, body.dark .img2, body.dark .img3, body.dark .img4 {
     background: #766F87;
 }
 
 body.neumorphism .img1, body.neumorphism .img2, body.neumorphism .img3, body.neumorphism .img4 {
     background: linear-gradient(145deg, #9c7ed8, #7342b0);
-    box-shadow:  5px 6px 15px 0px #c1b5da;
+    box-shadow: 5px 6px 15px 0px #c1b5da;
     border: 1px solid #9c7ed8
 }
 
@@ -16,18 +16,18 @@ body.light .inscribedcourse {
     background: #f8f8f8;
 }
 
-body.dark .inscribedcourse{
+body.dark .inscribedcourse {
     background: #48454F;
 }
 
-body.neumorphism .inscribedcourse{
+body.neumorphism .inscribedcourse {
     background: #e5d9f2;
-    background: linear-gradient(115deg, rgba(255,255,255,1) 0%, rgba(232,221,244,1) 50%);
-    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+    background: linear-gradient(115deg, rgba(255, 255, 255, 1) 0%, rgba(232, 221, 244, 1) 50%);
+    box-shadow: 6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
 }
 
 body.dark .inscribedlist__header {
-    color:#f3f3f3;
+    color: #f3f3f3;
 }
 
 body.neumorphism .inscribedlist__header {
@@ -63,7 +63,11 @@ body.dark .unfinished__course {
 
 body.neumorphism .unfinished__course {
     background: #e5d9f2;
-    background: linear-gradient(115deg, rgba(255,255,255,1) 0%, #e8ddf4 50%);
-    box-shadow:  6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
+    background: linear-gradient(115deg, rgba(255, 255, 255, 1) 0%, #e8ddf4 50%);
+    box-shadow: 6px 6px 14px #bcaad0, -6px -6px 14px #ffffff;
     color: black;
+}
+
+body.dark .inscribedlist__empty {
+    color: white;
 }
