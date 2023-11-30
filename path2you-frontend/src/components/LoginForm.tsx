@@ -3,6 +3,7 @@ import { logIn } from "../core/service";
 import { storeUser } from "../core/helpers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import fetchApi from "../lib/strapi";
 
 const initialUser = { identifier: "", password: "" };
 
@@ -21,19 +22,32 @@ const LoginForm = () => {
         throw new Error("Por favor, ingresa todos los datos.");
       }
 
-      const res = await logIn(data.identifier, data.password);
+      const res = await fetchApi({
+        endpoint: "auth/local",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: {
+          identifier: data.identifier,
+          password: data.password,
+        },
+      });
 
-      if (res.jwt) {
+      const { jwt, user } = res as any;
+
+      if ((res as any)?.error?.status === 400) {
+        toast.error("E-mail o contraseña inválidos.");
+        return;
+      } else if (jwt) {
         toast.success("Inicio de Sesion Exitoso");
         storeUser(res);
         setUser(initialUser);
         location.replace("/");
-      } else if (res.status === 400) {
-        toast.warning("Credenciales incorrectas");
       } else {
-        toast.error(res);
+        toast.error((res as any).data.message);
       }
-    } catch (error:any) {
+    } catch (error: any) {
       toast.error(error.message);
     }
   };
