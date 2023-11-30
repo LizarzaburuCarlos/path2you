@@ -41,7 +41,6 @@ export const register = async (data: any) => {
       const { error } = await res.json();
 
       return error;
-
     } else {
       console.log("Usuario registrado");
       const { user } = await res.json();
@@ -98,7 +97,7 @@ export const editarUsuario = async (id, data) => {
 
 export const editarRegistroModule = async (id, data) => {
   console.log("data", data);
-  
+
   try {
     const res = await fetch(`${API_URL}/registers/${id}`, {
       method: "PUT",
@@ -107,11 +106,8 @@ export const editarRegistroModule = async (id, data) => {
     });
 
     if (!res.ok) {
-      
       throw new Error("Fallo al editar registro");
-    
     } else {
-
       const data = await res.json();
 
       console.log("Registro editado:", data);
@@ -126,18 +122,17 @@ export const editarRegistroModule = async (id, data) => {
 export const getCourses = async () => {
   try {
     const res = await fetch(`${API_URL}/courses?populate=photo`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
     });
-   
+
     if (!res.ok) {
       throw new Error("Failed to fetch courses");
     } else {
-        console.log("Cursos obtenidos");
-        const { data } = await res.json();
-        return data;    
+      console.log("Cursos obtenidos");
+      const { data } = await res.json();
+      return data;
     }
-
   } catch (error) {
     console.error(error);
     throw error;
@@ -148,34 +143,32 @@ export const getCourses = async () => {
 export const getUsuario = async (id: string) => {
   try {
     const res = await fetch(`${API_URL}/users/${id}`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
     });
 
     if (!res.ok) {
       throw new Error("Failed to fetch user");
     } else {
-        const data = await res.json();
-        return data;    
+      const data = await res.json();
+      return data;
     }
-
   } catch (error) {
     console.error(error);
     throw error;
   }
 };
 
-export function getPhoto({course}){
+export function getPhoto({ course }) {
   console.log(course);
   const { url } = course.photo.data.attributes;
-  
-  
-  return `${url}`
+
+  return `${url}`;
 }
 
-export function getMedia({lesson}){
+export function getMedia({ lesson }) {
   const { url } = lesson.media.data.attributes;
-  return `${url}`
+  return `${url}`;
 }
 
 export default {

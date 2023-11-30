@@ -2,6 +2,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { register } from "../core/service";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
+import fetchApi from "../lib/strapi";
 
 // FALTA:
 // 1. Validar username y email que no se repitan
@@ -17,7 +18,13 @@ const RegisterForm = () => {
     setLoading(true);
 
     try {
-      if (!data.name || !data.username || !data.email || !data.password || !data.confirmPassword) {
+      if (
+        !data.name ||
+        !data.username ||
+        !data.email ||
+        !data.password ||
+        !data.confirmPassword
+      ) {
         toast.error("Por favor, ingresa todos los datos.");
         setLoading(false);
         return;
@@ -28,23 +35,30 @@ const RegisterForm = () => {
         setLoading(false);
         return;
       }
-
-      const res = await register({
-        name: data.name,
-        username: data.username,
-        email: data.email,
-        password: data.password,
+      const res = await fetchApi({
+        endpoint: "auth/local/register",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: {
+          name: data.name,
+          username: data.username,
+          email: data.email,
+          password: data.password,
+        },
       });
 
-      if (!res.status) {
-        toast.success("Registro Exitoso");
-        location.replace("/login");
+      if ((res as any)?.error?.status === 400) {
+        toast.error("El E-mail o Username ya se encuentra registrado.");
       } else {
-        toast.error(res);
+        toast.success("Registro Exitoso");
+        setTimeout(() => {
+          window.location.replace("/login");
+        }, 2000);
       }
     } catch (error: any) {
       console.log(error);
-
       toast.error(error.message);
     }
     setLoading(false);
@@ -136,6 +150,7 @@ const RegisterForm = () => {
           id="confirmPassword"
           className="form__input"
           minLength={5}
+          title="La contraseña debe contener al menos una letra."
           required
         />
         <div className="form__submit text-center mt-10">
