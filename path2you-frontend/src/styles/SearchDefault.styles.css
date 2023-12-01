@@ -1,0 +1,12 @@
+body.light .search-results p {
+    color: black;
+}
+
+body.dark .search-results {
+    color: #FFF;
+}
+
+body.neumorphism .search-results {
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.20);
+    color: black;
+}
