@@ -104,37 +104,62 @@ const NewPassword = () => {
         autoComplete="off"
         className="form rounded-lg w-full mt-8 overflow-hidden"
       >
-        <div className="form__container w-full py-11 px-8 rounded-xl overflow-hidden flex flex-col md:flex-row gap-8">
-          <input
-            type="password"
-            placeholder="Contraseña Actual"
-            aria-label="Contraseña Actual"
-            name="password"
-            id="password"
-            className="form__input"
-            minLength={5}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Contraseña Nueva"
-            aria-label="Contraseña Nueva"
-            name="newPassword"
-            id="newPassword"
-            className="form__input"
-            minLength={5}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Repite la Contraseña Nueva"
-            aria-label="Repite la Contraseña Nueva"
-            name="confirmPassword"
-            id="confirmPassword"
-            className="form__input"
-            minLength={5}
-            required
-          />
+        <div className="form__container w-full py-11 px-8 rounded-xl overflow-hidden outline-none flex flex-col md:flex-row gap-8">
+          <div className="form__division w-full md:w-1/3 flex flex-col gap-4">
+            <label
+              htmlFor="password"
+              className="form__label text-lg md:text-xl font-semibold"
+            >
+              Contraseña Actual:
+            </label>
+            <input
+              type="password"
+              placeholder="Escribe tu contraseña actual"
+              aria-label="Contraseña Actual"
+              name="password"
+              id="password"
+              className="form__input"
+              minLength={5}
+              required
+            />
+          </div>
+          <div className="form__division w-full md:w-1/3 flex flex-col gap-4">
+            <label
+              htmlFor="newPassword"
+              className="form__label text-lg md:text-xl font-semibold"
+            >
+              Contraseña Nueva:
+            </label>
+            <input
+              type="password"
+              placeholder="Escribe tu contraseña nueva"
+              aria-label="Contraseña Nueva"
+              name="newPassword"
+              id="newPassword"
+              className="form__input"
+              minLength={5}
+              required
+            />
+          </div>
+
+          <div className="form__division w-full md:w-1/3 flex flex-col gap-4">
+            <label
+              htmlFor="confirmPassword"
+              className="form__label text-lg md:text-xl font-semibold"
+            >
+              Contraseña Nueva:
+            </label>
+            <input
+              type="password"
+              placeholder="Repite la Contraseña Nueva"
+              aria-label="Repite la Contraseña Nueva"
+              name="confirmPassword"
+              id="confirmPassword"
+              className="form__input"
+              minLength={5}
+              required
+            />
+          </div>
         </div>
         <div className="form__footer w-full flex flex-col items-center mt-8">
           <h3 className=" text-base md:text-lg font-semibold mb-4">

@@ -124,6 +124,15 @@ body.dark .form .form__input::placeholder {
     color: white;
 }
 
+
+body.neumorphism .form .form__label {
+    color: black;
+}
+
+body.dark .form .form__label {
+    color: white;
+}
+
 body.light .new-names .new-names__title {
     color: #7342b0;
 }
@@ -152,7 +161,7 @@ body.neumorphism .delete-account .delete-account__title {
 body.dark .delete-account h1,
 body.dark .delete-account h2,
 body.dark .delete-account h3,
-body.dark .delete-account p, 
+body.dark .delete-account p,
 body.dark .delete-account ol {
-        color: white
+    color: white
 }

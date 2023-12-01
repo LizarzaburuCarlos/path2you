@@ -58,7 +58,6 @@ const NewNames = () => {
       setTimeout(() => {
         location.replace("/profile");
       }, 2000);
-      
     } catch (error: any) {
       console.log(error);
 
@@ -87,10 +86,17 @@ const NewNames = () => {
         autoComplete="off"
         className="form rounded-lg w-full mt-8 overflow-hidden"
       >
-        <div className="form__container w-full py-11 px-8 rounded-xl overflow-hidden flex flex-col md:flex-row gap-8">
+        <div className="form__container w-full py-11 px-8 rounded-xl overflow-hidden flex flex-col gap-4">
+          <label
+            htmlFor="name"
+            className="form__label text-lg md:text-xl font-semibold"
+          >
+            Nombres y Apellidos:
+          </label>
+
           <input
             type="text"
-            placeholder="Nombres & Apellidos"
+            placeholder="Ingrese sus nombres y apellidos"
             aria-label="Nombres & Apellidos"
             name="name"
             id="name"
