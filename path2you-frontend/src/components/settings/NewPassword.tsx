@@ -33,8 +33,12 @@ const NewPassword = () => {
           passwordConfirmation: data.confirmPassword,
         },
       });
-      if ((res as any)?.error?.status === 400) {
-        return 400;
+      console.log(res);
+
+      if ((res as any)?.error?.message.includes("invalid")) {
+        return "PASSWORD_INVALID";
+      } else if ((res as any)?.error?.message.includes("different")) {
+        return "PASSWORD_DIFFERENT";
       } else {
         console.log("No hay error en la respuesta");
       }
@@ -66,8 +70,10 @@ const NewPassword = () => {
 
       const res = await updatePassword(data, userData);
 
-      if (res == 400) {
+      if (res == "PASSWORD_INVALID") {
         toast.error("Contraseña actual incorrecta");
+      } else if (res == "PASSWORD_DIFFERENT") {
+        toast.error("La nueva contraseña es idéntica a la actual.");
       } else {
         toast.success("Contraseña cambiada exitosamente");
         localStorage.setItem("user", "");
