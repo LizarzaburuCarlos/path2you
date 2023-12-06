@@ -147,7 +147,7 @@ export const ExamUI = (exam: Exam) => {
           </div>
         )}
 
-        <div className="exam__container w-[80%]">
+        <div className="exam__container w-full xl:w-[80%]">
             <div className="button__return mb-6 w-fit hover:scale-105 transition-all duration-300">
               <a href={`/courses/${exam.attributes.course.data.attributes.slug}`} className="h-fit py-1 px-2 w-full font-semibold">
               <i className="fa-solid fa-arrow-left-long pr-1"></i>
@@ -161,14 +161,14 @@ export const ExamUI = (exam: Exam) => {
                   <div className="exam__question--container rounded-lg p-6 flex flex-col gap-4">
                     <h5 className="text font-semibold">0{index+1}. {question.attributes.title}</h5>
                     <div className="flex flex-col gap-6">
-                      <div className="flex text items-center gap-8">
+                      <div className="flex flex-row flex-wrap items-center gap-2 sm:gap-8">
                         <div className="question__option rounded-lg py-2 flex-row flex gap-4 ">
                           <input 
                             onChange={() => handleOptionChange(question.id)}
                             type="radio" name={`${question.id}`} id={`question-a-${index}`} value="verdadero" />
                           <label htmlFor={`question-a-${index}`}>Verdadero</label>
                         </div>
-                        <div className="question__option rounded-lg py-1 px-4 flex-row flex gap-4">
+                        <div className="question__option rounded-lg py-1 flex-row flex gap-4">
                           <input
                             onChange={() => handleOptionChange(question.id)}
                             type="radio" name={`${question.id}`} id={`question-b-${index}`} value="falso" />

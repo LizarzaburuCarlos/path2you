@@ -86,7 +86,7 @@ export const PracticeUI = (practice: Practice) => {
                 <div className="spinner"></div>
             </div>
         )}
-        <div className="exam__container w-[80%]">
+        <div className="exam__container w-full xl:w-[80%]">
           <div className="button__return mb-6 w-fit hover:scale-105 transition-all duration-300">
               <a href={`/modules/${module?.attributes.slug}`} className="h-fit py-1 px-2 w-full font-semibold">
               <i className="fa-solid fa-arrow-left-long pr-1"></i>
@@ -102,7 +102,7 @@ export const PracticeUI = (practice: Practice) => {
                   }`}>
                   <h5 className="text font-semibold">0{index+1}. {question.attributes.title}</h5>
                   <div className="flex flex-col gap-6">
-                    <div className="flex flex-col justify-center gap-4">
+                    <div className="flex flex-col justify-center gap-2 lg:gap-4">
                       <div className="ask__option rounded-lg py-2 flex-row flex gap-4 ">
                         <input
                         onChange={() => handleOptionChange(question.id)} 
@@ -121,8 +121,8 @@ export const PracticeUI = (practice: Practice) => {
               ))}
             </div>
             {showButton && (
-              <div className="exam__button--submit my-6">
-                <button disabled={!isFormValid()} type="submit">
+              <div className="exam__button--submit w-full my-6 flex justify-center sm:justify-start">
+                <button className="" disabled={!isFormValid()} type="submit">
                   <i className="fa-solid fa-check-double mr-2"></i>
                   Verificar Respuestas
                 </button>

@@ -69,7 +69,7 @@ const InscribedList = () => {
     return (
       <a
         href={`/courses/${course.slug}`}
-        className={`inscribedcourse transform transition-all duration-300 hover:scale-[1.02] w-fit h-fit px-6 py-4 rounded-lg flex flex-col justify-center gap-1`}
+        className={`inscribedcourse transform transition-all duration-300 hover:scale-[1.02] w-full md:w-fit h-fit px-6 py-4 rounded-lg flex flex-col justify-center gap-1`}
       >
         
         <div className="inscribedcourse__presentation w-full flex items-center gap-6">
@@ -100,7 +100,7 @@ const InscribedList = () => {
             >
               <h3 className="w-full text-lg font-semibold ">Continúa estudiando</h3>
             </div>
-            <div className="inscribedlist__content flex gap-4">
+            <div className="inscribedlist__content flex flex-wrap gap-4">
               {inscribedCourses.map((inscription) => (
                 <InscribedCourse {...inscription} />
               ))}
